@@ -1,6 +1,6 @@
 !!! 5
 
-%html{ lang: 'en', xmlns: 'http://www.w3.org/1999/xhtml', :'xmlns:og'=>"http://ogp.me/ns#", :'xmlns:fb' => 'https://www.facebook.com/2008/fbml' }
+%html
 
   %head
     %meta{ charset: 'utf-8' }
@@ -19,11 +19,9 @@
 
     = csrf_meta_tags
 
-  %body{ id: site_id }
-    - if content_for?(:admin_base)
-      = content_for :admin_base
-    - else
-      = yield
+  %body
+    = render 'shared/navbar'
+    = yield
 
     = javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'
     = javascript_include_tag :application, data: { :'turbolinks-track' => true }
