@@ -1,10 +1,8 @@
 module Services
-  module Docs
+  module DocCollections
     class Create < Services::Base
-      Error = Class.new(StandardError)
-
-      def call(project_id, tag)
-        project = Project.find(project_id)
+      def call(projects_and_tags)
+        project = Services::Projects::Find.call(project_id).first
         doc = project.docs.create(tag: tag)
         if doc.persisted?
           Services::Docs::CreateFiles.call doc.id

@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131008140350) do
+ActiveRecord::Schema.define(version: 20131029204526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "doc_collection_associations", force: true do |t|
+    t.integer "doc_id"
+    t.integer "doc_collection_id"
+  end
+
+  add_index "doc_collection_associations", ["doc_collection_id"], name: "index_doc_collection_associations_on_doc_collection_id", using: :btree
+  add_index "doc_collection_associations", ["doc_id"], name: "index_doc_collection_associations_on_doc_id", using: :btree
+
+  create_table "doc_collections", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "docs", force: true do |t|
     t.string   "tag"

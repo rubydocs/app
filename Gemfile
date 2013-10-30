@@ -12,9 +12,7 @@ gem 'git',                            '1.2.6'
 gem 'high_voltage',                   '2.0.0'
 
 # Frontend
-gem 'bootstrap-sass',                 github: 'thomas-mcdonald/bootstrap-sass' # TODO: Use relased version once Bootstrap 3 is supported.
-gem 'rails_bootstrap_navbar',         '0.2.1'
-gem 'bootstrap-navbar',               path: '~/code/bootstrap-navbar'
+gem 'bootstrap-sass',                 '3.0.0.0.rc2' # TODO: Update to >= 3.0.0.0 when released
 
 # Utils
 gem 'pry',                            '0.9.12.2'
@@ -23,5 +21,5 @@ gem 'annotate',                       '2.5.0', require: false # TODO: Remove thi
 gem 'awesome_print',                  '1.2.0' # TODO: Remove this when this issue is resolved: https://github.com/ConradIrwin/pry-debundle/issues/8
 
 group :development do
-  gem 'annotate', '2.5.0'
+  gem 'annotate',                     '2.5.0'
 end

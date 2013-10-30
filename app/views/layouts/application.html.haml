@@ -21,7 +21,8 @@
 
   %body
     = render 'shared/navbar'
-    = yield
+    .container
+      = yield
 
     = javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'
     = javascript_include_tag :application, data: { :'turbolinks-track' => true }
