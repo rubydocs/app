@@ -12,7 +12,8 @@ gem 'git',                            '1.2.6'
 gem 'high_voltage',                   '2.0.0'
 
 # Frontend
-gem 'bootstrap-sass',                 '3.0.0.0.rc2' # TODO: Update to >= 3.0.0.0 when released
+gem 'bootstrap-sass',                 '3.0.2.1'
+gem 'rails_bootstrap_navbar',         '1.0.1.pre2'
 
 # Utils
 gem 'pry',                            '0.9.12.2'
