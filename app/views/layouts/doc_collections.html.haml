@@ -20,9 +20,8 @@
     = csrf_meta_tags
 
   %body{ id: site_id }
-    = render 'shared/navbar'
-    .container
-      = yield
+    = render 'shared/navbar_small'
+    = yield
 
     = javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'
     = javascript_include_tag :application, data: { :'turbolinks-track' => true }

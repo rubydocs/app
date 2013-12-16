@@ -1,4 +1,4 @@
-*.sublime-*
 projects
 docs
+doc_collections
 legacy

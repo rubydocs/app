@@ -1,13 +1,14 @@
 module Services
   module DocCollections
     class Create < Services::Base
-      def call(projects_and_tags)
-        project = Services::Projects::Find.call(project_id).first
-        doc = project.docs.create(tag: tag)
-        if doc.persisted?
-          Services::Docs::CreateFiles.call doc.id
+      def call(docs)
+        doc_collection = DocCollection.new
+        docs.each do |doc|
+          doc_collection.doc_collection_memberships.build doc_id: doc.id
         end
-        doc
+        raise doc_collection.doc_collection_memberships.map(&:errors).inspect unless doc_collection.doc_collection_memberships.all?(&:valid?)
+        doc_collection.save!
+        doc_collection
       end
     end
   end

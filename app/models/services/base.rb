@@ -1,9 +1,12 @@
 module Services
   class Base
     class << self
-      def call(*args)
-        self.new.call(*args)
+      def inherited(subclass)
+        subclass.send :include, Asyncable
+        subclass.const_set :Error, Class.new(StandardError)
       end
+
+      delegate :call, to: :new
     end
 
     def call

@@ -1,1 +1,7 @@
-@import "bootstrap";
+@import "bootstrap-and-overrides";
+@import "pages/*";
+
+html,
+body {
+  height: 100%;
+}
