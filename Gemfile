@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+# Load local Gemfile
+local_gemfile = File.expand_path('~/.Gemfile')
+instance_eval(File.read(local_gemfile)) if File.exist?(local_gemfile)
+
 gem 'rails',                          '4.0.2'
 gem 'pg',                             '0.17.0'
 gem 'haml-rails',                     '0.4'
@@ -33,20 +37,6 @@ gem 'sidekiq-unique-jobs',            '2.7.0'
 gem 'sidekiq-failures',               '0.2.2'
 gem 'sinatra',                        '1.4.4', require: false # For Sidekiq Web
 gem 'slim',                           '2.0.2'                 # For Sidekiq Web
-
-# Utils
-gem 'pry',                            '0.9.12.2'
-gem 'pry-debundle',                   '0.7'
-gem 'annotate',                       '2.5.0', require: false # TODO: Remove this when this issue is resolved: https://github.com/ConradIrwin/pry-debundle/issues/8
-gem 'awesome_print',                  '1.2.0' # TODO: Remove this when this issue is resolved: https://github.com/ConradIrwin/pry-debundle/issues/8
-gem 'better_errors',                  '1.0.1'
-gem 'binding_of_caller',              '0.7.2' # For better_errors
-gem 'log_buddy',                      '0.7.0'
-
-group :development do
-  gem 'quiet_assets',                 '1.0.2'
-  gem 'annotate',                     '2.5.0'
-end
 
 group :test do
   gem 'fakeredis',                    '0.4.3'
