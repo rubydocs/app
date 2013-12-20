@@ -9,7 +9,7 @@ set :repository,       'git@code.krautcomputing.com:manuel/rubydocs.git'
 set :scm,              'git'
 set :scm_verbose,      true
 set :deploy_via,       :remote_cache
-set :keep_releases,    1
+set :keep_releases,    2
 
 set :user,             'deploy'
 set :use_sudo,         false
