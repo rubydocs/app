@@ -1,0 +1,13 @@
+/home/deploy/rubydocs/shared/log/*.log {
+  daily
+  rotate 30
+  compress
+  delaycompress
+  missingok
+  notifempty
+  sharedscripts
+  postrotate
+    monit restart rubydocs_puma
+    monit restart rubydocs_sidekiq
+  endscript
+}

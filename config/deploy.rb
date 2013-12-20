@@ -44,12 +44,7 @@ namespace :deploy do
       run "mkdir -p #{shared_path}/#{shared_dir}"
 
       # Upload file if present
-      local_file = if shared == 'config/database.yml'
-        "../deploy/#{fetch(:stage)}/database.yml"
-      else
-        "../../#{shared}"
-      end
-      file = File.expand_path(local_file, __FILE__)
+      file = File.expand_path("../../#{shared}", __FILE__)
       put File.read(file), File.join(shared_path, shared) if File.file?(file)
 
       # Symlink

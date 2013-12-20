@@ -41,3 +41,11 @@ gem 'slim',                           '2.0.2'                 # For Sidekiq Web
 group :test do
   gem 'fakeredis',                    '0.4.3'
 end
+
+group :development do
+  gem 'sprinkle',                     '0.7.5', require: false
+end
+
+group :production do
+  gem 'puma',                         '2.7.1', require: false
+end
