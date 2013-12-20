@@ -50,6 +50,9 @@ namespace :deploy do
       # Symlink
       run "ln -nfs #{shared_path}/#{shared} #{release_path}/#{shared}"
     end
+
+    # Symlink doc collections
+    run "ln -nfs #{release_path}/files/doc_collections #{release_path}/public/doc_collections"
   end
 end
 
