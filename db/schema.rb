@@ -25,10 +25,11 @@ ActiveRecord::Schema.define(version: 20131029204526) do
 
   create_table "doc_collections", force: true do |t|
     t.string   "url"
-    t.string   "slug",                      null: false
+    t.string   "slug",         null: false
+    t.datetime "generated_at"
+    t.datetime "uploaded_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "generating", default: true
   end
 
   add_index "doc_collections", ["slug"], name: "index_doc_collections_on_slug", unique: true, using: :btree

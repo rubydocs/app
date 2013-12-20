@@ -31,4 +31,12 @@ class DocCollection < ActiveRecord::Base
   def local_path
     File.join(PATH, self.slug)
   end
+
+  def generating?
+    self.generated_at.nil?
+  end
+
+  def uploading?
+    self.uploaded_at.nil?
+  end
 end

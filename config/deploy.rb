@@ -1,8 +1,7 @@
 # Bundler
 require 'bundler/capistrano'
 
-# TODO: Change this to ruby-docs.com once the new version is live
-server 'new.ruby-docs.com', :app, :web, :db, primary: true
+server 'ruby-docs.org', :app, :web, :db, primary: true
 
 set :application,      'rubydocs'
 set :repository,       'git@code.krautcomputing.com:manuel/rubydocs.git'

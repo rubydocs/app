@@ -15,7 +15,7 @@ class DocCollectionsController < ApplicationController
     doc_collection = Services::DocCollections::Find.call([], docs: docs).first
     if doc_collection.nil?
       doc_collection = Services::DocCollections::Create.call(docs)
-      Services::GenerateDocsAndDocCollection.perform_async :call, docs, doc_collection
+      Services::GenerateDocsAndDocCollection.perform_async :call, docs.map(&:id), doc_collection.id
     end
 
     redirect_to doc_collection_path(doc_collection.slug)

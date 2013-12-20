@@ -3,7 +3,7 @@ class CreateDocCollections < ActiveRecord::Migration
     create_table :doc_collections do |t|
       t.string :url
       t.string :slug, null: false
-      t.boolean :generating, default: true
+      t.datetime :generated_at, :uploaded_at
       t.timestamps
     end
 

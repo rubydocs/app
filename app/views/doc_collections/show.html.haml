@@ -1,13 +1,10 @@
-- if @doc_collection.generating
-
-  .page-header
-    %h1
-      = @doc_collection.name
-
-  %p
-    Your docs are being generated... refresh at will!
-
+- if @doc_collection.generating?
+  .container
+    .page-header
+      %h1
+        = @doc_collection.name
+    %p
+      Your docs are being generated, which shouldn't take more than a couple of minutes... refresh at will!
 - else
-
-  -# TODO: Should be docs.ruby-docs.com
-  %iframe{ src: "http://ruby-docs.s3-website-us-east-1.amazonaws.com/#{@doc_collection.slug}", frameborder: 0 }  
+  - url = @doc_collection.uploading? ? "/doc_collections/#{@doc_collection.slug}" : "http://docs.ruby-docs.org/#{@doc_collection.slug}"
+  %iframe{ src: url, frameborder: 0 }

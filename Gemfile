@@ -11,7 +11,7 @@ gem 'sass-rails',                     '4.0.0'
 gem 'uglifier',                       '2.2.1'
 gem 'coffee-rails',                   '4.0.0'
 gem 'therubyracer',                   '0.12.0', platforms: :ruby
-gem 'sdoc',                           '0.3.20'
+gem 'sdoc',                           github: 'vikassy/sdoc', branch: 'rdoc-4'
 gem 'git',                            '1.2.6'
 gem 'high_voltage',                   '2.0.0'
 gem 'aws-sdk',                        '1.30.0'
