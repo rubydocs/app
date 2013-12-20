@@ -21,6 +21,7 @@ set :branch,           'master'
 set :shareds, %w(
   config/database.yml
   config/settings.yml
+  files
 )
 
 default_run_options[:pty] = true
