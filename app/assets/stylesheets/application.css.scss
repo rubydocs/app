@@ -1,7 +1,5 @@
 @import "bootstrap-and-overrides";
+@import "font-awesome";
+@import "basics";
 @import "pages/*";
-
-html,
-body {
-  height: 100%;
-}
+@import "partials/*";

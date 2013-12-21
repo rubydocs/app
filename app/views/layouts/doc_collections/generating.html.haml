@@ -1,0 +1,10 @@
+- content_for :body do
+  #root
+    #generating-doc-collection
+      = render 'shared/navbar_generating_doc_collection'
+      .container
+        = yield
+    #root-footer
+  = render 'shared/footer'
+
+= render template: 'layouts/base'

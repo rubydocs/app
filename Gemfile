@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 # Load local Gemfile
 local_gemfile = File.expand_path('~/.Gemfile')
@@ -8,6 +9,7 @@ gem 'rails',                          '4.0.2'
 gem 'pg',                             '0.17.0'
 gem 'haml-rails',                     '0.4'
 gem 'sass-rails',                     '4.0.0'
+gem 'compass-rails',                  '1.1.2'
 gem 'uglifier',                       '2.2.1'
 gem 'coffee-rails',                   '4.0.0'
 gem 'therubyracer',                   '0.12.0', platforms: :ruby
@@ -23,6 +25,8 @@ gem 'capistrano',                     '2.15.5'
 # Frontend
 gem 'bootstrap-sass',                 '3.0.2.1'
 gem 'rails_bootstrap_navbar',         '1.0.1'
+gem 'font-awesome-rails',             '4.0.3.0'
+gem 'rails-assets-jquery.smooth-scroll', '1.4.13'
 
 # Redis
 gem 'redis',                          '3.0.6'

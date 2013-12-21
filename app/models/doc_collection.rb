@@ -25,7 +25,7 @@ class DocCollection < ActiveRecord::Base
 
   def name
     docs = self.docs.presence || self.doc_collection_memberships.map(&:doc)
-    docs.map(&:name).sort.join(', ')
+    docs.map(&:name).join(', ')
   end
 
   def generating?

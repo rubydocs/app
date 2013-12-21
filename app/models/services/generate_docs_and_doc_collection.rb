@@ -1,12 +1,11 @@
 module Services
   class GenerateDocsAndDocCollection < Services::Base
-    def call(doc_ids, doc_collection_id)
-      docs, doc_collection = Doc.where(id: doc_ids), DocCollection.where(id: doc_collection_id).first
-      raise Error, "One or more docs with IDs #{doc_ids} not found." unless docs.count == doc_ids.count
+    def call(doc_collection_id)
+      doc_collection = DocCollection.where(id: doc_collection_id).first
       raise Error, "Doc collection with ID #{doc_collection_id} not found." if doc_collection.nil?
 
       # Create files for docs
-      docs.each do |doc|
+      doc_collection.docs.each do |doc|
         begin
           Services::Docs::CreateFiles.call doc
         rescue Services::Docs::CreateFiles::FolderExistsError

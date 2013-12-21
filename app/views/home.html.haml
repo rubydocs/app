@@ -1,27 +1,64 @@
 .page-header
   %h1
-    Sortable docs for any Ruby project
-
-%p
-  Create the perfect docs for any Ruby project by picking exactly the versions you need.
+    Fast and searchable Ruby and Rails docs
+  %p.lead
+    Create your perfect set of docs by picking exactly the versions you need.
 
 = form_for @doc_collection, html: { class: 'form-horizontal', role: 'form' } do |f|
 
   .row
     = f.fields_for :docs do |doc_fields|
       = doc_fields.hidden_field :project_id
-      .col-md-4
+      .col-sm-6
         .panel.panel-default
           .panel-heading
-            .pull-right
-              = doc_fields.label :include, 'include?'
-              = doc_fields.check_box :include
+            -#.pull-right
+            -#  = doc_fields.label :include, 'include?'
+            -#  = doc_fields.check_box :include
             %h3.panel-title
-              = doc_fields.object.project.name.humanize
+              = doc_fields.object.project.name
           .panel-body
             .form-group
-              = doc_fields.label :tag, 'Version', class: 'col-lg-3 control-label'
-              .col-lg-6
-                = doc_fields.select :tag, options_for_select(doc_fields.object.project.tags.reverse), {}, class: 'form-control'
+              = doc_fields.label :tag, 'Version', class: 'col-xs-3 control-label'
+              .col-xs-9
+                = doc_fields.select :tag, options_for_select(project_versions(doc_fields.object.project)), {}, class: 'form-control'
 
   = submit_tag 'Generate docs', class: 'btn btn-primary btn-lg', data: { :'loading-text' => 'Please wait...' }
+
+%h2#about
+  About
+
+%p
+  A essential requirement for software developers to be able to work efficiently and "get into the zone" is quick and convenient access to documentation. I always felt Ruby and Ruby projects (and specifically Rails) were lacking in that regard. While many projects are very well documented, the visualization and access to those docs are often less than ideal.
+
+%p
+  By far the best option I found are docs based on the
+  = link_to 'sdoc', 'https://github.com/voloko/sdoc', target: '_blank'
+  format. They are clearly arranged, searchable, and very responsive. On top of that, the docs for multiple projects can be combined, so that one can for example search the Ruby and Rails docs simultaneously - a huge advantage when a framework and a language are so intertwined.
+
+%p
+  The problem is that developers often work on multiple projects simultaneously, and each one may be using a different Ruby and a different Rails version. Combined docs with those exact versions are a huge advantage in that case - which is exactly what RubyDocs lets you generate.
+
+%p
+  A big thank-you to
+  = succeed ',' do
+    = link_to 'Rob Cameron', 'http://ridingtheclutch.com/', target: '_blank'
+  who developed the first version of this site!
+
+#disqus_thread
+:javascript
+  var disqus_shortname = 'rubydocs';
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+%noscript
+  %p
+    Please enable JavaScript to view the
+    = succeed '.' do
+      = link_to 'comments powered by Disqus', 'http://disqus.com/?ref_noscript', target: '_blank'
+= link_to 'http://disqus.com', class: 'dsq-brlink', target: '_blank' do
+  comments powered by
+  %span.logo-disqus
+    Disqus

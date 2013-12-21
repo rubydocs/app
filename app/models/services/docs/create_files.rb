@@ -21,7 +21,12 @@ module Services
           '--exclude=bin',
           doc.project.local_path.to_s
         ]
-        args.unshift('--main=README.md') if ['Ruby on Rails', 'Sinatra'].include?(doc.project.name)
+        %w(README README.md README.markdown README.mdown README.txt).each do |readme|
+          if File.exist?(doc.project.local_path.join(readme))
+            args.unshift("--main=#{readme}")
+            break
+          end
+        end
         rdoc.document args
         doc
       end

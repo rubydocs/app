@@ -1,1 +1,21 @@
-@import "bootstrap";
+@import "bootstrap/variables";
+
+$container-lg:                  $container-sm;
+$container-md:                  $container-sm;
+$navbar-height:                 80px;
+$navbar-default-link-active-bg: transparent;
+
+@import "bootstrap-custom";
+
+.page-header {
+  margin-top: 20px;
+  border-width: 0;
+  text-align: center;
+}
+
+.navbar-brand {
+
+  img {
+    width: 230px;
+  }
+}

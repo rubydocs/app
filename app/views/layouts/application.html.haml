@@ -1,6 +1,9 @@
 - content_for :body do
-  = render 'shared/navbar'
-  .container
-    = yield
+  #root
+    = render 'shared/navbar'
+    .container
+      = yield
+    #root-footer
+  = render 'shared/footer'
 
 = render template: 'layouts/base'

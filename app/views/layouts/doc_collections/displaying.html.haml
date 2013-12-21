@@ -1,0 +1,6 @@
+- content_for :body do
+  #displaying-doc-collection
+    = render 'shared/navbar_displaying_doc_collection'
+    = yield
+
+= render template: 'layouts/base'

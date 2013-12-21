@@ -1,20 +1,38 @@
 body#show-doc-collection {
 
-  .navbar {
-    margin-bottom: 0;
-    min-height: 0;
+  #generating-doc-collection {
 
-    a.navbar-brand {
-      padding: 5px 15px;
+    .navbar-header {
+      float: none;
+      text-align: center;
+    }
 
-      img {
-        width: 150px;
-      }
+    .navbar-brand {
+      float: none;
+      display: inline-block;
+      margin: 0 auto;
     }
   }
 
-  iframe {
-    width: 100%;
+  #displaying-doc-collection {
     height: 100%;
+
+    .navbar {
+      margin-bottom: 0;
+      min-height: 0;
+
+      a.navbar-brand {
+        padding: 5px 15px;
+
+        img {
+          width: 150px;
+        }
+      }
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+    }
   }
 }

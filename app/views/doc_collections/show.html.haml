@@ -1,10 +1,13 @@
+- title @doc_collection.docs.map(&:name).join(', ')
+
 - if @doc_collection.generating?
   .container
     .page-header
       %h1
         = @doc_collection.name
-    %p
-      Your docs are being generated, which shouldn't take more than a couple of minutes... refresh at will!
+      %p.lead
+        Your docs are being generated!
+        %br
+        It shouldn't take more than a couple of minutes... refresh at will!
 - else
-  - url = @doc_collection.uploading? ? "/doc_collections/#{@doc_collection.slug}" : "http://docs.ruby-docs.org/#{@doc_collection.slug}"
-  %iframe{ src: url, frameborder: 0 }
+  %iframe{ src: docs_host(@doc_collection), frameborder: 0 }

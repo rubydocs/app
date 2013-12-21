@@ -25,6 +25,6 @@ class Doc < ActiveRecord::Base
   attr_accessor :include
 
   def name
-    [self.project.name, self.tag].join(' ')
+    [self.project.name, Services::Projects::ConvertTagToVersion.call(self.tag)].join(' ')
   end
 end
