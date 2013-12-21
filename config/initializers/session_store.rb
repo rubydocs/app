@@ -1,3 +1,3 @@
-# Be sure to restart your server when you modify this file.
-
-RubyDocs::Application.config.session_store :cookie_store, key: '_ruby-docs-web_session'
+RubyDocs::Application.config.session_store :redis_store,
+  redis_server: Settings.redis.to_hash.merge(namespace: 'sessions'),
+  expires_in: 1.day
