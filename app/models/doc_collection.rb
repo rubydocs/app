@@ -11,9 +11,8 @@
 #
 
 class DocCollection < ActiveRecord::Base
-  PATH = Rails.root.join('doc_collections')
+  include FriendlyId, LocalPath
 
-  include FriendlyId
   friendly_id :name, use: :slugged
 
   has_many :doc_collection_memberships, dependent: :destroy
@@ -26,10 +25,6 @@ class DocCollection < ActiveRecord::Base
   def name
     docs = self.docs.presence || self.doc_collection_memberships.map(&:doc)
     docs.map(&:name).sort.join(', ')
-  end
-
-  def local_path
-    File.join(PATH, self.slug)
   end
 
   def generating?

@@ -7,8 +7,9 @@ module Services
 
       def call(project)
         raise FolderExistsError, "Folder #{project.local_path} already exists and is not empty." if File.exist?(project.local_path) && !Dir[File.join(project.local_path, '*')].empty?
-      
-        Git.clone project.git, project.slug, path: Project::PATH
+
+        dir = File.expand_path('..', project.local_path)
+        Git.clone project.git, project.slug, path: dir
         project
       end
     end

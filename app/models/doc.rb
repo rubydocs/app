@@ -11,9 +11,8 @@
 #
 
 class Doc < ActiveRecord::Base
-  PATH = Rails.root.join('docs')
+  include FriendlyId, LocalPath
 
-  include FriendlyId
   friendly_id :name, use: :slugged
 
   belongs_to :project
@@ -27,9 +26,5 @@ class Doc < ActiveRecord::Base
 
   def name
     [self.project.name, self.tag].join(' ')
-  end
-
-  def local_path
-    File.join(PATH, self.slug)
   end
 end
