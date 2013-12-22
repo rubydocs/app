@@ -42,6 +42,10 @@ gem 'sidekiq-failures',               '0.2.2'
 gem 'sinatra',                        '1.4.4', require: false # For Sidekiq Web
 gem 'slim',                           '2.0.2'                 # For Sidekiq Web
 
+# Profiling & performance tracking
+gem 'newrelic_rpm',                   '3.7.1.180'
+gem 'rack-mini-profiler',             '0.1.31'
+
 group :test do
   gem 'fakeredis',                    '0.4.3'
 end

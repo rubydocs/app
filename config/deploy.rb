@@ -20,6 +20,7 @@ set :branch,           'master'
 
 set :shareds, %w(
   config/database.yml
+  config/newrelic.yml
   config/settings.yml
   files
 )
