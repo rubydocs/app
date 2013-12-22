@@ -1,6 +1,6 @@
 module Services
   module DocCollections
-    class UploadFilesToCloud < Services::Base
+    class UploadFiles < Services::Base
       def call(doc_collection)
         s3 = AWS::S3.new
         bucket = s3.buckets[Settings.aws.bucket]

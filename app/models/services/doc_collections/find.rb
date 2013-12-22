@@ -11,7 +11,12 @@ module Services
           when :slug
             scope = scope.where(k => v)
           when :docs
-            scope = scope.joins(:doc_collection_memberships).where('doc_collection_memberships.doc_id' => v.map(&:id))
+            # TODO: Is this actually correct? Post on SO how to do this?
+            scope = scope
+              .joins(:doc_collection_memberships)
+              .where(doc_collection_memberships: { doc_id: v.map(&:id) })
+              .group('doc_collections.id')
+              .having("COUNT(doc_collection_memberships.id) = #{v.count}")
           else
             raise ArgumentError, "Unexpected condition: #{k}"
           end

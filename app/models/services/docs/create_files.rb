@@ -15,20 +15,23 @@ module Services
           args = [
             '--format=sdoc',
             '--line-numbers',
-            "--title=#{doc.project.name} #{doc.tag}",
+            "--title=#{doc.name}",
             "--output=#{doc.local_path}",
             '--exclude=test',
             '--exclude=example',
             '--exclude=bin',
-            doc.project.local_path.to_s
+            '.'
           ]
-          %w(README README.md README.markdown README.mdown README.txt).each do |readme|
+          %w(.md .markdown .mdown .txt .rdoc).unshift(nil).each do |suffix|
+            readme = "README#{suffix}"
             if File.exist?(doc.project.local_path.join(readme))
               args.unshift("--main=#{readme}")
               break
             end
           end
-          rdoc.document args
+          Dir.chdir doc.project.local_path do
+            rdoc.document args
+          end
         end
         doc
       end
