@@ -24,5 +24,15 @@ module RubyDocs
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    raise 'Redis settings not found.' unless Settings.redis?
+
+    config.cache_store = :redis_store, Settings.redis.to_hash.merge(namespace: 'cache', expires_in: 1.year)
+
+    redis_url = "redis://#{Settings.redis.host}:#{Settings.redis.port}/#{Settings.redis.db}"
+    config.action_dispatch.rack_cache = {
+      metastore:   "#{redis_url}/rack_cache/metastore",
+      entitystore: "#{redis_url}/rack_cache/entitystore"
+    }
   end
 end
