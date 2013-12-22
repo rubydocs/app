@@ -8,7 +8,7 @@ module Services
       doc_collection.docs.each do |doc|
         begin
           Services::Docs::CreateFiles.call doc
-        rescue Services::Docs::CreateFiles::FolderExistsError
+        rescue Services::Docs::CreateFiles::CreationInProgress
         end
       end
 
