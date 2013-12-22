@@ -8,7 +8,11 @@ module Services
       doc_collection.docs.each do |doc|
         begin
           Services::Docs::CreateFiles.call doc
-        rescue Services::Docs::CreateFiles::CreationInProgress
+        rescue Services::Docs::CreateFiles::CreatingInProgressError
+          self.class.perform_in 1.minute, doc_collection_id
+          return
+        rescue Services::Docs::CreateFiles::FilesExistsError
+          next
         end
       end
 

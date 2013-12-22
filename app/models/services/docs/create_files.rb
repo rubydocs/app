@@ -4,10 +4,11 @@ require 'sdoc'
 module Services
   module Docs
     class CreateFiles < Services::Base
-      CreationInProgress = Class.new(Error)
+      FilesExistsError = Class.new(Error)
+      CreatingInProgressError = Class.new(Error)
 
       def call(doc)
-        mark_project_as_creating doc.project do
+        guard_creating doc do
           git = Git.open(doc.project.local_path)
           git.checkout doc.tag
           rdoc = RDoc::RDoc.new
@@ -34,10 +35,11 @@ module Services
 
       private
 
-      def mark_project_as_creating(project, &block)
-        creating_file = project.local_path.join('.rubydocs-creating-files')
-        raise CreationInProgress, "A doc for project #{project.name} is already being created." if File.exist?(creating_file)
-        FileUtils.mkdir_p project.local_path
+      def guard_creating(doc, &block)
+        creating_file = doc.project.local_path.join('.rubydocs-creating-files')
+        raise CreatingInProgressError, "A doc for project #{doc.project.name} is already being created." if File.exist?(creating_file)
+        raise FilesExistsError, "Files for doc #{doc.name} already exist." if File.exist?(doc.local_path) && Dir[File.join(doc.local_path, '*')].present?
+        FileUtils.mkdir_p doc.project.local_path
         FileUtils.touch creating_file
 
         block.call
