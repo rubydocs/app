@@ -24,7 +24,7 @@ module Asyncable
 
     # Add :call as first argument if not present and target is a service
     # Sidetiq simply calls `perform` without arguments
-    args = args.dup.unshift(:call) if target.is_a?(Class) && target < Services::Base && (args.empty? || args.first.to_sym != :call)
+    args = args.dup.unshift(:call) if target.is_a?(Class) && target < Services::Base && args.first.to_s != 'call'
 
     target.send *args
   end
