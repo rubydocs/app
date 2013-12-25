@@ -5,8 +5,9 @@ module Services
     class UpdateTags < Services::Base
       def call(project)
         git = Git.open(project.local_path)
-        # TODO: Do we need to fetch the remote to get the current list of tags?
-        # git.remote('origin').fetch
+        # TODO: How to do this with the git-ruby gem?
+        # https://github.com/schacon/ruby-git/issues/115
+        system("cd #{project.local_path} && git fetch --tags")
         tags = git.tags.map(&:name)
         project.tags = tags
         project.save!
