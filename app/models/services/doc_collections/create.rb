@@ -4,9 +4,9 @@ module Services
       def call(docs)
         doc_collection = DocCollection.new
         docs.each do |doc|
-          doc_collection.doc_collection_memberships.build doc_id: doc.id
+          # Cannot use doc_collection.doc_collection_memberships.build() here, otherwise validations fail
+          doc_collection.doc_collection_memberships << DocCollectionMembership.new(doc: doc, doc_collection: doc_collection)
         end
-        raise doc_collection.doc_collection_memberships.map(&:errors).inspect unless doc_collection.doc_collection_memberships.all?(&:valid?)
         doc_collection.save!
         doc_collection
       end
