@@ -19,6 +19,5 @@ Sidekiq::Logging.initialize_logger('log/sidekiq.log')
 # Don't retry jobs or enqueue jobs with same args twice by default.
 Sidekiq.default_worker_options = {
   'retry'     => false,
-  'unique'    => true,
   'backtrace' => true
 }

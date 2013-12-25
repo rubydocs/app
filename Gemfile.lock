@@ -141,7 +141,6 @@ GEM
     mimemagic (0.2.1)
     mini_portile (0.5.2)
     minitest (4.7.5)
-    mock_redis (0.10.0)
     multi_json (1.8.2)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
@@ -239,9 +238,6 @@ GEM
       sprockets-rails (~> 2.0.0)
     sidekiq-failures (0.2.2)
       sidekiq (>= 2.9.0)
-    sidekiq-unique-jobs (2.7.0)
-      mock_redis
-      sidekiq (~> 2.6)
     sinatra (1.4.4)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -333,7 +329,6 @@ DEPENDENCIES
   sdoc!
   sidekiq!
   sidekiq-failures (= 0.2.2)
-  sidekiq-unique-jobs (= 2.7.0)
   sinatra (= 1.4.4)
   slim (= 2.0.2)
   sprinkle (= 0.7.5)

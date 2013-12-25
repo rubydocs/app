@@ -41,7 +41,6 @@ gem 'redis-rack-cache',               '1.2.2'
 
 # Background jobs
 gem 'sidekiq',                        github: 'krautcomputing/sidekiq', branch: 'log_job_args' # Should be loaded after Airbrake
-gem 'sidekiq-unique-jobs',            '2.7.0'
 gem 'sidekiq-failures',               '0.2.2'
 gem 'sinatra',                        '1.4.4', require: false # For Sidekiq Web
 gem 'slim',                           '2.0.2'                 # For Sidekiq Web
