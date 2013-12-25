@@ -46,8 +46,8 @@ module Services
         FileUtils.touch creating_file
 
         block.call
-
-        File.delete creating_file
+      ensure
+        File.delete creating_file if File.exist?(creating_file)
       end
     end
   end
