@@ -16,6 +16,5 @@
         %br
         to be notified when they are done.
     = render 'email_notifications/form', email_notification: @email_notification
-
 - else
   %iframe{ src: Services::DocCollections::DocsUrl.call(@doc_collection), frameborder: 0 }
