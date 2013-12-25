@@ -12,6 +12,26 @@ body#show-doc-collection {
       display: inline-block;
       margin: 0 auto;
     }
+
+    form {
+      text-align: center;
+
+      input[type="text"] {
+        text-align: center;
+        display: inline-block;
+        max-width: 300px;
+      }
+
+      #notice {
+        text-align: center;
+        margin-top: 5px;
+      }
+    }
+
+    #form-success {
+      text-align: center;
+      color: $btn-success-border;
+    }
   }
 
   #displaying-doc-collection {

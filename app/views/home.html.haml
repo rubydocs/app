@@ -8,21 +8,20 @@
 
   .row
     = f.fields_for :docs do |doc_fields|
-      - cache doc_fields.object do
-        = doc_fields.hidden_field :project_id
-        .col-sm-6
-          .panel.panel-default
-            .panel-heading
-              -#.pull-right
-              -#  = doc_fields.label :include, 'include?'
-              -#  = doc_fields.check_box :include
-              %h3.panel-title
-                = doc_fields.object.project.name
-            .panel-body
-              .form-group
-                = doc_fields.label :tag, 'Version', class: 'col-xs-3 control-label'
-                .col-xs-9
-                  = doc_fields.select :tag, options_for_select(project_versions(doc_fields.object.project)), {}, class: 'form-control'
+      = doc_fields.hidden_field :project_id
+      .col-sm-6
+        .panel.panel-default
+          .panel-heading
+            -#.pull-right
+            -#  = doc_fields.label :include, 'include?'
+            -#  = doc_fields.check_box :include
+            %h3.panel-title
+              = doc_fields.object.project.name
+          .panel-body
+            .form-group
+              = doc_fields.label :tag, 'Version', class: 'col-xs-3 control-label'
+              .col-xs-9
+                = doc_fields.select :tag, options_for_select(project_versions(doc_fields.object.project)), {}, class: 'form-control'
 
   = submit_tag 'Generate docs', class: 'btn btn-primary btn-lg', data: { :'loading-text' => 'Please wait...' }
 
@@ -38,7 +37,7 @@
   format. They are clearly arranged, searchable, and very responsive. On top of that, the docs for multiple projects can be combined, so that one can for example search the Ruby and Rails docs simultaneously - a huge advantage when a framework and a language are so intertwined.
 
 %p
-  The problem is that developers often work on multiple projects simultaneously, and each one may be using a different Ruby and a different Rails version. Combined docs with those exact versions are a huge advantage in that case - which is exactly what RubyDocs lets you generate.
+  The problem is that developers often work on multiple projects simultaneously, and each one may be using a different Ruby and a different Rails version. Combined docs with those exact versions are a huge advantage in that case - which is exactly what Ruby Docs lets you generate.
 
 %p
   A big thank-you to

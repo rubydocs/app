@@ -3,7 +3,6 @@
 # Table name: doc_collections
 #
 #  id           :integer          not null, primary key
-#  url          :string(255)
 #  slug         :string(255)      not null
 #  generated_at :datetime
 #  uploaded_at  :datetime

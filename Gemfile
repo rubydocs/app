@@ -9,6 +9,7 @@ gem 'rails',                          '4.0.2'
 gem 'pg',                             '0.17.0'
 gem 'haml-rails',                     '0.4'
 gem 'sass-rails',                     '4.0.0'
+gem 'jquery-rails',                   '3.0.4'
 gem 'compass-rails',                  '1.1.2'
 gem 'uglifier',                       '2.2.1'
 gem 'coffee-rails',                   '4.0.0'
@@ -22,6 +23,7 @@ gem 'friendly_id',                    '5.0.2'
 gem 'squeel',                         '1.1.1'
 gem 'capistrano',                     '2.15.5'
 gem 'postgres_ext',                   '2.1.3'
+gem 'mimemagic',                      '0.2.1'
 
 # Frontend
 gem 'bootstrap-sass',                 '3.0.2.1'
@@ -52,6 +54,7 @@ group :test do
 end
 
 group :development do
+  gem 'letter_opener',                '1.2.0'
   gem 'sprinkle',                     '0.7.5', require: false
 end
 

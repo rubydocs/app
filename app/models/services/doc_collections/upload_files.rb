@@ -8,7 +8,8 @@ module Services
         Dir.chdir dir do
           Dir[File.join(doc_collection.slug, '**', '*')].each do |path|
             next unless File.file?(path)
-            bucket.objects[path].write(file: path)
+            content_type = MimeMagic.by_path(path)
+            bucket.objects[path].write(file: path, content_type: content_type)
           end
         end
         doc_collection

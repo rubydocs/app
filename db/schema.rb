@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20131029204526) do
   add_index "doc_collection_memberships", ["doc_id", "doc_collection_id"], name: "index_doc_collection_m_on_doc_id_and_doc_collection_id", unique: true, using: :btree
 
   create_table "doc_collections", force: true do |t|
-    t.string   "url"
     t.string   "slug",         null: false
     t.datetime "generated_at"
     t.datetime "uploaded_at"

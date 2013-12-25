@@ -23,6 +23,10 @@ module Services
       doc_collection.generated_at = Time.now
       doc_collection.save!
 
+      # Send notifications
+      emails = EmailNotification.by_doc_collection(doc_collection).map(&:email)
+      Mailer.doc_collection_generated(doc_collection, emails).deliver! if emails.present?
+
       unless Rails.env.development?
         # Upload doc collection files to cloud
         Services::DocCollections::UploadFiles.call doc_collection

@@ -1,5 +1,3 @@
-require 'aws'
-
 AWS.config \
   logger:            Rails.logger,
   access_key_id:     Settings.aws.key,

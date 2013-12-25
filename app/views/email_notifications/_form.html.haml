@@ -1,0 +1,12 @@
+= form_for email_notification, remote: true do |f|
+  .form-group{ class: email_notification.errors.present? ? 'has-error' : nil }
+    = f.hidden_field :doc_collection_id
+    = f.text_field :email, class: 'form-control input-lg', placeholder: 'Enter email'
+    - if email_notification.errors.present?
+      %p.help-block
+        = email_notification.errors[:email].to_sentence
+  = f.submit 'Notify me', class: 'btn btn-lg btn-primary'
+  %p#notice.small
+    Your email address will be deleted
+    %br
+    immediately after the notification is sent.
