@@ -26,6 +26,7 @@ module Services
       # Send notifications
       emails = EmailNotification.by_doc_collection(doc_collection).map(&:email)
       Mailer.doc_collection_generated(doc_collection, emails).deliver! if emails.present?
+      # TODO: Delete email notifications
 
       unless Rails.env.development?
         # Upload doc collection files to cloud
