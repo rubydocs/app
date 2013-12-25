@@ -21,4 +21,15 @@ module ApplicationHelper
   def title(page_title)
     content_for(:title) { page_title }
   end
+
+  def title
+    [
+      content_for(:title),
+      'Ruby Docs - Fast and searchable Ruby and Rails docs'
+    ].compact.join('|')
+  end
+
+  def description
+    'Create your perfect set of searchable Ruby and Rails docs by picking exactly the versions you need. Hosted in the cloud and fronted by a CDN, your docs will always be there for you.'
+  end
 end
