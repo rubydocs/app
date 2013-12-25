@@ -24,6 +24,7 @@ gem 'squeel',                         '1.1.1'
 gem 'capistrano',                     '2.15.5'
 gem 'postgres_ext',                   '2.1.3'
 gem 'mimemagic',                      '0.2.1'
+gem 'airbrake',                       '3.1.14'
 
 # Frontend
 gem 'bootstrap-sass',                 '3.0.2.1'

@@ -48,6 +48,9 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.5)
+    airbrake (3.1.14)
+      builder
+      json
     annotate (2.6.0)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
@@ -288,6 +291,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  airbrake (= 3.1.14)
   annotate (= 2.6.0)
   awesome_print (= 1.2.0)
   aws-sdk (= 1.30.0)
