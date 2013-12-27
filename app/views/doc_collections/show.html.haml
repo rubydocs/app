@@ -1,20 +1,3 @@
-- set_title @doc_collection.docs.map(&:name).join(', ')
+- set_title "#{@doc_collection.name} docs"
 
-- if @doc_collection.generating?
-  .container
-    .page-header
-      %h1
-        = @doc_collection.name
-      %p.lead
-        These docs are being generated right now!
-        %br
-        Depending on how busy the servers are,
-        %br
-        it might take from a couple of minutes up to an hour.
-        %br
-        Refresh at will or enter your email address below
-        %br
-        to be notified when they are done.
-    = render 'email_notifications/form', email_notification: @email_notification
-- else
-  %iframe{ src: Services::DocCollections::DocsUrl.call(@doc_collection), frameborder: 0 }
+%iframe{ src: doc_collection_url(@doc_collection), frameborder: 0 }

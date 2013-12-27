@@ -26,8 +26,6 @@
 
     %link{ rel: 'shortcut icon', type: 'image/x-icon', href: image_path('favicon.ico') }
 
-    = stylesheet_link_tag :application, media: 'all', data: { :'turbolinks-track' => true }
-
     = csrf_meta_tags
 
     - if Rails.env.production?
@@ -39,8 +37,7 @@
         ga('create', 'UA-46710917-1', 'ruby-docs.org');
         ga('send', 'pageview');
 
+    = content_for :head
+
   %body{ id: site_id }
     = content_for :body
-
-    = javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'
-    = javascript_include_tag :application, data: { :'turbolinks-track' => true }

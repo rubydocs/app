@@ -1,3 +1,6 @@
+- content_for :head do
+  = stylesheet_link_tag :application, media: 'all', data: { :'turbolinks-track' => true }
+
 - content_for :body do
   #root
     = render 'shared/navbar'
@@ -5,5 +8,7 @@
       = yield
     #root-footer
   = render 'shared/footer'
+  = javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'
+  = javascript_include_tag :application, data: { :'turbolinks-track' => true }
 
 = render template: 'layouts/base'

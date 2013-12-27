@@ -25,9 +25,9 @@ class DocCollectionsController < ApplicationController
     @doc_collection = Services::DocCollections::Find.call([], slug: params[:doc_collection_slug]).first!
     if @doc_collection.generating?
       @email_notification = EmailNotification.new(doc_collection_id: @doc_collection.id)
-      render layout: 'doc_collections/generating'
+      render 'generating'
     else
-      render layout: 'doc_collections/displaying'
+      render layout: 'show_doc_collection'
     end
   end
 
