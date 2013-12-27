@@ -1,10 +1,7 @@
 class EmailNotificationsController < ApplicationController
-  respond_to :js
-
   def create
     @email_notification = EmailNotification.new(email_notification_params)
     @email_notification.save
-    respond_with @email_notification
   end
 
   private
