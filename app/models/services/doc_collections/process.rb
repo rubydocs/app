@@ -3,7 +3,8 @@ module Services
     class Process < Services::Base
       def call(doc_collection_id)
         doc_collection = DocCollection.where(id: doc_collection_id).first
-        raise Error, "Doc collection with ID #{doc_collection_id} not found." if doc_collection.nil?
+        raise Error, "Doc collection #{doc_collection_id} not found." if doc_collection.nil?
+        raise Error, "Doc collection #{doc_collection.name} is already generated." unless doc_collection.generating?
 
         # Create files for docs
         doc_collection.docs.each do |doc|

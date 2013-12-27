@@ -8,7 +8,8 @@ module Services
       CreatingInProgressError = Class.new(Error)
 
       def call(doc)
-        guard_creating doc do
+        @doc = doc
+        guard_creating do
           git = Git.open(doc.project.local_path)
           git.checkout doc.tag
           rdoc = RDoc::RDoc.new
@@ -38,11 +39,13 @@ module Services
 
       private
 
-      def guard_creating(doc, &block)
-        creating_file = doc.project.local_path.join('.rubydocs-creating-files')
-        raise CreatingInProgressError, "A doc for project #{doc.project.name} is already being created." if File.exist?(creating_file)
-        raise FilesExistsError, "Files for doc #{doc.name} already exist." if File.exist?(doc.local_path) && Dir[File.join(doc.local_path, '*')].present?
-        FileUtils.mkdir_p doc.project.local_path
+      def creating_file
+        @creating_file ||= @doc.project.local_path.join('.rubydocs-creating-files')
+      end
+
+      def guard_creating(&block)
+        raise FilesExistsError, "Files for doc #{@doc.name} already exist." if File.exist?(@doc.local_path) && Dir[File.join(@doc.local_path, '*')].present?
+        raise CreatingInProgressError, "A doc for project #{@doc.project.name} is already being created." if File.exist?(creating_file)
         FileUtils.touch creating_file
 
         block.call
