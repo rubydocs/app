@@ -14,7 +14,7 @@ gem 'compass-rails',                  '1.1.2'
 gem 'uglifier',                       '2.2.1'
 gem 'coffee-rails',                   '4.0.0'
 gem 'therubyracer',                   '0.12.0', platforms: :ruby
-gem 'sdoc',                           github: 'vikassy/sdoc', branch: 'rdoc-4'
+gem 'sdoc',                           '0.4.0.rc.1'
 gem 'git',                            '1.2.6'
 gem 'high_voltage',                   '2.0.0'
 gem 'aws-sdk',                        '1.30.0'
