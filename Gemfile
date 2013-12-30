@@ -40,8 +40,8 @@ gem 'connection_pool',                '1.2.0'
 gem 'redis-rack-cache',               '1.2.2'
 
 # Background jobs
-gem 'sidekiq',                        github: 'krautcomputing/sidekiq', branch: 'log_job_args' # Should be loaded after Airbrake
-gem 'sidekiq-failures',               '0.2.2'
+gem 'sidekiq',                        '2.17.1' # Should be loaded after Airbrake
+gem 'sidekiq-failures',               '0.3.0'
 gem 'sinatra',                        '1.4.4', require: false # For Sidekiq Web
 gem 'slim',                           '2.0.2'                 # For Sidekiq Web
 
