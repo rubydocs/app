@@ -12,7 +12,7 @@ module Services
             [_.]
             (?<patch>\d+)
             (?:
-              [_.]
+              [-_.]
               (?<meta>
                 (beta|rc|preview|pre|p)?
                 [_.]?
