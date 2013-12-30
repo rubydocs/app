@@ -1,4 +1,3 @@
 = navbar static: 'top', brand: image_tag('logo.svg') do
-  - unless controller.controller_name == 'doc_collections' && controller.action_name == 'generating'
-    = navbar_group align: 'right' do
-      = navbar_item 'About', '#about'
+  = navbar_group align: 'right' do
+    = navbar_item 'About', '#about'

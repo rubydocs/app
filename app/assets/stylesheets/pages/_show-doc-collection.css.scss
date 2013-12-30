@@ -3,12 +3,16 @@ body#show-doc-collection {
   .navbar-header {
     float: none;
     text-align: center;
+
+    .navbar-brand {
+      float: none;
+      display: inline-block;
+      margin: 0 auto;
+    }
   }
 
-  .navbar-brand {
-    float: none;
-    display: inline-block;
-    margin: 0 auto;
+  #navbar-collapsable {
+    display: none !important;
   }
 
   form {
