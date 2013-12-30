@@ -13,7 +13,6 @@ Sidekiq.configure_client do |config|
   config.redis = { url: redis_url, namespace: 'sidekiq', size: 1 }
 end
 
-# The only way I found to make Sidekiq log to a file.
 Sidekiq::Logging.initialize_logger('log/sidekiq.log')
 
 # Don't retry jobs or enqueue jobs with same args twice by default.
