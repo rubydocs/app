@@ -9,7 +9,7 @@ set :repository,       'git@code.krautcomputing.com:manuel/rubydocs.git'
 set :scm,              'git'
 set :scm_verbose,      true
 set :deploy_via,       :remote_cache
-set :keep_releases,    2
+set :keep_releases,    3
 
 set :user,             'deploy'
 set :use_sudo,         false
@@ -56,9 +56,7 @@ namespace :deploy do
     # Symlink doc collections
     run "ln -nfs #{release_path}/files/doc_collections #{release_path}/public/doc_collections"
   end
-end
 
-namespace :monit do
   task :restart_services do
     sudo 'monit reload'
     sudo 'monit restart rubydocs_sidekiq'
@@ -70,7 +68,7 @@ namespace :monit do
 end
 
 before 'deploy',                   'deploy:check_revision'
-after  'deploy:update',            'deploy:cleanup'
 before 'deploy:assets:precompile', 'deploy:setup_shareds'
+after  'deploy:create_symlink',    'deploy:restart_services'
+after  'deploy:update',            'deploy:cleanup'
 after  'deploy',                   'deploy:migrate'
-after  'deploy',                   'monit:restart_services'
