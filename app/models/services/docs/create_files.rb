@@ -48,9 +48,11 @@ module Services
         raise CreatingInProgressError, "A doc for project #{@doc.project.name} is already being created." if File.exist?(creating_file)
         FileUtils.touch creating_file
 
-        block.call
-      ensure
-        File.delete creating_file if File.exist?(creating_file)
+        begin
+          block.call
+        ensure
+          File.delete creating_file if File.exist?(creating_file)
+        end
       end
     end
   end
