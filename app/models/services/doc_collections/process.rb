@@ -11,9 +11,11 @@ module Services
           begin
             Services::Docs::CreateFiles.call doc
           rescue Services::Docs::CreateFiles::CreatingInProgressError
+            log "Doc files for #{doc.name} are already being created, trying again in one minute."
             self.class.perform_in 1.minute, :call, doc_collection.id
             return
           rescue Services::Docs::CreateFiles::FilesExistsError
+            log "Doc files for #{doc.name} already exist."
             next
           end
         end
@@ -24,10 +26,12 @@ module Services
         # Set generated_at timestamp
         doc_collection.generated_at = Time.now
         doc_collection.save!
+        log "Doc collection generated at #{doc_collection.generated_at}"
 
         # Send notifications
         emails = EmailNotification.by_doc_collection(doc_collection).map(&:email)
         Mailer.doc_collection_generated(doc_collection, emails).deliver! if emails.present?
+        log "Email notification sent to #{emails.count} recipients: #{emails.join(', ')}"
         # TODO: Delete email notifications
 
         Services::DocCollections::UploadFiles.perform_async :call, doc_collection.id
