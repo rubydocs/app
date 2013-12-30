@@ -57,7 +57,7 @@ namespace :deploy do
     run "ln -nfs #{release_path}/files/doc_collections #{release_path}/public/doc_collections"
   end
 
-  task :restart_services do
+  task :restart do
     sudo 'monit reload'
     sudo 'monit restart rubydocs_sidekiq'
     run "cd #{current_path} && bundle exec pumactl -S tmp/pids/puma.state phased-restart"
@@ -69,6 +69,5 @@ end
 
 before 'deploy',                   'deploy:check_revision'
 before 'deploy:assets:precompile', 'deploy:setup_shareds'
-after  'deploy:create_symlink',    'deploy:restart_services'
-after  'deploy:update',            'deploy:cleanup'
-after  'deploy',                   'deploy:migrate'
+before 'deploy:restart',           'deploy:migrate'
+after  'deploy:restart',           'deploy:cleanup'
