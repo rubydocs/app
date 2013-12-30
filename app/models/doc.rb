@@ -25,6 +25,8 @@ class Doc < ActiveRecord::Base
   attr_accessor :include
 
   def name
-    [self.project.name, Services::Projects::ConvertTagToVersion.call(self.tag)].join(' ')
+    version = Services::Projects::ConvertTagsToVersions.call([self.tag])[self.tag]
+    raise "Could not convert tag #{self.tag} to version." if version.nil?
+    [self.project.name, version].join(' ')
   end
 end
