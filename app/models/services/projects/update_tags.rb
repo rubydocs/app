@@ -8,7 +8,11 @@ module Services
         # TODO: How to do this with the git-ruby gem?
         # https://github.com/schacon/ruby-git/issues/115
         system("cd #{project.local_path} && git fetch --tags")
-        tags = git.tags.map(&:name)
+        tags = git.tags.each_with_object({}) do |tag, hash|
+          hash[tag.name] = git.gcommit(tag.sha).date
+        end
+        # Sort tags by date
+        tags = Hash[*tags.sort_by(&:last).reverse.flatten]
         project.tags = tags
         project.save!
         project

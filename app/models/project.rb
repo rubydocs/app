@@ -6,9 +6,9 @@
 #  name       :string(255)
 #  git        :string(255)
 #  slug       :string(255)      not null
-#  tags       :text             default([])
 #  created_at :datetime
 #  updated_at :datetime
+#  tags       :json
 #
 
 class Project < ActiveRecord::Base

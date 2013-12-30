@@ -3,7 +3,7 @@ class CreateProjects < ActiveRecord::Migration
     create_table :projects do |t|
       t.string :name, :git
       t.string :slug, null: false
-      t.text :tags, array: true, default: []
+      t.json :tags
       t.timestamps
     end
 
