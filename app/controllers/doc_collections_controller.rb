@@ -2,7 +2,7 @@ class DocCollectionsController < ApplicationController
   def create
     # Extract project IDs and tags from parameters
     project_ids_and_tags = doc_collection_params[:docs_attributes].values.each_with_object({}) do |doc_hash, hash|
-      hash[doc_hash[:project_id]] = doc_hash[:tag] #if doc_hash[:include] == '1'
+      hash[doc_hash[:project_id]] = doc_hash[:tag]
     end
 
     # Find or create docs

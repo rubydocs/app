@@ -22,8 +22,6 @@ class Doc < ActiveRecord::Base
   validates :tag, presence: true, uniqueness: { scope: :project_id }, inclusion: { in: ->(doc) { doc.project.tags }, if: -> { self.project.present? } }
   validates :project, presence: true
 
-  attr_accessor :include
-
   def name
     version = Services::Projects::ConvertTagsToVersions.call([self.tag])[self.tag]
     raise "Could not convert tag #{self.tag} to version." if version.nil?

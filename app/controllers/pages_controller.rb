@@ -5,7 +5,7 @@ class PagesController < ApplicationController
     if params[:id] == 'home'
       @doc_collection = DocCollection.new
       Project.find_each do |project|
-        @doc_collection.docs.build(project: project, include: true)
+        @doc_collection.docs.build(project: project)
       end
     end
 
