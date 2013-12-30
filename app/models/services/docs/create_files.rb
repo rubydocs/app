@@ -18,11 +18,11 @@ module Services
             '--line-numbers',
             "--title=#{doc.name}",
             "--output=#{doc.local_path}",
-            '--exclude=test',
-            '--exclude=example',
-            '--exclude=bin',
             '.'
           ]
+          %w(test example bin).each do |dir|
+            args.unshift("--exclude=#{dir}") if File.exist?(doc.project.local_path.join(dir))
+          end
           %w(.md .markdown .mdown .txt .rdoc).unshift(nil).each do |suffix|
             readme = "README#{suffix}"
             if File.exist?(doc.project.local_path.join(readme))
