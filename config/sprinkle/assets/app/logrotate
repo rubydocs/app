@@ -7,7 +7,7 @@
   notifempty
   sharedscripts
   postrotate
-    cd /home/deploy/rubydocs/current && bundle exec pumactl -S tmp/pids/puma.state phased-restart
+    /bin/su - deploy -c 'cd /home/deploy/rubydocs/current && bundle exec pumactl -S tmp/pids/puma.state phased-restart'
     # TODO: Use Monit's restart command again as soon as Monit supports custom restart commands.
     # http://nongnu.13855.n7.nabble.com/restart-program-directive-td170064.html
     # monit restart rubydocs_puma
