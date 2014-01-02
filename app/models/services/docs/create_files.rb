@@ -18,20 +18,20 @@ module Services
             '--github',
             '--line-numbers',
             "--title=#{doc.name}",
-            "--output=#{doc.local_path}",
-            '.'
+            "--output=#{doc.local_path}"
           ]
           %w(test example bin).each do |dir|
-            args.unshift("--exclude=#{dir}") if File.exist?(doc.project.local_path.join(dir))
+            args.push("--exclude=#{dir}") if File.exist?(doc.project.local_path.join(dir))
           end
           %w(.md .markdown .mdown .txt .rdoc).unshift(nil).each do |suffix|
             readme = "README#{suffix}"
             if File.exist?(doc.project.local_path.join(readme))
-              args.unshift("--main=#{readme}")
+              args.push("--main=#{readme}")
               break
             end
           end
-          Dir.chdir doc.project.local_path do
+          args.push '.'
+          git.chdir do
             rdoc.document args
           end
         end
