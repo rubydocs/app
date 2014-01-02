@@ -15,6 +15,7 @@ module Services
           rdoc = RDoc::RDoc.new
           args = [
             '--format=sdoc',
+            '--github',
             '--line-numbers',
             "--title=#{doc.name}",
             "--output=#{doc.local_path}",
