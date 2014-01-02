@@ -40,19 +40,16 @@ module Services
 
       private
 
-      def creating_file
-        @creating_file ||= @doc.project.local_path.join('.rubydocs-creating-files')
-      end
-
       def guard_creating(&block)
         raise FilesExistsError, "Files for doc #{@doc.name} already exist." if File.exist?(@doc.local_path) && Dir[File.join(@doc.local_path, '*')].present?
-        raise CreatingInProgressError, "A doc for project #{@doc.project.name} is already being created." if File.exist?(creating_file)
-        FileUtils.touch creating_file
+        lock = @doc.project.local_path.join('.rubydocs-lock')
+        raise CreatingInProgressError, "A doc for project #{@doc.project.name} is already being created." if File.exist?(lock)
+        FileUtils.touch lock
 
         begin
           block.call
         ensure
-          File.delete creating_file if File.exist?(creating_file)
+          File.delete lock if File.exist?(lock)
         end
       end
     end
