@@ -7,7 +7,7 @@ instance_eval(File.read(local_gemfile)) if File.exist?(local_gemfile)
 
 gem 'rails',                          '4.0.2'
 gem 'pg',                             '0.17.0'
-gem 'haml-rails',                     '0.4'
+gem 'haml-rails',                     '0.5.3'
 gem 'sass-rails',                     '4.0.0'
 gem 'jquery-rails',                   '3.0.4'
 gem 'compass-rails',                  '1.1.2'
