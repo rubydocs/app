@@ -31,6 +31,7 @@ module Services
             end
           end
           args.push '.'
+          log "Generating with args: #{args}"
           git.chdir do
             rdoc.document args
           end

@@ -30,8 +30,10 @@ module Services
 
         # Send notifications
         emails = EmailNotification.by_doc_collection(doc_collection).map(&:email)
-        Mailer.doc_collection_generated(doc_collection, emails).deliver! if emails.present?
-        log "Email notification sent to #{emails.count} recipients: #{emails.join(', ')}"
+        if emails.present?
+          Mailer.doc_collection_generated(doc_collection, emails).deliver!
+          log "Email notification sent to #{emails.count} recipients: #{emails.join(', ')}"
+        end
         # TODO: Delete email notifications
 
         Services::DocCollections::UploadFiles.perform_async :call, doc_collection.id
