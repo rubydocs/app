@@ -36,7 +36,7 @@ module Services
         end
         # TODO: Delete email notifications
 
-        Services::DocCollections::UploadFiles.perform_async :call, doc_collection.id
+        Services::DocCollections::UploadFiles.perform_async :call, doc_collection.id unless Rails.env.development?
 
         doc_collection
       end
