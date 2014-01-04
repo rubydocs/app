@@ -30,9 +30,9 @@ module Services
               break
             end
           end
-          args.push '.'
           log "Generating with args: #{args}"
           git.chdir do
+            args.concat Dir['**/*.{rb,rdoc}']
             rdoc.document args
           end
         end
