@@ -17,7 +17,7 @@ module Services
             '--format=sdoc',
             '--github',
             '--line-numbers',
-            "--title=#{doc.name}",
+            "--title=\"#{doc.name}\"",
             "--output=#{doc.local_path}"
           ]
           %w(test example bin).each do |dir|
