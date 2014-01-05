@@ -13,8 +13,6 @@ Sidekiq.configure_client do |config|
   config.redis = { url: redis_url, namespace: 'sidekiq', size: 1 }
 end
 
-Sidekiq::Logging.initialize_logger('log/sidekiq.log')
-
 Sidekiq.default_worker_options = {
   'retry'     => false,
   'backtrace' => true
