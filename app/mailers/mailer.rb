@@ -1,5 +1,7 @@
 class Mailer < ActionMailer::Base
-  FRIENDLY_FROM = "Ruby Docs <#{Settings.mail.from}>"
+  raise 'Mail setting "login" not found.' unless Settings.mail.login?
+
+  FRIENDLY_FROM = "Ruby Docs <#{Settings.mail.login}>"
 
   default from: FRIENDLY_FROM
 

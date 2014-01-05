@@ -1,6 +1,6 @@
 if Rails.env.production?
   %i(port server login password domain).each do |setting|
-    raise "Mail setting #{setting} not found." unless Settings.mail.send("#{setting}?")
+    raise %(Mail setting "#{setting}" not found.) unless Settings.mail.send("#{setting}?")
   end
   ActionMailer::Base.smtp_settings = {
     port:           Settings.mail.port,
