@@ -33,8 +33,8 @@ module Services
         if emails.present?
           Mailer.doc_collection_generated(doc_collection, emails).deliver!
           log "Email notification sent to #{emails.count} recipients: #{emails.join(', ')}"
+          EmailNotification.delete(doc_collection)
         end
-        # TODO: Delete email notifications
 
         Services::DocCollections::UploadFiles.perform_async :call, doc_collection.id unless Rails.env.development?
 
