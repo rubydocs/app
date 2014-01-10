@@ -1,8 +1,11 @@
 module PageHelper
   def project_versions(project)
     versions = Services::Projects::ConvertTagsToVersions.call(project.tags.keys)
-    versions.each_with_object({}) do |(tag, version), hash|
-      hash["#{version} (#{project.tags[tag].to_date})"] = tag
+    versions.delete_if do |tag, version|
+      version.nil?
+    end
+    versions.map do |tag, version|
+      ["#{version} (#{project.tags[tag].to_date})", tag, data: { version: version, date: project.tags[tag].to_date.to_s(:number) }]
     end
   end
 end
