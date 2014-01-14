@@ -1,5 +1,5 @@
 module ApplicationHelper
-  def site_id
+  def page_id
     [].tap do |parts|
       case
       when controller.status != 200
