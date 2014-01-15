@@ -28,7 +28,7 @@ module Services
 
         # Enqueue yourself if there are more files to upload
         if remaining_files.present?
-          self.class.perform_async :call, doc_collection.id
+          self.class.perform_async doc_collection.id
           return
         end
 

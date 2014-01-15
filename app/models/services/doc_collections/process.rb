@@ -12,7 +12,7 @@ module Services
             Services::Docs::CreateFiles.call doc
           rescue Services::Docs::CreateFiles::CreatingInProgressError
             log "Doc files for #{doc.name} are already being created, trying again in one minute."
-            self.class.perform_in 1.minute, :call, doc_collection.id
+            self.class.perform_in 1.minute, doc_collection.id
             return
           rescue Services::Docs::CreateFiles::FilesExistsError
             log "Doc files for #{doc.name} already exist."
@@ -36,7 +36,7 @@ module Services
           EmailNotification.delete(doc_collection)
         end
 
-        Services::DocCollections::UploadFiles.perform_async :call, doc_collection.id unless Rails.env.development?
+        Services::DocCollections::UploadFiles.perform_async doc_collection.id unless Rails.env.development?
 
         doc_collection
       end
