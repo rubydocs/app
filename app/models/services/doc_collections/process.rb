@@ -29,14 +29,16 @@ module Services
         log "Doc collection generated at #{doc_collection.generated_at}"
 
         # Send notifications
-        emails = EmailNotification.by_doc_collection(doc_collection).map(&:email)
-        if emails.present?
-          Mailer.doc_collection_generated(doc_collection, emails).deliver!
-          log "Email notification sent to #{emails.count} recipients: #{emails.join(', ')}"
-          EmailNotification.delete(doc_collection)
-        end
+        unless Rails.env.development?
+          emails = EmailNotification.by_doc_collection(doc_collection).map(&:email)
+          if emails.present?
+            Mailer.doc_collection_generated(doc_collection, emails).deliver!
+            log "Email notification sent to #{emails.count} recipients: #{emails.join(', ')}"
+            EmailNotification.delete(doc_collection)
+          end
 
-        Services::DocCollections::UploadFiles.perform_async doc_collection.id unless Rails.env.development?
+          Services::DocCollections::UploadFiles.perform_async doc_collection.id
+        end
 
         doc_collection
       end
