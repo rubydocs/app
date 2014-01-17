@@ -32,7 +32,7 @@ module Services
           end
           log "Generating with args: #{args}"
           git.chdir do
-            args.concat Dir['**/*.{rb,rdoc}']
+            args.concat Dir['**/*.{c,rb,rdoc}']
             rdoc.document args
           end
         end
