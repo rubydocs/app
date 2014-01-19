@@ -1,29 +1,33 @@
-body#show-doc-collection {
+html {
   height: 100%;
-  margin: 0;
 
-  #menu {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 12px;
-    position: absolute;
-    top: 0;
-    right: 20px;
-    line-height: 30px;
-    padding: 0 10px;
-    border: 1px solid #ccc;
-    border-top-width: 0;
-    background-color: white;
-    border-radius: 0 0 5px 5px;
-
-    img {
-      width: 100px;
-      margin-left: 5px;
-      vertical-align: middle;
-    }
-  }
-
-  iframe {
-    width: 100%;
+  body#show-doc-collection {
     height: 100%;
+    margin: 0;
+
+    #menu {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 12px;
+      position: absolute;
+      top: 0;
+      right: 20px;
+      line-height: 30px;
+      padding: 0 10px;
+      border: 1px solid #ccc;
+      border-top-width: 0;
+      background-color: white;
+      border-radius: 0 0 5px 5px;
+
+      img {
+        width: 100px;
+        margin-left: 5px;
+        vertical-align: middle;
+      }
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
