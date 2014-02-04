@@ -4,8 +4,8 @@ module Services
       BATCH_SIZE = 100
 
       def call(doc_collection_id)
-        doc_collection = DocCollection.where(id: doc_collection_id).first
-        raise Error, "Doc collection with ID #{doc_collection_id} not found." if doc_collection.nil?
+        doc_collection = Services::DocCollections::Find.call(doc_collection_id).first
+        raise Error, "Doc collection #{doc_collection_id} not found." if doc_collection.nil?
 
         s3 = AWS::S3.new
         bucket = s3.buckets[Settings.aws.bucket]
