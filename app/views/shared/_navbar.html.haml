@@ -1,3 +1,6 @@
-= navbar static: 'top', brand: image_tag('logo.svg') do
-  = navbar_group align: 'right' do
-    = navbar_item 'About', '#about'
+= navbar static: 'top' do
+  = navbar_header brand: image_tag('logo.svg')
+  = navbar_collapse do
+    = navbar_group align: 'right' do
+      = navbar_item 'About', '#about'
+      = navbar_item 'foo', '/foo'
