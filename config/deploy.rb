@@ -60,8 +60,7 @@ namespace :deploy do
   task :restart do
     sudo 'monit restart rubydocs_sidekiq'
     run "cd #{current_path} && bundle exec pumactl -S tmp/pids/puma.state phased-restart"
-    # TODO: Use Monit's restart command again as soon as Monit supports custom restart commands.
-    # http://nongnu.13855.n7.nabble.com/restart-program-directive-td170064.html
+    # TODO: Use Monit's restart command when Monit >= 5.7 is used
     # sudo 'monit restart rubydocs_puma'
   end
 end
