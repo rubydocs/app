@@ -28,7 +28,7 @@ gem 'airbrake',                       '3.1.14'
 
 # Frontend
 gem 'bootstrap-sass',                 '3.0.2.1'
-gem 'rails_bootstrap_navbar',         '2.0.0'
+gem 'rails_bootstrap_navbar',         '2.0.1'
 gem 'font-awesome-rails',             '4.0.3.0'
 gem 'rails-assets-jquery.smooth-scroll', '1.4.13'
 
