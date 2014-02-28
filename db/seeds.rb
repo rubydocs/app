@@ -10,5 +10,5 @@ projects.each do |project|
     Services::Projects::Clone.call project
   rescue Services::Projects::Clone::FilesExistsError
   end
-  Services::Projects::UpdateTags.call project
+  Services::Projects::UpdateTags.call project.id
 end

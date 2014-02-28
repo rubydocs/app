@@ -3,7 +3,9 @@ require 'git'
 module Services
   module Projects
     class UpdateTags < Services::Base
-      def call(project)
+      def call(project_id)
+        project = Services::Projects::Find.call(project_id).first
+        raise Error, "Could not find project #{project_id}" if project.nil?
         git = Git.open(project.local_path)
         git.fetch 'origin', tags: true
         tags = git.tags.each_with_object({}) do |tag, hash|

@@ -42,6 +42,7 @@ gem 'redis-rack-cache',               '1.2.2'
 # Background jobs
 gem 'sidekiq',                        '2.17.1' # Should be loaded after Airbrake
 gem 'sidekiq-failures',               '0.3.0'
+gem 'sidetiq',                        '0.5.0'
 gem 'sinatra',                        '1.4.4', require: false # For Sidekiq Web
 gem 'slim',                           '2.0.2'                 # For Sidekiq Web
 
