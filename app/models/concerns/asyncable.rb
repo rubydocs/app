@@ -6,6 +6,7 @@ module Asyncable
 
   included do
     include Sidekiq::Worker
+    include Sidetiq::Schedulable
   end
 
   %w(perform_async perform_in).each do |method_name|
