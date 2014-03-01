@@ -5,7 +5,7 @@ source 'https://rails-assets.org'
 local_gemfile = File.expand_path('~/.Gemfile')
 instance_eval(File.read(local_gemfile)) if File.exist?(local_gemfile)
 
-gem 'rails',                          '4.0.2'
+gem 'rails',                          '4.0.3'
 gem 'pg',                             '0.17.0'
 gem 'haml-rails',                     '0.5.3'
 gem 'sass-rails',                     '4.0.0'
