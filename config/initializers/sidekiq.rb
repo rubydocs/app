@@ -4,8 +4,10 @@ raise 'Redis settings not found.' unless Settings.redis?
 
 redis_url = "redis://#{Settings.redis[:host]}:#{Settings.redis[:port]}/#{Settings.redis[:db]}"
 
-Sidekiq::Web.use Rack::Auth::Basic do |username, password|
-  username == Settings.sidekiq.username && password == Settings.sidekiq.password
+if Settings.sidekiq?
+  Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+    username == Settings.sidekiq.username && password == Settings.sidekiq.password
+  end
 end
 
 Sidekiq.configure_server do |config|
