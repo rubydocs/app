@@ -1,16 +1,17 @@
 GIT
-  remote: git://github.com/schacon/ruby-git.git
-  revision: 41d9e3e4958b491a9595d7c216ba4278246bde5f
-  specs:
-    git (1.2.6)
-
-GIT
-  remote: git://github.com/voloko/sdoc.git
-  revision: b37fb743811e3a588aed6159954a1532165eaaac
+  remote: git://github.com/krautcomputing/sdoc.git
+  revision: ad0a7e1ea6b3369dc3b04f2e554e4d113838427f
+  branch: fix_loading
   specs:
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0)
+
+GIT
+  remote: git://github.com/schacon/ruby-git.git
+  revision: 41d9e3e4958b491a9595d7c216ba4278246bde5f
+  specs:
+    git (1.2.6)
 
 GEM
   remote: https://rubygems.org/
