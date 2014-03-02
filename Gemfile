@@ -14,7 +14,7 @@ gem 'compass-rails',                  '1.1.2'
 gem 'uglifier',                       '2.2.1'
 gem 'coffee-rails',                   '4.0.0'
 gem 'therubyracer',                   '0.12.0', platforms: :ruby
-gem 'sdoc',                           '0.4.0'
+gem 'sdoc',                           github: 'voloko/sdoc'
 gem 'git',                            github: 'schacon/ruby-git' # TODO: Update to released gem once > 1.2.6 is released.
 gem 'high_voltage',                   '2.0.0'
 gem 'aws-sdk',                        '1.30.0'
