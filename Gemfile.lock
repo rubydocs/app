@@ -1,10 +1,9 @@
 GIT
   remote: git://github.com/krautcomputing/sdoc.git
-  revision: ad0a7e1ea6b3369dc3b04f2e554e4d113838427f
-  branch: fix_loading
+  revision: f73c2ce5e6d7a013515fffaa094c658728a522a2
   specs:
-    sdoc (0.4.0)
-      json (~> 1.8)
+    sdoc (0.4.1)
+      json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
 
 GIT
@@ -224,6 +223,7 @@ GEM
     redis-store (1.1.4)
       redis (>= 2.2)
     ref (1.0.5)
+    rubyzip (1.1.2)
     sass (3.2.12)
     sass-rails (4.0.0)
       railties (>= 4.0.0.beta, < 5.0)
@@ -327,6 +327,7 @@ DEPENDENCIES
   redis-namespace (= 1.4.1)
   redis-rack-cache (= 1.2.2)
   redis-rails (= 4.0.0)
+  rubyzip (= 1.1.2)
   sass-rails (= 4.0.0)
   sdoc!
   sidekiq (= 2.17.1)

@@ -8,7 +8,7 @@ module Services
         scope = scope.order("#{Doc.table_name}.id") unless conditions.key?(:order)
         conditions.each do |k, v|
           case k.to_sym
-          when :project_id, :tag
+          when :project_id, :tag, :slug
             scope = scope.where(k => v)
           when :doc_collection
             scope = v.docs.merge(scope)

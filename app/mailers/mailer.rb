@@ -1,7 +1,7 @@
 class Mailer < ActionMailer::Base
-  raise 'Mail setting "from" not found.' unless Settings.mail.from?
+  raise 'Mail setting "from" not found.' if Settings.mail? && !Settings.mail.from?
 
-  FRIENDLY_FROM = "Ruby Docs <#{Settings.mail.from}>"
+  FRIENDLY_FROM = "RubyDocs <#{Settings.mail.from}>"
 
   default from: FRIENDLY_FROM
 
@@ -11,6 +11,6 @@ class Mailer < ActionMailer::Base
     mail \
       to:      FRIENDLY_FROM,
       bcc:     emails,
-      subject: "[Ruby Docs] #{@doc_collection.name} docs are ready!"
+      subject: "[RubyDocs] #{@doc_collection.name} docs are ready!"
   end
 end

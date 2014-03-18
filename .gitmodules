@@ -1,0 +1,3 @@
+[submodule "lib/s3cmd"]
+	path = lib/s3cmd
+	url = https://github.com/s3tools/s3cmd.git

@@ -8,7 +8,7 @@ class EmailNotification
 
   class << self
     def by_doc_collection(doc_collection)
-      emails = R.smembers cache_key(doc_collection.id)
+      emails = R.smembers(cache_key(doc_collection.id))
       emails.map do |email|
         self.new email: email, doc_collection_id: doc_collection.id
       end
@@ -28,7 +28,7 @@ class EmailNotification
 
   def self.cache_key(doc_collection_id)
     [
-      'doc_collection_notifications',
+      'email_notifications',
       doc_collection_id
     ].join(':')
   end

@@ -3,9 +3,9 @@ Hi there,
 You signed up to be notified when the docs for <%= @doc_collection.name %> are ready.
 The time has come!
 
-Check it out:
+View online: <%= doc_collection_url(File.basename(@doc_collection.local_path)) %>
+Download zip: <%= doc_collection_url(File.basename(@doc_collection.zipfile)) %>
 
-<%= doc_collection_url(@doc_collection.slug) %>
+Cheerio!
 
-Bye,
-Your happy Ruby Docs mailer
+Your happy RubyDocs mailer

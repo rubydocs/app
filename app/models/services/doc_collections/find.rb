@@ -11,7 +11,7 @@ module Services
           when :slug
             scope = scope.where(k => v)
           when :docs
-            # TODO: Is this actually correct? Post on SO how to do this?
+            # Not completely correct yet
             scope = scope
               .joins(:doc_collection_memberships)
               .where(doc_collection_memberships: { doc_id: v.map(&:id) })
@@ -19,6 +19,13 @@ module Services
               .having("COUNT(doc_collection_memberships.id) = #{v.count}")
           else
             raise ArgumentError, "Unexpected condition: #{k}"
+          end
+        end
+        # TODO: Do this as a scope:
+        # http://stackoverflow.com/questions/22489433/how-to-fetch-records-with-exactly-specified-has-many-through-records
+        if conditions.has_key?(:docs)
+          scope = scope.select do |doc_collection|
+            doc_collection.docs.pluck(:id).sort == conditions[:docs].map(&:id).sort
           end
         end
         scope

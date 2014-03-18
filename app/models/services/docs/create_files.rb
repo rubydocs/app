@@ -12,28 +12,31 @@ module Services
         guard_creating do
           git = Git.open(doc.project.local_path)
           git.checkout doc.tag
-          rdoc = RDoc::RDoc.new
-          args = [
-            '--format=sdoc',
-            '--github',
-            '--line-numbers',
-            "--title=\"#{doc.name}\"",
-            "--output=#{doc.local_path}"
-          ]
-          %w(test example bin).each do |dir|
-            args.push("--exclude=#{dir}") if File.exist?(doc.project.local_path.join(dir))
-          end
-          %w(.md .markdown .mdown .txt .rdoc).unshift(nil).each do |suffix|
-            readme = "README#{suffix}"
-            if File.exist?(doc.project.local_path.join(readme))
-              args.push("--main=#{readme}")
-              break
-            end
-          end
-          log "Generating with args: #{args}"
+
           git.chdir do
-            args.concat Dir['**/*.{c,rb,rdoc}']
-            rdoc.document args
+            # Create main file
+            main_file = 'RUBYDOCS.rdoc'
+            main_file_content = controller.render_to_string('docs/main', formats: :rdoc, locals: { doc: doc })
+            File.write(main_file, main_file_content)
+
+            # Set up options
+            options = RDoc::Options.new
+            options.setup_generator 'sdoc'
+            options.github       = true
+            options.line_numbers = true
+            options.title        = doc.name
+            options.op_dir       = doc.local_path
+            options.main_page    = main_file
+            %w(test example bin).each do |dir|
+              if File.exist?(dir)
+                options.exclude ||= []
+                options.exclude << dir
+              end
+            end
+            options.files = Dir['**/*.{c,rb,rdoc}']
+
+            # Generate
+            RDoc::RDoc.new.document options
           end
         end
         doc
@@ -43,15 +46,21 @@ module Services
 
       def guard_creating(&block)
         raise FilesExistsError, "Files for doc #{@doc.name} already exist." if File.exist?(@doc.local_path) && Dir[File.join(@doc.local_path, '*')].present?
-        lock = @doc.project.local_path.join('.rubydocs-lock')
-        raise CreatingInProgressError, "A doc for project #{@doc.project.name} is already being created." if File.exist?(lock)
-        FileUtils.touch lock
+        raise CreatingInProgressError, "A doc for project #{@doc.project.name} is already being created." if R.get(lock_key).present?
+        R.set lock_key, Time.now
 
         begin
           block.call
         ensure
-          File.delete lock if File.exist?(lock)
+          R.del lock_key
         end
+      end
+
+      def lock_key
+        [
+          'doc_creating_lock',
+          @doc.id
+        ].join(':')
       end
     end
   end

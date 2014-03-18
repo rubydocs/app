@@ -18,16 +18,25 @@ class DocCollectionsController < ApplicationController
       Services::DocCollections::Process.perform_async doc_collection.id unless Rails.env.development?
     end
 
-    redirect_to doc_collection_path(doc_collection.slug)
+    path = if params[:download_zip]
+      doc_collection.zipfile
+    else
+      doc_collection.local_path
+    end
+
+    redirect_to doc_collection_path(File.basename(path))
   end
 
   def show
-    @doc_collection = Services::DocCollections::Find.call([], slug: params[:doc_collection_slug]).first!
-    if @doc_collection.generating?
+    @doc_collection = Services::DocCollections::Find.call([], slug: params[:slug]).first!
+
+    case
+    when @doc_collection.uploading?
+      raise "Doc collection #{@doc_collection.name} is uploading, it shouldn't be possible to get here."
+    when @doc_collection.generating?
       @email_notification = EmailNotification.new(doc_collection_id: @doc_collection.id)
-      render 'generating'
     else
-      render layout: 'show_doc_collection'
+      redirect_to "http://docs.#{Settings.host}/#{File.basename(@doc_collection.local_path)}#{params[:path]}"
     end
   end
 

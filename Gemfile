@@ -14,7 +14,7 @@ gem 'compass-rails',                  '1.1.2'
 gem 'uglifier',                       '2.2.1'
 gem 'coffee-rails',                   '4.0.0'
 gem 'therubyracer',                   '0.12.0', platforms: :ruby
-gem 'sdoc',                           github: 'krautcomputing/sdoc', branch: 'fix_loading'
+gem 'sdoc',                           github: 'krautcomputing/sdoc'
 gem 'git',                            github: 'schacon/ruby-git' # TODO: Update to released gem once > 1.2.6 is released.
 gem 'high_voltage',                   '2.0.0'
 gem 'aws-sdk',                        '1.30.0'
@@ -24,6 +24,7 @@ gem 'squeel',                         '1.1.1'
 gem 'capistrano',                     '2.15.5'
 gem 'postgres_ext',                   '2.1.3'
 gem 'airbrake',                       '3.1.14'
+gem 'rubyzip',                        '1.1.2'
 
 # Frontend
 gem 'bootstrap-sass',                 '3.0.2.1'

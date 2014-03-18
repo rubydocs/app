@@ -46,5 +46,15 @@ module Services
     def log(message, severity = :info)
       @logger.log [self.class, @id], message, severity
     end
+
+    def controller
+      @controller ||= begin
+        request = ActionDispatch::TestRequest.new
+        request.host = Settings.host
+        ActionController::Base.new.tap do |controller|
+          controller.instance_variable_set('@_request', request)
+        end
+      end
+    end
   end
 end

@@ -4,8 +4,14 @@
   %p.lead
     Create your perfect set of docs by picking exactly the versions you need.
 
-= form_for @doc_collection, html: { class: 'form-horizontal', role: 'form' } do |f|
+%hr
 
+%h2
+  Combined docs
+  %small
+    Ruby and Rails in one
+
+= form_for @combined_doc_collection, html: { class: 'form-horizontal', role: 'form' } do |f|
   .row
     = f.fields_for :docs do |doc_fields|
       = doc_fields.hidden_field :project_id
@@ -23,10 +29,45 @@
                   sort
                   = link_to 'by version', '#', data: { :'sort' => 'version' }
                   or
-                  = link_to 'by release date', '#', data: { :'sort' => 'date' }
+                  = link_to 'by date', '#', data: { :'sort' => 'date' }
                   .sorted
+  = submit_tag 'View online', class: 'btn btn-primary btn-lg', data: { :'loading-text' => 'Please wait...' }
+  = submit_tag 'Download zip', class: 'btn btn-default btn-lg', data: { :'loading-text' => 'Please wait...' }, name: 'download_zip'
 
-  = submit_tag 'Generate docs', class: 'btn btn-primary btn-lg', data: { :'loading-text' => 'Please wait...' }
+%hr
+
+%h2
+  Single docs
+  %small
+    only Ruby or Rails
+
+.row
+  - @single_doc_collections.each do |doc_collection|
+    .col-sm-6
+      = form_for doc_collection, html: { class: 'form-horizontal', role: 'form' } do |f|
+        = f.fields_for :docs do |doc_fields|
+          = doc_fields.hidden_field :project_id
+          .panel.panel-default
+            .panel-heading
+              %h3.panel-title
+                = doc_fields.object.project.name
+            .panel-body
+              .form-group
+                = doc_fields.label :tag, 'Version', class: 'col-xs-3 control-label'
+                .col-xs-9.select-wrapper
+                  = doc_fields.select :tag, options_for_select(project_versions(doc_fields.object.project)), {}, class: 'form-control', data: { sort: 'date', :'sort-direction' => 'desc' }
+                  .small
+                    sort
+                    = link_to 'by version', '#', data: { :'sort' => 'version' }
+                    or
+                    = link_to 'by date', '#', data: { :'sort' => 'date' }
+                    .sorted
+              .form-group
+                .col-xs-offset-3.col-xs-9
+                  = submit_tag 'View online', class: 'btn btn-primary', data: { :'loading-text' => 'Please wait...' }
+                  = submit_tag 'Download zip', class: 'btn btn-default', data: { :'loading-text' => 'Please wait...' }, name: 'download_zip'
+
+%hr
 
 %h2#about
   About
@@ -40,7 +81,7 @@
   format. They are clearly arranged, searchable, and very responsive. On top of that, the docs for multiple projects can be combined, so that one can for example search the Ruby and Rails docs simultaneously - a huge advantage when a framework and a language are so intertwined.
 
 %p
-  The problem is that developers often work on multiple projects simultaneously, and each one may be using a different Ruby and a different Rails version. Combined docs with those exact versions are a huge advantage in that case - which is exactly what Ruby Docs lets you generate.
+  The problem is that developers often work on multiple projects simultaneously, and each one may be using a different Ruby and a different Rails version. Combined docs with those exact versions are a huge advantage in that case - which is exactly what RubyDocs lets you generate.
 
 %p
   A big thank-you to

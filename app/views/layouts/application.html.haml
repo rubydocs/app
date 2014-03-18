@@ -1,14 +1,50 @@
-- content_for :head do
-  = stylesheet_link_tag :application, media: 'all', data: { :'turbolinks-track' => true }
+!!! 5
 
-- content_for :body do
-  #root
-    = render 'shared/navbar'
-    .container
-      = yield
-    #root-footer
-  = render 'shared/footer'
-  = javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'
-  = javascript_include_tag :application, data: { :'turbolinks-track' => true }
+%html
 
-= render template: 'layouts/base'
+  %head
+    %meta{ charset: 'utf-8' }
+
+    %meta{ :'http-equiv' => 'X-UA-Compatible', content: 'IE=edge,chrome=1' }
+    %meta{ :'http-equiv' => 'Content-Type',    content: 'text/html; charset=utf-8' }
+
+    %meta{ name: 'viewport',                   content: 'width=device-width, initial-scale=1.0' }
+    %meta{ name: 'description',                content: description }
+
+    %meta{ name: 'twitter:card',               content: 'summary' }
+    %meta{ name: 'twitter:image',              content: image_path('icon.png') }
+    %meta{ name: 'twitter:title',              content: title }
+    %meta{ name: 'twitter:description',        content: description }
+
+    %meta{ property: 'og:type',        content: 'website' }
+    %meta{ property: 'og:image',       content: image_path('icon.png') }
+    %meta{ property: 'og:title',       content: title }
+    %meta{ property: 'og:description', content: description }
+
+    %title
+      = title
+
+    %link{ rel: 'shortcut icon', type: 'image/x-icon', href: image_path('favicon.ico') }
+
+    = csrf_meta_tags
+
+    = stylesheet_link_tag :application, media: 'all', data: { :'turbolinks-track' => true }
+
+    - if Rails.env.production?
+      %script
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-46710917-1', 'rubydocs.org');
+        ga('send', 'pageview');
+
+  %body{ id: page_id }
+    #root
+      = render 'shared/navbar'
+      .container
+        = yield
+      #root-footer
+    = render 'shared/footer'
+    = javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'
+    = javascript_include_tag :application, data: { :'turbolinks-track' => true }

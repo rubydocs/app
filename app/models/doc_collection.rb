@@ -20,6 +20,9 @@ class DocCollection < ActiveRecord::Base
 
   validates :slug, presence: true
 
+  scope :generated, -> { where{(generated_at != nil) & (uploaded_at == nil)} }
+  scope :uploaded, -> { where{uploaded_at != nil} }
+
   accepts_nested_attributes_for :docs
 
   def name
@@ -27,11 +30,15 @@ class DocCollection < ActiveRecord::Base
     docs.map(&:name).join(', ')
   end
 
+  def zipfile
+    self.local_path.to_s << '.zip'
+  end
+
   def generating?
     self.generated_at.nil?
   end
 
   def uploading?
-    self.uploaded_at.nil?
+    !self.generating? && self.uploaded_at.nil?
   end
 end
