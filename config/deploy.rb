@@ -1,7 +1,7 @@
 # Bundler
 require 'bundler/capistrano'
 
-server 'ruby-docs.org', :app, :web, :db, primary: true
+server 'rubydocs.org', :app, :web, :db, primary: true
 
 set :application,      'rubydocs'
 set :repository,       'git@code.krautcomputing.com:manuel/rubydocs.git'
