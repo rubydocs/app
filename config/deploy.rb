@@ -3,20 +3,22 @@ require 'bundler/capistrano'
 
 server 'rubydocs.org', :app, :web, :db, primary: true
 
-set :application,      'rubydocs'
-set :repository,       'git@code.krautcomputing.com:manuel/rubydocs.git'
+set :application,           'rubydocs'
+set :repository,            'git@code.krautcomputing.com:manuel/rubydocs.git'
 
-set :scm,              'git'
-set :scm_verbose,      true
-set :deploy_via,       :remote_cache
-set :keep_releases,    3
+set :scm,                   'git'
+set :scm_verbose,           true
+set :deploy_via,            :remote_cache
+set :keep_releases,         3
 
-set :user,             'deploy'
-set :use_sudo,         false
+set :user,                  'deploy'
+set :use_sudo,              false
 
-set :deploy_to,        "/home/#{user}/#{application}"
-set :rails_env,        'production'
-set :branch,           'master'
+set :deploy_to,             "/home/#{user}/#{application}"
+set :rails_env,             'production'
+set :branch,                'master'
+
+set :git_enable_submodules, true
 
 set :shareds, %w(
   config/database.yml
