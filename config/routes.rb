@@ -9,7 +9,7 @@ RubyDocs::Application.routes.draw do
   resources :email_notifications, only: :create
   resources :doc_collections, only: :create
 
-  get ':slug(*path)' => 'doc_collections#show', as: 'doc_collection'
+  get ':slug(.:format)(*path)' => 'doc_collections#show', as: 'doc_collection'
 
   root to: 'pages#show', id: 'home'
 
