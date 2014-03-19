@@ -32,7 +32,7 @@ class DocCollectionsController < ApplicationController
 
     case
     when @doc_collection.uploading?
-      raise "Doc collection #{@doc_collection.name} is uploading, it shouldn't be possible to get here."
+      raise "Doc collection #{@doc_collection.name} is generated, it shouldn't be possible to get here."
     when @doc_collection.generating?
       @email_notification = EmailNotification.new(doc_collection_id: @doc_collection.id)
     else
