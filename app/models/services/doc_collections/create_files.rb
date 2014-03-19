@@ -32,6 +32,7 @@ module Services
               zipfile.add file, file
             end
           end
+          FileUtils.chmod 644, doc_collection.zipfile
         end
 
         # Symlink docs and zip to public folder
