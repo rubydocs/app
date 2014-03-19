@@ -24,7 +24,7 @@ class DocCollectionsController < ApplicationController
       doc_collection.local_path
     end
 
-    redirect_to doc_collection_path(File.basename(path))
+    redirect_to doc_collection_path(File.basename(path), trailing_slash: true)
   end
 
   def show
