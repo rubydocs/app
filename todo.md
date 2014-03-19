@@ -1,5 +1,7 @@
 # TODO
 
+* Doc collection title still has "" around it
+* Redirect doc collection show pathes without trailing slash to URL with trailing slash
 * Fix searching for doc collections with docs: http://stackoverflow.com/questions/22489433/how-to-fetch-records-with-exactly-specified-has-many-through-records
 * Add "powered by" banner into generated docs
 * When starting to generate doc or doc collection, upload file to S3 forwarding people to show page
