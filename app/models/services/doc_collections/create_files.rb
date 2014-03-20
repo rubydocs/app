@@ -14,13 +14,15 @@ module Services
         # Merge or symlink docs
         if docs.size > 1
           sdoc_merge = SDoc::Merge.new
-          args = [
-            "--title=#{doc_collection.name}",
-            "--op=#{doc_collection.local_path}",
-            "--names=#{docs.map(&:name).join(',')}",
-            *docs.map(&:local_path)
-          ]
-          sdoc_merge.merge args
+          sdoc_options = {
+            title: doc_collection.name,
+            op:    doc_collection.local_path,
+            names: docs.map(&:name).join(',')
+          }
+          sdoc_args = sdoc_options.map do |k, v|
+            "--#{k}=#{v}"
+          end
+          sdoc_merge.merge sdoc_args, *docs.map(&:local_path)
         else
           FileUtils.ln_s docs.first.local_path, doc_collection.local_path
         end
