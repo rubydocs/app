@@ -18,13 +18,11 @@ class DocCollectionsController < ApplicationController
       Services::DocCollections::Process.perform_async doc_collection.id unless Rails.env.development?
     end
 
-    path = if params[:download_zip]
-      doc_collection.zipfile
+    if params[:download_zip]
+      redirect_to doc_collection_path(File.basename(doc_collection.zipfile))
     else
-      doc_collection.local_path
+      redirect_to doc_collection_path(File.basename(doc_collection.local_path), trailing_slash: true)
     end
-
-    redirect_to doc_collection_path(File.basename(path), trailing_slash: true)
   end
 
   def show
@@ -35,6 +33,7 @@ class DocCollectionsController < ApplicationController
       raise "Doc collection #{@doc_collection.name} is generated, it shouldn't be possible to get here."
     when @doc_collection.generating?
       @email_notification = EmailNotification.new(doc_collection_id: @doc_collection.id)
+      render formats: :html
     else
       redirect_to "http://docs.#{Settings.host}/#{File.basename(@doc_collection.local_path)}#{params[:path]}"
     end
