@@ -3,6 +3,8 @@ require 'aws/s3'
 module Services
   module DocCollections
     class UploadFiles < Services::Base
+      SyncError = Class.new(Error)
+
       def call(doc_collection_id)
         doc_collection = Services::DocCollections::Find.call(doc_collection_id).first
         raise Error, "Doc collection #{doc_collection_id} not found." if doc_collection.nil?
@@ -23,8 +25,10 @@ module Services
             option << "=#{v}" unless v == true
           end
         end
-        result = system("#{s3cmd} sync #{s3cmd_args.join(' ')} #{local_path} s3://#{Settings.aws.bucket}/#{remote_path}")
-        raise Error, "Sync ended with non-success error status: #{$?}" unless result
+        3.tries on: SyncError do
+          result = system("#{s3cmd} sync #{s3cmd_args.join(' ')} #{local_path} s3://#{Settings.aws.bucket}/#{remote_path}")
+          raise SyncError, "Sync ended with non-success error status: #{$?}" unless result
+        end
 
         # Upload zip
         s3 = AWS::S3.new

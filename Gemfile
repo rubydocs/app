@@ -25,6 +25,7 @@ gem 'capistrano',                     '2.15.5'
 gem 'postgres_ext',                   '2.1.3'
 gem 'airbrake',                       '3.1.14'
 gem 'rubyzip',                        '1.1.2'
+gem 'tries',                          '0.3.2'
 
 # Frontend
 gem 'bootstrap-sass',                 '3.0.2.1'
