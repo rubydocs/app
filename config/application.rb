@@ -38,3 +38,5 @@ module RubyDocs
     }
   end
 end
+
+$DEBUG_RDOC = true
