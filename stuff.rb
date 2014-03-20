@@ -114,7 +114,7 @@ dcs.each do |dc|
   dc.docs.each do |d|
     FileUtils.rm_rf d.local_path if File.exists?(d.local_path)
   end
-  FileUtils.rm_rf dc.local_path if File.exists?(dc.local_path)
+  Services::DocCollections::DeleteFiles.call dc
 end
 dcs.each_with_index do |dc, i|
   dc.generated_at = nil
