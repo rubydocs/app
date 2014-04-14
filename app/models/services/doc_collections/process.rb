@@ -8,6 +8,7 @@ module Services
 
         # Create files for docs
         doc_collection.docs.each do |doc|
+          log "Creating files for doc #{doc.name}."
           begin
             Services::Docs::CreateFiles.call doc
           rescue Services::Docs::CreateFiles::CreatingInProgressError
@@ -21,6 +22,7 @@ module Services
         end
 
         # Create doc collection files
+        log "Creating files for doc collection #{doc_collection.name}."
         Services::DocCollections::CreateFiles.call doc_collection
 
         # Set generated_at timestamp
