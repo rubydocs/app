@@ -94,6 +94,24 @@
   = succeed '.' do
     = link_to 'Twitter', 'https://twitter.com/manume', target: '_blank'
 
+%hr
+
+#credits
+
+  %p
+    Built by
+    = link_to 'Kraut Computing', 'http://www.krautcomputing.com/', target: '_blank'
+    with
+    = fa_icon 'heart'
+    for the Ruby community.
+
+  %p
+    Thanks to
+    = link_to image_tag('digital-ocean.png'), 'https://www.digitalocean.com/', target: '_blank'
+    for generously sponsoring hosting for RubyDocs.
+
+%hr
+
 #disqus_thread
 :javascript
   var disqus_shortname = 'rubydocs';

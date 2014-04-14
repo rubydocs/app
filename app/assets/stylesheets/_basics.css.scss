@@ -1,7 +1,3 @@
-@import "compass/layout/sticky-footer";
-
-@include sticky-footer(80px, "#root", "#root-footer", "#footer");
-
 * {
   @include box-sizing(border-box);
 }
