@@ -22,7 +22,7 @@ module Services
           sdoc_args = sdoc_options.map do |k, v|
             "--#{k}=#{v}"
           end
-          sdoc_merge.merge sdoc_args, *docs.map(&:local_path)
+          sdoc_merge.merge sdoc_args.concat(docs.map(&:local_path))
         else
           FileUtils.ln_s docs.first.local_path, doc_collection.local_path
         end
