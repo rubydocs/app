@@ -11,7 +11,7 @@ compareSortEls = (el1, el2, sort, sortDirection) ->
   if sort == 'date'
     [date1, date2] = [parseInt(sort1), parseInt(sort2)]
     if date1 == date2
-      return compareSortEls(el1, el2, 'version', sortDirection)
+      return compareSortEls(el1, el2, 'version', 'desc')
     else if sortDirection == 'asc'
       if date1 > date2 then return 1 else return -1
     else
