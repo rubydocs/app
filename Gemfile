@@ -18,7 +18,7 @@ gem 'sdoc',                           github: 'krautcomputing/sdoc'
 gem 'git',                            github: 'schacon/ruby-git' # TODO: Update to released gem once > 1.2.6 is released.
 gem 'high_voltage',                   '2.0.0'
 gem 'aws-sdk',                        '1.30.0'
-gem 'nifty_settings',                 '1.0.1'
+gem 'nifty_settings',                 '1.1.1'
 gem 'friendly_id',                    '5.0.2'
 gem 'squeel',                         '1.1.1'
 gem 'capistrano',                     '2.15.5'
