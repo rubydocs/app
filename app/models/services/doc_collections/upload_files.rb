@@ -1,4 +1,5 @@
 require 'aws/s3'
+require 'net/sftp'
 
 module Services
   module DocCollections
@@ -34,12 +35,12 @@ module Services
 
         # Upload zip
         raise Error, "Doc collection #{doc_collection.name} zipfile doesn't exist." unless File.exist?(doc_collection.zipfile)
-        s3 = AWS::S3.new
-        bucket = s3.buckets[Settings.aws.bucket]
-        object = bucket.objects[File.basename(doc_collection.zipfile)]
         # Follow symlinks
-        file = Pathname.new(doc_collection.zipfile).realpath
-        object.write(file)
+        local_file = Pathname.new(doc_collection.zipfile).realpath
+        remote_file = File.join('public_html', File.basename(doc_collection.zipfile))
+        Net::SFTP.start(Settings.zip_storage.ftp_host, Settings.zip_storage.ftp_username, password: Settings.zip_storage.ftp_password) do |sftp|
+          sftp.upload! local_file, remote_file
+        end
 
         # Set uploaded_at timestamp
         doc_collection.uploaded_at = Time.now
