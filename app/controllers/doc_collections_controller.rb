@@ -35,12 +35,18 @@ class DocCollectionsController < ApplicationController
       @email_notification = EmailNotification.new(doc_collection_id: @doc_collection.id)
       render formats: :html
     else
-      path = if request.format.zip?
-        File.basename(@doc_collection.zipfile)
+      subdomain, path = if request.format.zip?
+        [
+          'zip',
+          File.basename(@doc_collection.zipfile)
+        ]
       else
-        [File.basename(@doc_collection.local_path), params[:path]].join
+        [
+          'docs',
+          [File.basename(@doc_collection.local_path), params[:path]].join
+        ]
       end
-      redirect_to "http://docs.#{Settings.host}/#{path}"
+      redirect_to "http://#{subdomain}.#{Settings.host}/#{path}"
     end
   end
 
