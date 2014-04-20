@@ -31,8 +31,11 @@
                   or
                   = link_to 'by date', '#', data: { :'sort' => 'date' }
                   .sorted
-  = submit_tag 'View online', class: 'btn btn-primary btn-lg', data: { :'loading-text' => 'Please wait...' }
-  = submit_tag 'Download zip', class: 'btn btn-default btn-lg', data: { :'loading-text' => 'Please wait...' }, name: 'download_zip'
+  .row
+    .col-sm-12
+      .pull-right
+        = submit_tag 'View online', class: 'btn btn-primary btn-lg', data: { :'loading-text' => 'Please wait...' }
+        = submit_tag 'Download zip', class: 'btn btn-default btn-lg', data: { :'loading-text' => 'Please wait...' }, name: 'download_zip'
 
 %hr
 
@@ -67,13 +70,6 @@
                   = submit_tag 'View online', class: 'btn btn-primary', data: { :'loading-text' => 'Please wait...' }
                   = submit_tag 'Download zip', class: 'btn btn-default', data: { :'loading-text' => 'Please wait...' }, name: 'download_zip'
 
-%p
-  Built by
-  = link_to 'Kraut Computing', 'http://www.krautcomputing.com/', target: '_blank'
-  with
-  = fa_icon 'heart'
-  for the Ruby community.
-
 %hr
 
 %h2#about
@@ -104,6 +100,13 @@
 %hr
 
 #credits
+
+  %p
+    Built by
+    = link_to 'Kraut Computing', 'http://www.krautcomputing.com/', target: '_blank'
+    with
+    = fa_icon 'heart'
+    for the Ruby community.
 
   %p
     Thanks to
