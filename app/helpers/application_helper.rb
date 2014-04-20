@@ -26,7 +26,7 @@ module ApplicationHelper
     [
       content_for(:title),
       'RubyDocs - Fast and searchable Ruby and Rails docs'
-    ].compact.join('|')
+    ].compact.join(' | ')
   end
 
   def description
