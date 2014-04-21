@@ -36,9 +36,9 @@ module Services
         # Upload zip
         raise Error, "Doc collection #{doc_collection.name} zipfile doesn't exist." unless File.exist?(doc_collection.zipfile)
         # Follow symlinks
-        local_file = Pathname.new(doc_collection.zipfile).realpath
+        local_file = Pathname.new(doc_collection.zipfile).realpath.to_s
         remote_file = File.join('public_html', File.basename(doc_collection.zipfile))
-        Net::SFTP.start(Settings.zip_ftp.ftp_host, Settings.zip_ftp.ftp_username, password: Settings.zip_ftp.ftp_password) do |sftp|
+        Net::SFTP.start(Settings.zip_ftp.host, Settings.zip_ftp.username, password: Settings.zip_ftp.password) do |sftp|
           sftp.upload! local_file, remote_file
         end
 
