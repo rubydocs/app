@@ -38,7 +38,7 @@ module Services
         # Follow symlinks
         local_file = Pathname.new(doc_collection.zipfile).realpath
         remote_file = File.join('public_html', File.basename(doc_collection.zipfile))
-        Net::SFTP.start(Settings.zip_storage.ftp_host, Settings.zip_storage.ftp_username, password: Settings.zip_storage.ftp_password) do |sftp|
+        Net::SFTP.start(Settings.zip_ftp.ftp_host, Settings.zip_ftp.ftp_username, password: Settings.zip_ftp.ftp_password) do |sftp|
           sftp.upload! local_file, remote_file
         end
 
