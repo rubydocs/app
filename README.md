@@ -1,4 +1,4 @@
-# Services
+# RubyDocs
 
 [![Build Status](https://secure.travis-ci.org/krautcomputing/rubydocs.png)](http://travis-ci.org/krautcomputing/rubydocs)
 [![Code Climate](https://codeclimate.com/github/krautcomputing/rubydocs.png)](https://codeclimate.com/github/krautcomputing/rubydocs)
