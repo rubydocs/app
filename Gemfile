@@ -1,14 +1,17 @@
 source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
-# Load local Gemfile
-local_gemfile = File.expand_path('~/.Gemfile')
-instance_eval(File.read(local_gemfile)) if File.exist?(local_gemfile)
+# Load common Gemfile
+common_gemfile_name   = 'Gemfile.common'
+shared_common_gemfile = File.expand_path("~/#{common_gemfile_name}")
+local_common_gemfile  = File.expand_path("./#{common_gemfile_name}")
+FileUtils.cp shared_common_gemfile, local_common_gemfile if File.exist?(shared_common_gemfile) && shared_common_gemfile != local_common_gemfile
+instance_eval(File.read(local_common_gemfile)) if File.exist?(local_common_gemfile)
 
 gem 'rails',                          '4.0.3'
 gem 'pg',                             '0.17.0'
 gem 'haml-rails',                     '0.5.3'
-gem 'sass-rails',                     '4.0.0'
+gem 'sass-rails',                     '4.0.2'
 gem 'jquery-rails',                   '3.0.4'
 gem 'compass-rails',                  '1.1.2'
 gem 'uglifier',                       '2.2.1'
