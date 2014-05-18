@@ -34,6 +34,7 @@ class DocCollectionsController < ApplicationController
     when @doc_collection.generating?
       @email_notification = EmailNotification.new(doc_collection_id: @doc_collection.id)
       render formats: :html
+      # redirect_to url_for(params.merge(trailing_slash: true)) unless request.format.zip? || request.fullpath =~ %r(/\z)
     else
       subdomain, path = if request.format.zip?
         [

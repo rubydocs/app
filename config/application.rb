@@ -25,6 +25,10 @@ module RubyDocs
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    config.autoload_paths += [
+      config.root.join('app')
+    ]
+
     config.assets.precompile += %w(show-doc-collection.css)
 
     raise 'Redis settings not found.' unless Settings.redis?
