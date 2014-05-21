@@ -1,0 +1,27 @@
+default:
+
+  aws:
+    bucket: rubydocs-ci
+    key: foo
+    secret: bar
+    region: us-east-1
+
+  redis:
+    host: localhost
+    port: 6379
+    db: 0
+
+  host: rubydocs.ci
+
+  zip_ftp:
+    host: foo
+    username: bar
+    password: baz
+
+  mail:
+    port: 587
+    server: foo
+    login: bar
+    password: baz
+    domain: rubydocs.org
+    from: hello@rubydocs.org
