@@ -4,7 +4,7 @@ require 'bundler/capistrano'
 server 'rubydocs.org', :app, :web, :db, primary: true
 
 set :application,           'rubydocs'
-set :repository,            'git@code.krautcomputing.com:manuel/rubydocs.git'
+set :repository,            'https://github.com/krautcomputing/rubydocs.git'
 
 set :scm,                   'git'
 set :scm_verbose,           true
