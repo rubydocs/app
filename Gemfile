@@ -8,6 +8,8 @@ local_common_gemfile  = File.expand_path("./#{common_gemfile_name}")
 FileUtils.cp shared_common_gemfile, local_common_gemfile if File.exist?(shared_common_gemfile) && shared_common_gemfile != local_common_gemfile
 instance_eval(File.read(local_common_gemfile)) if File.exist?(local_common_gemfile)
 
+ruby '2.1.2'
+
 gem 'rails',                          '4.0.3'
 gem 'pg',                             '0.17.0'
 gem 'haml-rails',                     '0.5.3'
