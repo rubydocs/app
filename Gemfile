@@ -59,6 +59,7 @@ gem 'rack-mini-profiler',             '0.1.31'
 
 group :test do
   gem 'fakeredis',                    '0.4.3'
+  gem 'rspec-rails',                  '3.0.0.rc1'
 end
 
 group :development do

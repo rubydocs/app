@@ -3,5 +3,5 @@ rvm:
   - 2.1.2
 services:
   - redis-server
-before_script:
-  - cp config/settings.yml.ci config/settings.yml
+before_script: cp config/settings.yml.ci config/settings.yml
+script: RAILS_ENV=test bundle exec rspec
