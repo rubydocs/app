@@ -4,7 +4,7 @@ require 'sdoc'
 module Services
   module Docs
     class CreateFiles < Services::Base
-      FilesExistsError = Class.new(Error)
+      FilesExistsError        = Class.new(Error)
       CreatingInProgressError = Class.new(Error)
 
       check_uniqueness!
