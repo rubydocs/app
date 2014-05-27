@@ -6,6 +6,8 @@ module Services
     class CreateFiles < Services::Base
       FolderExistsError = Class.new(Error)
 
+      check_uniqueness!
+
       def call(doc_collection)
         docs = Services::Docs::Find.call([], doc_collection: doc_collection)
         raise Error, "Doc collection #{doc_collection.name} has no docs." if docs.empty?

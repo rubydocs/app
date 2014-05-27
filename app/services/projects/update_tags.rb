@@ -3,6 +3,8 @@ require 'git'
 module Services
   module Projects
     class UpdateTags < Services::Base
+      check_uniqueness!
+
       def call(project_id)
         project = Services::Projects::Find.call(project_id).first
         raise Error, "Could not find project #{project_id}" if project.nil?

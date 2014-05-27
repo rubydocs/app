@@ -2,6 +2,7 @@ module Services
   module Projects
     class UpdateTagsForAll < Services::Base
       recurrence { hourly }
+      check_uniqueness!
 
       def call
         Project.find_each do |project|

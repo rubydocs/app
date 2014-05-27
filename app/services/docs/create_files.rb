@@ -7,6 +7,8 @@ module Services
       FilesExistsError = Class.new(Error)
       CreatingInProgressError = Class.new(Error)
 
+      check_uniqueness!
+
       def call(doc)
         @doc = doc
         guard_creating do

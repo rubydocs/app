@@ -6,6 +6,8 @@ module Services
     class UploadFiles < Services::Base
       SyncError = Class.new(Error)
 
+      check_uniqueness!
+
       def call(doc_collection_id)
         doc_collection = Services::DocCollections::Find.call(doc_collection_id).first
         raise Error, "Doc collection #{doc_collection_id} not found." if doc_collection.nil?
