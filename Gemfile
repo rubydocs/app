@@ -59,7 +59,11 @@ gem 'rack-mini-profiler',                 '0.1.31'
 
 group :test do
   gem 'fakeredis',                        '0.4.3'
-  gem 'rspec-rails',                      '3.0.0.rc1'
+  gem 'rspec',                            '3.0.0.rc1' # TODO: Use >= 3.0.0 when released
+  gem 'rspec-rails',                      '3.0.0.rc1' # TODO: Use >= 3.0.0 when released
+  gem 'guard-rspec',                      '4.2.9'
+  gem 'factory_girl_rails',               '4.4.1'
+  gem 'database_rewinder',                '0.2.0'
 end
 
 group :development do
