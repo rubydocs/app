@@ -3,5 +3,8 @@ rvm:
   - 2.0.0
 services:
   - redis-server
-before_script: cp config/settings.yml.ci config/settings.yml
+before_script:
+  - cp config/settings.yml.travis config/settings.yml
+  - cp config/database.yml.travis config/database.yml
+  - psql -c 'create database travis_ci_test;' -U postgres
 script: RAILS_ENV=test bundle exec rspec

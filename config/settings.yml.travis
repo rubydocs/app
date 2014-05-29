@@ -1,7 +1,7 @@
 default:
 
   aws:
-    bucket: rubydocs-ci
+    bucket: rubydocs-travis
     key: foo
     secret: bar
     region: us-east-1
@@ -11,7 +11,7 @@ default:
     port: 6379
     db: 0
 
-  host: rubydocs.ci
+  host: rubydocs.travis
 
   zip_ftp:
     host: foo
@@ -23,5 +23,5 @@ default:
     server: foo
     login: bar
     password: baz
-    domain: rubydocs.org
-    from: hello@rubydocs.org
+    domain: rubydocs.travis
+    from: hello@rubydocs.travis
