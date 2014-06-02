@@ -23,7 +23,8 @@ module Services
           access_key:          Settings.aws.key,
           secret_key:          Settings.aws.secret,
           verbose:             true,
-          :'delete-removed' => true
+          :'delete-removed' => true,
+          :'no-preserve'    => true
         }
         s3cmd_args = s3cmd_options.map do |k, v|
           "--#{k}".tap do |option|
