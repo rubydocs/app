@@ -8,7 +8,9 @@ module Services
 
       check_uniqueness!
 
-      def call(doc_collection)
+      def call(id_or_object)
+        doc_collection = find_object(id_or_object)
+
         docs = Services::Docs::Find.call([], doc_collection: doc_collection)
         raise Error, "Doc collection #{doc_collection.name} has no docs." if docs.empty?
         raise FolderExistsError, "Folder for doc collection #{doc_collection.name} already exist." if File.exist?(doc_collection.local_path)

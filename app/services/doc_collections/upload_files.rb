@@ -8,9 +8,8 @@ module Services
 
       check_uniqueness!
 
-      def call(doc_collection_id)
-        doc_collection = Services::DocCollections::Find.call(doc_collection_id).first
-        raise Error, "Doc collection #{doc_collection_id} not found." if doc_collection.nil?
+      def call(id_or_object)
+        doc_collection = find_object(id_or_object)
         raise Error, "Doc collection #{doc_collection.name} is not generated yet." if doc_collection.generating?
         raise Error, "Doc collection #{doc_collection.name} local path doesn't exist or is empty." unless File.exist?(doc_collection.local_path) && Dir[File.join(doc_collection.local_path, '*')].present?
 

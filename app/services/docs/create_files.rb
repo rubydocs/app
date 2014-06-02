@@ -9,16 +9,17 @@ module Services
 
       check_uniqueness!
 
-      def call(doc)
-        @doc = doc
+      def call(id_or_object)
+        @doc = find_object(id_or_object)
+
         guard_creating do
-          git = Git.open(doc.project.local_path)
-          git.checkout doc.tag
+          git = Git.open(@doc.project.local_path)
+          git.checkout @doc.tag
 
           git.chdir do
             # Create main file
             main_file = 'RUBYDOCS.rdoc'
-            main_file_content = controller.render_to_string('docs/main', formats: :rdoc, locals: { doc: doc })
+            main_file_content = controller.render_to_string('docs/main', formats: :rdoc, locals: { doc: @doc })
             File.write(main_file, main_file_content)
 
             # Set up options
@@ -26,8 +27,8 @@ module Services
             options.setup_generator 'sdoc'
             options.github       = true
             options.line_numbers = true
-            options.title        = doc.name
-            options.op_dir       = doc.local_path
+            options.title        = @doc.name
+            options.op_dir       = @doc.local_path
             options.main_page    = main_file
             %w(test example bin).each do |dir|
               if File.exist?(dir)
@@ -41,7 +42,7 @@ module Services
             RDoc::RDoc.new.document options
           end
         end
-        doc
+        @doc
       end
 
       private

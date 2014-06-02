@@ -3,9 +3,8 @@ module Services
     class Process < Services::Base
       check_uniqueness!
 
-      def call(doc_collection_id)
-        doc_collection = Services::DocCollections::Find.call(doc_collection_id).first
-        raise Error, "Doc collection #{doc_collection_id} not found." if doc_collection.nil?
+      def call(id_or_object)
+        doc_collection = find_object(id_or_object)
         raise Error, "Doc collection #{doc_collection.name} is already generated." unless doc_collection.generating?
 
         # Create files for docs

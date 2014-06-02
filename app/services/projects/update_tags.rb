@@ -5,9 +5,8 @@ module Services
     class UpdateTags < Services::Base
       check_uniqueness!
 
-      def call(project_id)
-        project = Services::Projects::Find.call(project_id).first
-        raise Error, "Could not find project #{project_id}" if project.nil?
+      def call(id_or_object)
+        project = find_object(id_or_object)
         git = Git.open(project.local_path)
         3.tries on: Git::GitExecuteError, delay: 1 do
           git.fetch 'origin', tags: true
