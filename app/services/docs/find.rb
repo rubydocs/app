@@ -11,7 +11,7 @@ module Services
           when :project_id, :tag, :slug
             scope = scope.where(k => v)
           when :doc_collection
-            scope = v.docs.merge(scope)
+            scope.merge! v.docs
           else
             raise ArgumentError, "Unexpected condition: #{k}"
           end
