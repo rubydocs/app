@@ -19,11 +19,12 @@ module Services
         remote_path = local_path.split('/').last << '/'
         s3cmd = Rails.root.join('lib', 's3cmd', 's3cmd')
         s3cmd_options = {
-          access_key:          Settings.aws.key,
-          secret_key:          Settings.aws.secret,
-          verbose:             true,
-          :'delete-removed' => true,
-          :'no-preserve'    => true
+          access_key:              Settings.aws.key,
+          secret_key:              Settings.aws.secret,
+          verbose:                 true,
+          :'delete-removed'     => true,
+          :'no-preserve'        => true,
+          :'reduced-redundancy' => true
         }
         s3cmd_args = s3cmd_options.map do |k, v|
           "--#{k}".tap do |option|
