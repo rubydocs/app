@@ -28,6 +28,7 @@ gem 'airbrake',                           '3.1.14'
 gem 'rubyzip',                            '1.1.2'
 gem 'tries',                              '0.3.2'
 gem 'services',                           '0.1.2'
+gem 'net-sftp',                           '2.1.2'
 
 # Frontend
 gem 'bootstrap-sass',                     '3.0.2.1'
