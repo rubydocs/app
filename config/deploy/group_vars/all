@@ -1,0 +1,6 @@
+---
+deploy_repo:          https://github.com/krautcomputing/rubydocs.git
+deploy_app_hostname:  web01
+deploy_copy_files:
+  - config/settings.yml
+  - config/newrelic.yml

@@ -1,8 +1,0 @@
-check process rubydocs_sidekiq
-  with pidfile /home/deploy/rubydocs/shared/pids/sidekiq.pid
-  start program = "/bin/su - deploy -c 'cd /home/deploy/rubydocs/current && bundle exec sidekiq -C config/sidekiq.yml'" with timeout 60 seconds
-  stop program = "/bin/su - deploy -c 'cd /home/deploy/rubydocs/current && bundle exec sidekiqctl stop tmp/pids/sidekiq.pid'" with timeout 60 seconds
-  if totalmem > 1000 MB for 5 cycles then alert
-  if totalmem > 2000 MB for 5 cycles then restart
-  if cpu > 50% for 5 cycles then alert
-  if 5 restarts within 5 cycles then timeout
