@@ -1,3 +1,9 @@
 [submodule "lib/s3cmd"]
 	path = lib/s3cmd
 	url = https://github.com/s3tools/s3cmd.git
+[submodule "config/deploy/infrastructure"]
+	path = config/deploy/infrastructure
+	url = git@code.krautcomputing.com:manuel/infrastructure.git
+[submodule "common"]
+	path = common
+	url = git@code.krautcomputing.com:manuel/common.git
