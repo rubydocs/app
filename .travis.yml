@@ -13,3 +13,5 @@ script:
   - bundle exec rake spec
 addons:
   postgresql: "9.3"
+git:
+  submodules: false
