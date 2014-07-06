@@ -35,9 +35,9 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.6)
-    airbrake (3.1.14)
+    airbrake (4.0.0)
       builder
-      json
+      multi_json
     annotate (2.6.5)
       activerecord (>= 2.3.0)
       rake (>= 0.8.7)
@@ -134,7 +134,6 @@ GEM
       addressable (~> 2.3)
     letter_opener (1.2.0)
       launchy (~> 2.2)
-    libv8 (3.16.14.3)
     listen (2.7.9)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
@@ -239,7 +238,6 @@ GEM
       redis-store (~> 1.1.0)
     redis-store (1.1.4)
       redis (>= 2.2)
-    ref (1.0.5)
     rspec (3.0.0)
       rspec-core (~> 3.0.0)
       rspec-expectations (~> 3.0.0)
@@ -318,9 +316,6 @@ GEM
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     temple (0.6.8)
-    therubyracer (0.12.0)
-      libv8 (~> 3.16.14.0)
-      ref
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
@@ -339,7 +334,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  airbrake (= 3.1.14)
+  airbrake (~> 4.0)
   annotate (~> 2.6)
   awesome_print (~> 1.2)
   aws-sdk (= 1.42.0)
@@ -393,6 +388,5 @@ DEPENDENCIES
   spring-commands-rspec (~> 1.0)
   sprinkle (= 0.7.5)
   squeel (= 1.1.1)
-  therubyracer (= 0.12.0)
   tries (= 0.3.2)
   uglifier (= 2.2.1)
