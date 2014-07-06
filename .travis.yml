@@ -3,6 +3,8 @@ rvm:
   - 2.1.2
 services:
   - redis-server
+before_install:
+  - git submodule update --init common-gems
 before_script:
   - cp config/settings.yml.travis config/settings.yml
   - cp config/database.yml.travis config/database.yml
