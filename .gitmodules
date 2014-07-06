@@ -4,6 +4,6 @@
 [submodule "config/deploy/infrastructure"]
 	path = config/deploy/infrastructure
 	url = git@code.krautcomputing.com:manuel/infrastructure.git
-[submodule "common"]
-	path = common
-	url = git@code.krautcomputing.com:manuel/common.git
+[submodule "common-gems"]
+	path = common-gems
+	url = https://github.com/krautcomputing/common-gems.git

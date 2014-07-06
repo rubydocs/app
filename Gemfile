@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
 # Load common Gemfile
-common_gemfile  = 'common/Gemfile.common'
+common_gemfile  = 'common-gems/Gemfile.common'
 instance_eval(File.read(common_gemfile)) if File.exist?(common_gemfile)
 
 ruby '2.1.2'
