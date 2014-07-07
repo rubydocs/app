@@ -29,13 +29,9 @@ module RubyDocs
       config.root.join('app')
     ]
 
-    config.assets.precompile += %w(show-doc-collection.css)
-
-    redis_url = "redis://#{Settings.redis.host}:#{Settings.redis.port}/#{Settings.redis.db}"
-    config.action_dispatch.rack_cache = {
-      metastore:   "#{redis_url}/rack_cache/metastore",
-      entitystore: "#{redis_url}/rack_cache/entitystore"
-    }
+    config.assets.precompile += %w(
+      show-doc-collection.css
+    )
   end
 end
 
