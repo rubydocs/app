@@ -1,9 +1,7 @@
 require 'fakeredis' if %w(development test).include?(Rails.env)
 
-raise 'Redis settings not found.' unless Settings.redis?
-
 REDIS_CONNECTION_POOL = ConnectionPool.new(size: 10, timeout: 1) do
-  Redis.new Settings.redis.to_hash
+  Redis.new REDIS_CONFIG
 end
 
 # Helper module when sending only a single command to Redis

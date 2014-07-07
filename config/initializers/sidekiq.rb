@@ -1,8 +1,6 @@
 require 'sidekiq/testing/inline' if %w(development test).include?(Rails.env)
 
-raise 'Redis settings not found.' unless Settings.redis?
-
-redis_url = "redis://#{Settings.redis[:host]}:#{Settings.redis[:port]}/#{Settings.redis[:db]}"
+redis_url = "redis://#{REDIS_CONFIG[:host]}:#{REDIS_CONFIG[:port]}/#{REDIS_CONFIG[:db]}"
 
 if Settings.sidekiq?
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|

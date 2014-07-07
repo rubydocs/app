@@ -31,10 +31,6 @@ module RubyDocs
 
     config.assets.precompile += %w(show-doc-collection.css)
 
-    raise 'Redis settings not found.' unless Settings.redis?
-
-    config.cache_store = :redis_store, Settings.redis.to_hash.merge(namespace: 'cache', expires_in: 1.year)
-
     redis_url = "redis://#{Settings.redis.host}:#{Settings.redis.port}/#{Settings.redis.db}"
     config.action_dispatch.rack_cache = {
       metastore:   "#{redis_url}/rack_cache/metastore",
