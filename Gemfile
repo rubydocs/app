@@ -53,7 +53,6 @@ gem 'newrelic_rpm',                       '3.7.1.180'
 gem 'rack-mini-profiler',                 '0.1.31'
 
 group :test do
-  gem 'fakeredis',                        '0.4.3'
   gem 'rspec-rails',                      '3.0.1'
   gem 'guard-rspec',                      '4.2.9'
   gem 'factory_girl_rails',               '4.4.1'
@@ -65,6 +64,6 @@ group :development do
   gem 'sprinkle',                         '0.7.5', require: false
 end
 
-group :production do
-  gem 'puma',                             '2.7.1', require: false
+group :development, :test do
+  gem 'fakeredis',                        '0.5.0'
 end
