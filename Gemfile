@@ -2,8 +2,9 @@ source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
 # Load common Gemfile
-common_gemfile  = 'common-gems/Gemfile.common'
-instance_eval(File.read(common_gemfile)) if File.exist?(common_gemfile)
+['common-gems/Gemfile', 'common-gems/rails4/Gemfile'].each do |gemfile|
+  instance_eval(File.read(gemfile))
+end
 
 ruby '2.1.2'
 
@@ -33,13 +34,6 @@ gem 'rails_bootstrap_navbar',             '2.0.1'
 gem 'font-awesome-rails',                 '4.0.3.0'
 gem 'rails-assets-jquery.smooth-scroll',  '1.4.13'
 
-# Redis
-gem 'redis',                              '3.0.6'
-gem 'redis-namespace',                    '1.5.0'
-gem 'redis-rails',                        '4.0.0'
-gem 'connection_pool',                    '1.2.0'
-gem 'redis-rack-cache',                   '1.2.2'
-
 # Background jobs
 gem 'sidekiq',                            '2.17.1' # Should be loaded after Airbrake
 gem 'sidekiq-failures',                   '0.3.0'
@@ -61,8 +55,4 @@ end
 group :development do
   gem 'letter_opener',                    '1.2.0'
   gem 'sprinkle',                         '0.7.5', require: false
-end
-
-group :development, :test do
-  gem 'fakeredis',                        '0.5.0'
 end
