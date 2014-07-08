@@ -23,7 +23,6 @@ gem 'friendly_id',                        '5.0.2'
 gem 'squeel',                             '1.1.1'
 gem 'postgres_ext',                       '2.1.3'
 gem 'rubyzip',                            '1.1.2'
-gem 'services',                           '0.1.2'
 gem 'net-sftp',                           '2.1.2'
 
 # Frontend
@@ -38,9 +37,6 @@ gem 'sidekiq-failures',                   '0.3.0'
 gem 'sidetiq',                            '0.6.1'
 gem 'sinatra',                            '1.4.4', require: false # For Sidekiq Web
 gem 'slim',                               '2.0.2'                 # For Sidekiq Web
-
-# Profiling & performance tracking
-gem 'rack-mini-profiler',                 '0.1.31'
 
 group :test do
   gem 'rspec-rails',                      '3.0.1'
