@@ -9,7 +9,6 @@ end
 ruby '2.1.2'
 
 gem 'rails',                              '4.0.6'
-gem 'pg',                                 '0.17.0'
 gem 'haml-rails',                         '0.5.3'
 gem 'sass-rails',                         '4.0.2'
 gem 'jquery-rails',                       '3.0.4'
@@ -24,7 +23,6 @@ gem 'friendly_id',                        '5.0.2'
 gem 'squeel',                             '1.1.1'
 gem 'postgres_ext',                       '2.1.3'
 gem 'rubyzip',                            '1.1.2'
-gem 'tries',                              '0.3.2'
 gem 'services',                           '0.1.2'
 gem 'net-sftp',                           '2.1.2'
 
@@ -42,7 +40,6 @@ gem 'sinatra',                            '1.4.4', require: false # For Sidekiq 
 gem 'slim',                               '2.0.2'                 # For Sidekiq Web
 
 # Profiling & performance tracking
-gem 'newrelic_rpm',                       '3.7.1.180'
 gem 'rack-mini-profiler',                 '0.1.31'
 
 group :test do
