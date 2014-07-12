@@ -1,5 +1,0 @@
----
-:environment: production
-:concurrency: 1
-:pidfile:     ./tmp/pids/sidekiq.pid
-:logfile:     ./log/sidekiq.log
