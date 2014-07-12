@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/activerecord-hackery/squeel.git
+  revision: 1357f76597d6f97e9f0b6513343a44f27c04a1ee
+  specs:
+    squeel (1.1.1)
+      activerecord (>= 3.0)
+      activesupport (>= 3.0)
+      polyamorous (~> 0.6.0)
+
+GIT
   remote: git://github.com/krautcomputing/sdoc.git
   revision: f73c2ce5e6d7a013515fffaa094c658728a522a2
   specs:
@@ -303,10 +312,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    squeel (1.1.1)
-      activerecord (>= 3.0)
-      activesupport (>= 3.0)
-      polyamorous (~> 0.6.0)
     sshkit (1.5.1)
       colorize
       net-scp (>= 1.1.2)
@@ -384,7 +389,7 @@ DEPENDENCIES
   spring (~> 1.1)
   spring-commands-rspec (~> 1.0)
   sprinkle (= 0.7.5)
-  squeel (= 1.1.1)
+  squeel!
   tries (~> 0.3)
   uglifier (= 2.2.1)
   whenever (~> 0.9)
