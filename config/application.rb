@@ -32,6 +32,8 @@ module RubyDocs
     config.assets.precompile += %w(
       show-doc-collection.css
     )
+
+    config.secret_key_base = Settings.secret_key_base
   end
 end
 
