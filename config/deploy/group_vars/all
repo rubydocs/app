@@ -1,5 +1,5 @@
 ---
-deploy_repo:                git@code.krautcomputing.com:manuel/rubydocs.git
+deploy_repo:                git@github.com:krautcomputing/rubydocs.git
 deploy_target:              web02
 deploy_nginx_server_name:   rubydocs.org
 deploy_sidekiq:             yes
