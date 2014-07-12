@@ -9,6 +9,7 @@ end
 Sidekiq.configure_server do |config|
   config.redis         = { url: REDIS_URL, namespace: 'sidekiq' }
   config.poll_interval = 1
+  config.error_handlers << -> (exception, context) { Airbrake.notify_or_ignore(exception, parameters: context) }
 end
 
 Sidekiq.configure_client do |config|
