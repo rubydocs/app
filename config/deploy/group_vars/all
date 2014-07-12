@@ -1,6 +1,9 @@
 ---
-deploy_repo:    https://github.com/krautcomputing/rubydocs.git
-deploy_target:  web02
+deploy_repo:                git@code.krautcomputing.com:manuel/karmabox.git
+deploy_target:              web02
+deploy_nginx_server_name:   rubydocs.org
+deploy_sidekiq:             yes
+deploy_sidekiq_concurrency: 10
 deploy_copy_files:
   - config/settings.yml
   - config/newrelic.yml
