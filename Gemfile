@@ -1,14 +1,18 @@
 source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
-# Load common Gemfile
-['common-gems/Gemfile', 'common-gems/rails4/Gemfile'].each do |gemfile|
+# Load common gems
+%w(
+  common-gems/Gemfile
+  common-gems/rails4/Gemfile
+  common-gems/sidekiq/Gemfile
+).each do |gemfile|
   instance_eval(File.read(gemfile))
 end
 
 ruby '2.1.2'
 
-gem 'rails',                              '4.0.6'
+gem 'rails',                              '4.0.8'
 gem 'haml-rails',                         '0.5.3'
 gem 'sass-rails',                         '4.0.2'
 gem 'jquery-rails',                       '3.0.4'
@@ -30,13 +34,6 @@ gem 'bootstrap-sass',                     '3.0.2.1'
 gem 'rails_bootstrap_navbar',             '2.0.1'
 gem 'font-awesome-rails',                 '4.0.3.0'
 gem 'rails-assets-jquery.smooth-scroll',  '1.4.13'
-
-# Background jobs
-gem 'sidekiq',                            '2.17.1' # Should be loaded after Airbrake
-gem 'sidekiq-failures',                   '0.3.0'
-gem 'sidetiq',                            '0.6.1'
-gem 'sinatra',                            '1.4.4', require: false # For Sidekiq Web
-gem 'slim',                               '2.0.2'                 # For Sidekiq Web
 
 group :test do
   gem 'rspec-rails',                      '3.0.1'
