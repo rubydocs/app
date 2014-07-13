@@ -1,18 +1,19 @@
 source 'https://rubygems.org'
 source 'https://rails-assets.org'
 
+ruby '2.1.2'
+
+gem 'rails', '4.0.8'
+
 # Load common gems
 %w(
   common-gems/Gemfile
-  common-gems/rails4/Gemfile
+  common-gems/redis/Gemfile
   common-gems/sidekiq/Gemfile
 ).each do |gemfile|
   instance_eval(File.read(gemfile))
 end
 
-ruby '2.1.2'
-
-gem 'rails',                              '4.0.8'
 gem 'haml-rails',                         '0.5.3'
 gem 'sass-rails',                         '4.0.2'
 gem 'jquery-rails',                       '3.0.4'
