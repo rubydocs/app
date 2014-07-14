@@ -14,12 +14,6 @@ gem 'rails', '4.0.8'
   instance_eval(File.read(gemfile))
 end
 
-gem 'haml-rails',                         '0.5.3'
-gem 'sass-rails',                         '4.0.2'
-gem 'jquery-rails',                       '3.0.4'
-gem 'compass-rails',                      '1.1.2'
-gem 'uglifier',                           '2.2.1'
-gem 'coffee-rails',                       '4.0.0'
 gem 'sdoc',                               github: 'krautcomputing/sdoc'
 gem 'git',                                '1.2.7'
 gem 'high_voltage',                       '2.0.0'
@@ -41,9 +35,4 @@ group :test do
   gem 'guard-rspec',                      '4.2.9'
   gem 'factory_girl_rails',               '4.4.1'
   gem 'database_rewinder',                '0.2.0'
-end
-
-group :development do
-  gem 'letter_opener',                    '1.2.0'
-  gem 'sprinkle',                         '0.7.5', require: false
 end
