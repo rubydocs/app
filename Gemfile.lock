@@ -1,11 +1,11 @@
 GIT
   remote: git://github.com/activerecord-hackery/squeel.git
-  revision: 42dceca7c9708b10f01349be2eb60357fe3c1c3f
+  revision: 1357f76597d6f97e9f0b6513343a44f27c04a1ee
   specs:
     squeel (1.1.1)
       activerecord (>= 3.0)
       activesupport (>= 3.0)
-      polyamorous (~> 1.0.0)
+      polyamorous (~> 0.6.0)
 
 GIT
   remote: git://github.com/krautcomputing/sdoc.git
@@ -175,7 +175,7 @@ GEM
     oj (2.9.9)
     pg (0.17.1)
     pg_array_parser (0.0.9)
-    polyamorous (1.0.0)
+    polyamorous (0.6.4)
       activerecord (>= 3.0)
     polyglot (0.3.5)
     postgres_ext (2.1.3)
