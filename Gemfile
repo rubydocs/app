@@ -7,7 +7,7 @@ gem 'rails', '4.0.8'
 
 # Load common gems
 %w(
-  common-gems/Gemfile
+  common-gems/rails/Gemfile
   common-gems/redis/Gemfile
   common-gems/sidekiq/Gemfile
 ).each do |gemfile|
@@ -19,8 +19,6 @@ gem 'git',                                '1.2.7'
 gem 'high_voltage',                       '2.0.0'
 gem 'aws-sdk',                            '1.42.0'
 gem 'friendly_id',                        '5.0.2'
-gem 'squeel',                             github: 'activerecord-hackery/squeel' # TODO: Use > 1.1.1 when released
-gem 'postgres_ext',                       '2.1.3'
 gem 'rubyzip',                            '1.1.2'
 gem 'net-sftp',                           '2.1.2'
 
