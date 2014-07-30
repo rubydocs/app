@@ -62,7 +62,7 @@ module Services
       def lock_key
         [
           'doc_creating_lock',
-          @doc.id
+          @doc.project.id
         ].join(':')
       end
     end
