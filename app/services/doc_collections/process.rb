@@ -1,10 +1,9 @@
 module Services
   module DocCollections
     class Process < Services::Base
-      check_uniqueness!
-
       def call(id_or_object)
         doc_collection = find_object(id_or_object)
+        check_uniqueness! doc_collection.id
         raise Error, "Doc collection #{doc_collection.name} is already generated." unless doc_collection.generating?
 
         # Create files for docs
@@ -12,8 +11,8 @@ module Services
           log "Creating files for doc #{doc.name}."
           begin
             Services::Docs::CreateFiles.call doc
-          rescue Services::Docs::CreateFiles::CreatingInProgressError
-            log "Doc files for #{doc.name} are already being created, trying again in one minute."
+          rescue Services::Docs::CreateFiles::NotUniqueError
+            log "Doc files for another set of #{doc.project.name} docs are already being created, trying again in one minute."
             self.class.perform_in 1.minute, doc_collection.id
             return
           rescue Services::Docs::CreateFiles::FilesExistsError

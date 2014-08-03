@@ -6,10 +6,9 @@ module Services
     class UploadFiles < Services::Base
       SyncError = Class.new(Error)
 
-      check_uniqueness!
-
       def call(id_or_object)
         doc_collection = find_object(id_or_object)
+        check_uniqueness! doc_collection.id
         raise Error, "Doc collection #{doc_collection.name} is not generated yet." if doc_collection.generating?
         raise Error, "Doc collection #{doc_collection.name} local path doesn't exist or is empty." unless File.exist?(doc_collection.local_path) && Dir[File.join(doc_collection.local_path, '*')].present?
 
