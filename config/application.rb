@@ -13,17 +13,22 @@ Bundler.require(:default, Rails.env)
 
 module RubyDocs
   class Application < Rails::Application
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
+    ::REDIS_CONFIG = if Settings.redis?
+      Settings.redis.to_hash
+    else
+      # Try to read from config/redis.yml
+      YAML.load_file(Rails.root.join('config', 'redis.yml')).with_indifferent_access rescue nil
+    end
 
-    # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
-    # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
-    # config.time_zone = 'Central Time (US & Canada)'
+    raise 'Redis config not found.' if REDIS_CONFIG.blank?
 
-    # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
+    ::REDIS_URL = "redis://#{REDIS_CONFIG[:host]}:#{REDIS_CONFIG[:port]}/#{REDIS_CONFIG[:db]}"
+
+    config.cache_store = :redis_store, REDIS_CONFIG.merge(namespace: 'cache', expires_in: 1.year)
+
+    config.action_dispatch.rack_cache = %i(metastore entitystore).each_with_object({}) do |store, hash|
+      hash[store] = "#{REDIS_URL}/rack_cache/#{store}"
+    end
 
     config.autoload_paths += [
       config.root.join('app')
