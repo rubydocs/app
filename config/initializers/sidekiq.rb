@@ -6,14 +6,19 @@ if Settings.sidekiq?
   end
 end
 
+redis_options = { url: REDIS_URL, namespace: 'sidekiq' }
+
+# Set Redis driver explicitly if FakeRedis is used
+redis_options.merge!(driver: Redis::Connection::Memory) if defined?(Redis::Connection::Memory)
+
 Sidekiq.configure_server do |config|
-  config.redis         = { url: REDIS_URL, namespace: 'sidekiq' }
+  config.redis         = redis_options
   config.poll_interval = 1
-  config.error_handlers << -> (exception, context) { Airbrake.notify_or_ignore(exception, parameters: context) }
+  config.error_handlers << ->(exception, context) { Airbrake.notify_or_ignore(exception, parameters: context) }
 end
 
 Sidekiq.configure_client do |config|
-  config.redis = { url: REDIS_URL, namespace: 'sidekiq', size: 1 }
+  config.redis = redis_options.merge(size: 1)
 end
 
 Sidekiq.default_worker_options = {
