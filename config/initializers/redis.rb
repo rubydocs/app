@@ -1,5 +1,3 @@
-require 'fakeredis' if %w(development test).include?(Rails.env)
-
 REDIS_CONNECTION_POOL = ConnectionPool.new(size: 10, timeout: 1) do
   Redis.new REDIS_CONFIG
 end
