@@ -13,7 +13,6 @@ redis_options.merge!(driver: Redis::Connection::Memory) if defined?(Redis::Conne
 
 Sidekiq.configure_server do |config|
   config.redis         = redis_options
-  config.poll_interval = 1
   config.error_handlers << ->(exception, context) { Airbrake.notify_or_ignore(exception, parameters: context) }
 end
 
