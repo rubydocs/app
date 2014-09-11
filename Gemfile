@@ -21,8 +21,6 @@ gem 'aws-sdk',                            '~> 1.42'
 gem 'friendly_id',                        '~> 5.0'
 gem 'rubyzip',                            '~> 1.1'
 gem 'net-sftp',                           '~> 2.1'
-gem 'celluloid',                          '0.15.2' # TODO: Remove this when issue with Sidekiq / Celluloid is fixed
-                                                   # https://github.com/mperham/sidekiq/issues/1929
 
 # Frontend
 gem 'bootstrap-sass',                     '~> 3.0.2'
