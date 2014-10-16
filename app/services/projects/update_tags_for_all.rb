@@ -1,7 +1,7 @@
 module Services
   module Projects
     class UpdateTagsForAll < Services::Base
-      recurrence { hourly }
+      recurrence { daily.hour_of_day(*(0..23).to_a) }
 
       def call
         check_uniqueness!
