@@ -5,6 +5,8 @@ require 'action_controller/railtie'
 require 'action_mailer/railtie'
 require 'sprockets/railtie'
 
+I18n.config.enforce_available_locales = false
+
 Bundler.require(:default, Rails.env)
 
 module RubyDocs
