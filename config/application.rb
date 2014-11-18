@@ -39,6 +39,8 @@ module RubyDocs
     )
 
     config.secret_key_base = Settings.secret_key_base
+
+    config.i18n.enforce_available_locales = false
   end
 end
 
