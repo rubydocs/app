@@ -3,7 +3,7 @@ module Services
     class Process < Services::Base
       def call(id_or_object)
         doc_collection = find_object(id_or_object)
-        check_uniqueness! doc_collection.id
+        check_uniqueness doc_collection.id
         raise Error, "Doc collection #{doc_collection.name} is already generated." unless doc_collection.generating?
 
         # Create files for docs

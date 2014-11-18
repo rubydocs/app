@@ -5,7 +5,7 @@ module Services
     class UpdateTags < Services::Base
       def call(id_or_object)
         project = find_object(id_or_object)
-        check_uniqueness! project.id
+        check_uniqueness project.id
         git = Git.open(project.local_path)
         tags = 10.tries on: [Git::GitExecuteError, Git::GitTagNameDoesNotExist], delay: 1 do
           git.fetch 'origin', tags: true

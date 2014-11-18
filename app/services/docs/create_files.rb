@@ -8,7 +8,7 @@ module Services
 
       def call(id_or_object)
         doc = find_object(id_or_object)
-        check_uniqueness! doc.project.id
+        check_uniqueness doc.project.id
         raise FilesExistsError, "Files for doc #{doc.name} already exist." if File.exist?(doc.local_path) && Dir[File.join(doc.local_path, '*')].present?
 
         git = Git.open(doc.project.local_path)
