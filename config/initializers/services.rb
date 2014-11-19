@@ -1,4 +1,5 @@
 Services.configure do |config|
-  config.redis = R
-  config.host  = Settings.host
+  config.logger = Services::Logger::File.new(Rails.root.join('log'))
+  config.redis  = R
+  config.host   = Settings.host
 end
