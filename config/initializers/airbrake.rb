@@ -3,7 +3,9 @@ Airbrake.configure do |config|
   config.host    = 'err.krautcomputing.com'
   config.port    = 80
   config.secure  = config.port == 443
-  config.async do |notice|
-    AirbrakeDeliveryWorker.perform_async notice.to_xml
-  end
+  # TODO: Reenable this when bug is fixed:
+  # https://github.com/mperham/sidekiq/issues/1039
+  # config.async do |notice|
+  #   AirbrakeDeliveryWorker.perform_async notice.to_xml
+  # end
 end
