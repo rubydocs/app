@@ -6,6 +6,9 @@ default:
     secret: bar
     region: us-east-1
 
+  rollbar:
+    access_token: 123
+
   redis:
     host: localhost
     port: 6379
