@@ -12,8 +12,8 @@ redis_options = { url: REDIS_URL, namespace: 'sidekiq' }
 redis_options.merge!(driver: Redis::Connection::Memory) if defined?(Redis::Connection::Memory)
 
 Sidekiq.configure_server do |config|
-  config.redis         = redis_options
-  config.error_handlers << ->(exception, context) { Airbrake.notify_or_ignore(exception, parameters: context) }
+  config.redis = redis_options
+  config.error_handlers << ->(exception, context) { Rollbar.error(exception, context) }
 end
 
 Sidekiq.configure_client do |config|
