@@ -1,9 +1,10 @@
+$navbar-height:                 80px;
+$navbar-default-link-active-bg: transparent;
+
 @import "bootstrap/variables";
 
 $container-lg:                  $container-sm;
 $container-md:                  $container-sm;
-$navbar-height:                 80px;
-$navbar-default-link-active-bg: transparent;
 
 @import "bootstrap-custom";
 
@@ -13,7 +14,11 @@ $navbar-default-link-active-bg: transparent;
   text-align: center;
 }
 
+$brand-padding-vertical: ($navbar-height - 49px) / 2;
+
 .navbar-brand {
+  padding-top: $brand-padding-vertical;
+  padding-bottom: $brand-padding-vertical;
 
   img {
     width: 230px;
