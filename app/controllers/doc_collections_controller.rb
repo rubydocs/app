@@ -47,7 +47,7 @@ class DocCollectionsController < ApplicationController
           [File.basename(@doc_collection.local_path), params[:path]].join
         ]
       end
-      redirect_to "http://#{subdomain}.#{Settings.host}/#{path}"
+      redirect_to "//#{subdomain}.#{Settings.host}/#{path}"
     end
   end
 
