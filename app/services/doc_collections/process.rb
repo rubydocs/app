@@ -9,12 +9,17 @@ module Services
         # Create files for docs
         doc_collection.docs.each do |doc|
           log "Creating files for doc #{doc.name}."
+
           begin
-            Services::Docs::CreateFiles.call doc
-          rescue Services::Docs::CreateFiles::NotUniqueError
+            Services::Docs::CreateGitFiles.call doc
+          rescue Services::Docs::CreateGitFiles::NotUniqueError
             log "Doc files for another set of #{doc.project.name} docs are already being created, trying again in one minute."
             self.class.perform_in 1.minute, doc_collection.id
             return
+          end
+
+          begin
+            Services::Docs::CreateFiles.call doc
           rescue Services::Docs::CreateFiles::FilesExistsError
             log "Doc files for #{doc.name} already exist."
             next

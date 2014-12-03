@@ -5,20 +5,19 @@ module Services
   module Docs
     class CreateFiles < Services::Base
       FilesExistsError = Class.new(Error)
+      GitFilesDontExistError = Class.new(Error)
 
       def call(id_or_object)
         doc = find_object(id_or_object)
-        check_uniqueness doc.project.id
+        check_uniqueness
         raise FilesExistsError, "Files for doc #{doc.name} already exist." if File.exist?(doc.local_path) && Dir[File.join(doc.local_path, '*')].present?
+        raise GitFilesDontExistError, "Git files for doc #{doc.name} don't exist." unless File.exist?(doc.local_git_path) && Dir[File.join(doc.local_git_path, '*')].present?
 
-        git = Git.open(doc.project.local_path)
-        git.checkout doc.tag
-
-        git.chdir do
+        FileUtils.cd doc.local_git_path do
           # Create main file
           main_file = 'RUBYDOCS.rdoc'
           main_file_content = controller.render_to_string('docs/main', formats: :rdoc, locals: { doc: doc })
-          File.write(main_file, main_file_content)
+          File.write main_file, main_file_content
 
           # Set up options
           options = RDoc::Options.new

@@ -22,6 +22,10 @@ class Doc < ActiveRecord::Base
   validates :tag, presence: true, uniqueness: { scope: :project_id }, inclusion: { in: ->(doc) { doc.project.tags }, if: -> { self.project.present? } }
   validates :project, presence: true
 
+  def local_git_path
+    Rails.root.join('files', 'doc_gits', self.slug)
+  end
+
   def name
     raise 'Cannot determine doc name without a tag.' if self.tag.blank?
     raise 'Cannot determine doc name without a project.' if self.project.nil?
