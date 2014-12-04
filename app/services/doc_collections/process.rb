@@ -13,7 +13,7 @@ module Services
           begin
             Services::Docs::CreateGitFiles.call doc
           rescue Services::Docs::CreateGitFiles::NotUniqueError
-            log "Doc files for another set of #{doc.project.name} docs are already being created, trying again in one minute."
+            log "Doc git files for another set of #{doc.project.name} docs are already being created, trying again in one minute."
             self.class.perform_in 1.minute, doc_collection.id
             return
           end
