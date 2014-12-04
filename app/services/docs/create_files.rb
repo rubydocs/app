@@ -4,8 +4,15 @@ require 'sdoc'
 module Services
   module Docs
     class CreateFiles < Services::Base
-      FilesExistsError = Class.new(Error)
+      IncompleteError        = Class.new(Error)
+      FilesExistsError       = Class.new(Error)
       GitFilesDontExistError = Class.new(Error)
+
+      FILES_TO_CHECK = [
+        SDoc::Merge::FLAG_FILE,
+        RDoc::Generator::SDoc::TREE_FILE,
+        RDoc::Generator::SDoc::SEARCH_INDEX_FILE
+      ]
 
       def call(id_or_object)
         doc = find_object(id_or_object)
@@ -35,8 +42,14 @@ module Services
           end
           options.files = Dir['**/*.{c,rb,rdoc}']
 
-          # Generate
-          RDoc::RDoc.new.document options
+          5.tries on: [Errno::EPIPE, IncompleteError] do
+            RDoc::RDoc.new.document options
+
+            unless FILES_TO_CHECK.each { |file| File.exists?(file) }
+              FileUtils.rm_rf doc.local_path
+              raise IncompleteError
+            end
+          end
         end
         doc
       end
