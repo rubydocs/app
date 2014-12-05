@@ -9,7 +9,7 @@ module Services
           Services::DocCollections::Generate.call doc_collections_to_generate.first
         end
 
-        doc_collections_to_upload = Services::DocCollections::Find.call([], uploaded_at: nil)
+        doc_collections_to_upload = Services::DocCollections::Find.call([], generated_at: true, uploaded_at: nil)
         if doc_collections_to_upload.any?
           Services::DocCollections::Upload.call doc_collections_to_upload.first
         end

@@ -4,8 +4,14 @@ module Services
       private def process(scope, conditions)
         conditions.each do |k, v|
           case k
-          when :slug, :generated_at, :uploaded_at
+          when :slug
             scope = scope.where(k => v)
+          when :generated_at, :uploaded_at
+            scope = if v == true
+              scope.where("#{k} IS NOT NULL")
+            else
+              scope.where(k => v)
+            end
           when :docs
             scope = scope
               .joins(:doc_collection_memberships)
