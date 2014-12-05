@@ -43,5 +43,3 @@ module RubyDocs
     config.i18n.enforce_available_locales = false
   end
 end
-
-$DEBUG_RDOC = true
