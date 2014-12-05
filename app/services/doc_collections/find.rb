@@ -1,14 +1,10 @@
 module Services
   module DocCollections
-    class Find < Services::Base
-      def call(ids, conditions = {})
-        ids = Array(ids)
-        scope = DocCollection.all
-        scope = scope.where(id: ids) unless ids.empty?
-        scope = scope.order("#{DocCollection.table_name}.id") unless conditions.key?(:order)
+    class Find < Services::BaseFinder
+      private def process(scope, conditions)
         conditions.each do |k, v|
-          case k.to_sym
-          when :slug
+          case k
+          when :slug, :generated_at, :uploaded_at
             scope = scope.where(k => v)
           when :docs
             scope = scope

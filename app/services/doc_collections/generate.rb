@@ -1,6 +1,6 @@
 module Services
   module DocCollections
-    class Process < Services::Base
+    class Generate < Services::Base
       def call(id_or_object)
         doc_collection = find_object(id_or_object)
         check_uniqueness doc_collection.id
@@ -43,8 +43,6 @@ module Services
             log "Email notification sent to #{emails.count} recipients: #{emails.join(', ')}"
             EmailNotification.delete(doc_collection)
           end
-
-          Services::DocCollections::UploadFiles.perform_async doc_collection.id
         end
 
         doc_collection

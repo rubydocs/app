@@ -13,10 +13,7 @@ class DocCollectionsController < ApplicationController
 
     # Find or create doc collection
     doc_collection = Services::DocCollections::Find.call([], docs: docs).first
-    if doc_collection.nil?
-      doc_collection = Services::DocCollections::Create.call(docs)
-      Services::DocCollections::Process.perform_async doc_collection.id unless Rails.env.development?
-    end
+    doc_collection = Services::DocCollections::Create.call(docs) if doc_collection.nil?
 
     if params[:download_zip]
       redirect_to doc_collection_path(File.basename(doc_collection.zipfile))

@@ -3,7 +3,7 @@ require 'net/sftp'
 
 module Services
   module DocCollections
-    class UploadFiles < Services::Base
+    class Upload < Services::Base
       SyncError = Class.new(Error)
 
       def call(id_or_object)

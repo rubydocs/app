@@ -2,12 +2,8 @@
 deploy_repo:                              git@github.com:krautcomputing/rubydocs.git
 deploy_target:                            web02
 deploy_nginx_server_name:                 rubydocs.org
-deploy_sidekiq:                           yes
-deploy_sidekiq_concurrency:               10
 deploy_monit_puma_max_memory_alert:       500  # MB
 deploy_monit_puma_max_memory_restart:     700  # MB
-deploy_monit_sidekiq_max_memory_alert:    2000 # MB
-deploy_monit_sidekiq_max_memory_restart:  2000 # MB
 deploy_copy_files:
   - config/settings.yml
   - config/newrelic.yml

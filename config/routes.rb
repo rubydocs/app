@@ -1,8 +1,4 @@
-require 'sidekiq/web'
-
 RubyDocs::Application.routes.draw do
-  mount Sidekiq::Web => 'sidekiq'
-
   get 'favicon.ico' => redirect(ActionController::Base.helpers.image_path('favicon.ico'))
 
   resources :email_notifications, only: :create

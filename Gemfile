@@ -9,7 +9,6 @@ gem 'rails', '~> 4.0.8'
 %w(
   common-gems/rails/Gemfile
   common-gems/redis/Gemfile
-  common-gems/sidekiq/Gemfile
 ).each do |gemfile|
   instance_eval(File.read(gemfile))
 end
