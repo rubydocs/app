@@ -14,21 +14,17 @@ module Services
         raise Error, "Doc collection #{doc_collection.name} has no docs." if docs.empty?
         raise FolderExistsError, "Folder for doc collection #{doc_collection.name} already exist." if File.exist?(doc_collection.local_path)
 
-        # Merge or symlink docs
-        if docs.size > 1
-          sdoc_merge = SDoc::Merge.new
-          sdoc_options = {
-            title: doc_collection.name,
-            op:    doc_collection.local_path,
-            names: docs.map(&:name).join(',')
-          }
-          sdoc_args = sdoc_options.map do |k, v|
-            "--#{k}=#{v}"
-          end
-          sdoc_merge.merge sdoc_args.concat(docs.map(&:local_path))
-        else
-          FileUtils.ln_s docs.first.local_path, doc_collection.local_path
+        # Merge docs
+        sdoc_merge = SDoc::Merge.new
+        sdoc_options = {
+          title: doc_collection.name,
+          op:    doc_collection.local_path,
+          names: docs.map(&:name).join(',')
+        }
+        sdoc_args = sdoc_options.map do |k, v|
+          "--#{k}=#{v}"
         end
+        sdoc_merge.merge sdoc_args.concat(docs.map(&:local_path))
 
         # Create zip
         Dir.chdir doc_collection.local_path do
