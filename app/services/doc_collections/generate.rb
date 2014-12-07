@@ -17,6 +17,10 @@ module Services
 
         Services::DocCollections::CreateFiles.call doc_collection
 
+        doc_collection.docs.each do |doc|
+          Services::Docs::DeleteFiles.call doc
+        end
+
         doc_collection.generated_at = Time.now
         doc_collection.save!
 
