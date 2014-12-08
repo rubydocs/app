@@ -273,7 +273,7 @@ GEM
     schema_plus (1.7.0)
       activerecord (>= 3.2)
       valuable
-    services (2.2.3)
+    services (2.2.4)
       gem_config (~> 0.3)
       rails (>= 3.2.0)
     slop (3.6.0)
