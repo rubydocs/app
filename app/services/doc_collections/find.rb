@@ -8,7 +8,7 @@ module Services
             scope = scope.where(k => v)
           when :generated_at, :uploaded_at
             scope = if v == true
-              scope.where("#{k} IS NOT NULL")
+              scope.where("doc_collections.#{k} IS NOT NULL")
             else
               scope.where(k => v)
             end
