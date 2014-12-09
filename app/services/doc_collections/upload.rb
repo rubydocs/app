@@ -20,7 +20,7 @@ module Services
         s3cmd_options = {
           access_key:              Settings.aws.key,
           secret_key:              Settings.aws.secret,
-          verbose:                 true,
+          quiet:                   true,
           :'delete-removed'     => true,
           :'no-preserve'        => true,
           :'reduced-redundancy' => true
