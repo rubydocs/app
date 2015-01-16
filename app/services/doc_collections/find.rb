@@ -1,6 +1,6 @@
 module Services
   module DocCollections
-    class Find < Services::BaseFinder
+    class Find < Services::Query
       private def process(scope, conditions)
         conditions.each do |k, v|
           case k
