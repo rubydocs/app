@@ -3,7 +3,7 @@
 	url = https://github.com/s3tools/s3cmd.git
 [submodule "config/deploy/infrastructure"]
 	path = config/deploy/infrastructure
-	url = git@code.krautcomputing.com:manuel/infrastructure.git
+	url = git@bitbucket.org:krautcomputing/infrastructure.git
 [submodule "common-gems"]
 	path = common-gems
 	url = https://github.com/krautcomputing/common-gems.git
