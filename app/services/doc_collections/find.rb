@@ -12,6 +12,8 @@ module Services
             else
               scope.where(k => v)
             end
+          when :generated_before
+            scope = scope.where('doc_collections.generated_at < ?', v)
           when :docs
             scope = scope
               .joins(:doc_collection_memberships)
