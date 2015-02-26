@@ -28,7 +28,7 @@ module Services
         end
 
         if messages.any?
-          MaintenanceMailer.data_integrity_report(messages).deliver
+          Mailer.doc_collection_checks(messages).deliver
         end
       end
     end
