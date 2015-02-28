@@ -5,6 +5,8 @@ require 'render_anywhere'
 module Services
   module Docs
     class CreateFiles < Services::Base
+      include RenderAnywhere
+
       IncompleteError        = Class.new(Error)
       FilesExistsError       = Class.new(Error)
       GitFilesDontExistError = Class.new(Error)
