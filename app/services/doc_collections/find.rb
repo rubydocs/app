@@ -1,6 +1,9 @@
 module Services
   module DocCollections
     class Find < Services::Query
+      TIMESTAMP_CONDITIONS = %i(created updated generated uploaded).product(%i(before after)).map do |timestamp, modifier|
+        [timestamp, modifier].join('_').to_sym
+      end
       private def process(scope, conditions)
         conditions.each do |k, v|
           case k
@@ -12,8 +15,9 @@ module Services
             else
               scope.where(k => v)
             end
-          when :generated_before
-            scope = scope.where('doc_collections.generated_at < ?', v)
+          when *TIMESTAMP_CONDITIONS
+            timestamp, modifier = k.to_s.split('_')
+            scope = scope.where("doc_collections.#{timestamp}_at #{modifier == 'before' ? '<' : '>'} ?", v)
           when :docs
             scope = scope
               .joins(:doc_collection_memberships)

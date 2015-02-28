@@ -22,7 +22,12 @@ module Services
           messages << "Couldn't find #{not_found_uploaded_doc_collections.size} doc collections that should have been uploaded: #{not_found_uploaded_doc_collections.map(&:slug).join(', ')}"
         end
 
-        doc_collections_late_for_upload = Services::DocCollections::Find.call([], generated_before: 3.hours.ago, uploaded_at: nil)
+        doc_collections_late_for_generation = Services::DocCollections::Find.call([], created_before: 1.day.ago, generated_at: nil)
+        if doc_collections_late_for_generation.any?
+          messages << "#{doc_collections_late_for_generation.size} doc collections are late for generation: #{doc_collections_late_for_generation.map(&:slug).join(', ')}"
+        end
+
+        doc_collections_late_for_upload = Services::DocCollections::Find.call([], generated_before: 1.day.ago, uploaded_at: nil)
         if doc_collections_late_for_upload.any?
           messages << "#{doc_collections_late_for_upload.size} doc collections are late for upload: #{doc_collections_late_for_upload.map(&:slug).join(', ')}"
         end
