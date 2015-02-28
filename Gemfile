@@ -20,6 +20,7 @@ gem 'aws-sdk',                            '~> 1.42'
 gem 'friendly_id',                        '~> 5.0'
 gem 'rubyzip',                            '~> 1.1'
 gem 'net-sftp',                           '~> 2.1'
+gem 'render_anywhere',                    github: 'krautcomputing/render_anywhere', branch: 'require_application_helper_only_if_present', require: false
 
 # Frontend
 gem 'bootstrap-sass',                     '~> 3.0.2'

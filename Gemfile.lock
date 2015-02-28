@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/krautcomputing/render_anywhere.git
+  revision: d631c3a9cc8cd0083c07f1ba4fad89fa26ad8207
+  branch: require_application_helper_only_if_present
+  specs:
+    render_anywhere (0.0.10)
+      rails (>= 3.0.7)
+
+GIT
   remote: git://github.com/voloko/sdoc.git
   revision: 087940a7220b523a3a3758479552fcf81329b320
   specs:
@@ -392,6 +400,7 @@ DEPENDENCIES
   redis-rack-cache (~> 1.2)
   redis-rails (~> 4.0)
   redis_hash_store (~> 0.0)
+  render_anywhere!
   rollbar (~> 1.2)
   rspec-rails (~> 3.0)
   rubyzip (~> 1.1)

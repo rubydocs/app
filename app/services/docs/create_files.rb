@@ -1,5 +1,6 @@
 require 'rdoc'
 require 'sdoc'
+require 'render_anywhere'
 
 module Services
   module Docs
@@ -23,7 +24,7 @@ module Services
         FileUtils.cd doc.local_git_path do
           # Create main file
           main_file = 'RUBYDOCS.rdoc'
-          main_file_content = controller.render_to_string('docs/main', formats: :rdoc, locals: { doc: doc })
+          main_file_content = render('docs/main', formats: :rdoc, locals: { doc: doc }, layout: false)
           File.write main_file, main_file_content
 
           # Set up options
