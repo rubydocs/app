@@ -4,6 +4,7 @@ module Services
       TIMESTAMP_CONDITIONS = %i(created updated generated uploaded).product(%i(before after)).map do |timestamp, modifier|
         [timestamp, modifier].join('_').to_sym
       end
+
       private def process(scope, conditions)
         conditions.each do |k, v|
           case k
