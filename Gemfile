@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-source 'https://rails-assets.org'
 
 ruby '2.2.1'
 
@@ -26,7 +25,10 @@ gem 'render_anywhere',                    '~> 0.0', require: false
 gem 'bootstrap-sass',                     '~> 3.0.2'
 gem 'rails_bootstrap_navbar',             '~> 2.0'
 gem 'font-awesome-rails',                 '~> 4.0'
-gem 'rails-assets-jquery.smooth-scroll',  '~> 1.4'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-jquery.smooth-scroll',  '~> 1.4'
+end
 
 group :test do
   gem 'rspec-rails',                      '~> 3.0'

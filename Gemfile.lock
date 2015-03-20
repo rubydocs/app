@@ -387,7 +387,7 @@ DEPENDENCIES
   quiet_assets (~> 1.0)
   rack-mini-profiler (~> 0.9)
   rails (~> 4.0.8)
-  rails-assets-jquery.smooth-scroll (~> 1.4)
+  rails-assets-jquery.smooth-scroll (~> 1.4)!
   rails_bootstrap_navbar (~> 2.0)
   redis (~> 3.1)
   redis-namespace (~> 1.5)
