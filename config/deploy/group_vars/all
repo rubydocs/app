@@ -1,16 +1,16 @@
 ---
 deploy_hosts:
-  - web02
+  - web01
   - worker01
-deploy_repo:                                git@github.com:krautcomputing/rubydocs.git
+deploy_repo:                                https://github.com/krautcomputing/rubydocs.git
 deploy_whenever_hosts:
   - worker01
 deploy_setup_puma_hosts:
-  - web02
+  - web01
 deploy_setup_sidekiq_hosts:
-  - web02
+  - web01
 deploy_setup_nginx_hosts:
-  - web02
+  - web01
 deploy_setup_nginx_server_name:             rubydocs.org
 deploy_setup_forward_www:                   yes
 deploy_setup_monit_puma_max_memory_alert:   500 # MB
@@ -18,3 +18,13 @@ deploy_setup_monit_puma_max_memory_restart: 700 # MB
 deploy_copy_files:
   - config/settings.yml
   - config/newrelic.yml
+deploy_setup_folders:
+  - files/doc_collections
+  - files/doc_gits
+  - files/docs
+  - files/projects
+deploy_setup_projects:
+  - name: ruby
+    repo: https://github.com/ruby/ruby.git
+  - name: rails
+    repo: https://github.com/rails/rails.git
