@@ -12,13 +12,13 @@
         owner: "{{ provision_user }}"
         state: directory
       with_items: deploy_setup_folders
-      when: inventory_hostname in deploy_hosts
+      when: inventory_hostname == "worker01"
 
     - name: check out projects
       sudo: yes
       git:
         repo: "{{ item.repo }}"
-        dest: "{{ deploy_setup_dir }}/projects/{{ item.name }}"
+        dest: "{{ deploy_setup_dir }}/files/projects/{{ item.name }}"
         update: no
       with_items: deploy_setup_projects
-      when: inventory_hostname in deploy_hosts
+      when: inventory_hostname == "worker01"
