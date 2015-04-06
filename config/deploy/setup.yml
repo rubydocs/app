@@ -1,6 +1,7 @@
 ---
 - hosts: all
   gather_facts: no
+  remote_user: "{{ provision_user }}"
   roles:
     - deploy_setup
   tasks:
@@ -16,6 +17,7 @@
 
     - name: check out projects
       sudo: yes
+      sudo_user: "{{ provision_user }}"
       git:
         repo: "{{ item.repo }}"
         dest: "{{ deploy_setup_dir }}/files/projects/{{ item.name }}"
