@@ -1,10 +1,25 @@
 #= require bootstrap/collapse
 #= require jquery.smooth-scroll
+#= require jquery-cookie
 #= require jquery_ujs
 
 $ ->
   $('.navbar a[href*="#"]').smoothScroll()
+  showCookieBar()
   enableSorting()
+
+showCookieBar = ->
+  unless $.cookie('cookie-consent')?
+    cookieBar = $('#cookie-bar')
+    cookieBar
+      .slideDown()
+      .find('a')
+      .click (e) ->
+        e.preventDefault()
+        $.cookie 'cookie-consent', 'true',
+          expires: 365
+          path:    '/'
+        cookieBar.slideUp()
 
 compareSortEls = (el1, el2, sort, sortDirection) ->
   [sort1, sort2] = [$(el1).data(sort), $(el2).data(sort)]

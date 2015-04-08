@@ -27,7 +27,8 @@ gem 'rails_bootstrap_navbar',             '~> 2.0'
 gem 'font-awesome-rails',                 '~> 4.0'
 
 source 'https://rails-assets.org' do
-  gem 'rails-assets-jquery.smooth-scroll',  '~> 1.4'
+  gem 'rails-assets-jquery.smooth-scroll', '~> 1.4'
+  gem 'rails-assets-jquery-cookie',        '~> 1.4'
 end
 
 group :test do
