@@ -1,4 +1,3 @@
----
 deploy_repo: https://github.com/krautcomputing/rubydocs.git
 deploy_hosts:
   - web01
