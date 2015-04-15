@@ -7,5 +7,5 @@ every :hour, at: '00:15' do
 end
 
 every 5.minutes do
-  runner 'Services::DocCollections::ProcessSome.call', output: nil
+  runner 'Services::DocCollections::ProcessSome.call', output: { standard: nil }
 end
