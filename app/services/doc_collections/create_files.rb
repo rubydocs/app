@@ -36,11 +36,6 @@ module Services
           FileUtils.chmod 0644, doc_collection.zipfile
         end
 
-        # Symlink docs and zip to public folder
-        [doc_collection.local_path, doc_collection.zipfile].each do |path|
-          FileUtils.ln_s path, Rails.root.join('public', File.basename(path))
-        end
-
         doc_collection
       end
     end

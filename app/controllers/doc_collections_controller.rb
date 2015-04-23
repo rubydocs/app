@@ -26,9 +26,7 @@ class DocCollectionsController < ApplicationController
     @doc_collection = Services::DocCollections::Find.call([], slug: params[:slug]).first!
 
     case
-    when @doc_collection.uploading?
-      raise "Doc collection #{@doc_collection.name} is generated, it shouldn't be possible to get here."
-    when @doc_collection.generating?
+    when @doc_collection.uploading? || @doc_collection.generating?
       @email_notification = EmailNotification.new(doc_collection_id: @doc_collection.id)
       render formats: :html
       # redirect_to url_for(params.merge(trailing_slash: true)) unless request.format.zip? || request.fullpath =~ %r(/\z)

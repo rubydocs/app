@@ -24,15 +24,6 @@ module Services
         doc_collection.generated_at = Time.now
         doc_collection.save!
 
-        # Send notifications
-        unless Rails.env.development?
-          emails = EmailNotification.by_doc_collection(doc_collection).map(&:email)
-          if emails.present?
-            Mailer.doc_collection_generated(doc_collection, emails).deliver!
-            EmailNotification.delete(doc_collection)
-          end
-        end
-
         doc_collection
       end
     end
