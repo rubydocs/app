@@ -8,7 +8,7 @@ module Services
 
         messages = []
 
-        uploaded_doc_collections = Services::DocCollections::Find.call([], uploaded_at: true)
+        uploaded_doc_collections = Services::DocCollections::Find.call([], created_after: 7.days.ago, uploaded_at: true)
         not_found_uploaded_doc_collections = uploaded_doc_collections.select do |doc_collection|
           begin
             open "http://docs.rubydocs.org/#{doc_collection.slug}"
