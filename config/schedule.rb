@@ -1,11 +1,13 @@
+job_type :rollbar_runner, "cd :path && :environment_variable=:environment bundle exec rollbar-rails-runner :task --silent :output"
+
 every :day do
-  runner 'Services::DocCollections::PerformChecks.call'
+  rollbar_runner 'Services::DocCollections::PerformChecks.call'
 end
 
 every :hour, at: '00:15' do
-  runner 'Services::Projects::UpdateTagsForAll.call'
+  rollbar_runner 'Services::Projects::UpdateTagsForAll.call'
 end
 
 every 5.minutes do
-  runner 'Services::DocCollections::ProcessSome.call', output: { standard: nil }
+  rollbar_runner 'Services::DocCollections::ProcessSome.call', output: { standard: nil }
 end
