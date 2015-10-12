@@ -142,6 +142,7 @@ GEM
       railties (>= 4.0.1)
     high_voltage (2.4.0)
     hike (1.2.3)
+    hiredis (0.6.0)
     html2haml (2.0.0)
       erubis (~> 2.7.0)
       haml (~> 4.0.0)
@@ -167,7 +168,7 @@ GEM
     lumberjack (1.0.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    memory_profiler (0.9.4)
+    memory_profiler (0.9.5)
     method_source (0.8.2)
     mime-types (2.6.2)
     mini_portile (0.6.2)
@@ -239,6 +240,10 @@ GEM
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
     rdoc (4.2.0)
+      json (~> 1.4)
+    readthis (1.0.0)
+      connection_pool (~> 2.1)
+      redis (~> 3.0)
     redis (3.2.1)
     redis-actionpack (4.0.1)
       actionpack (~> 4)
@@ -293,7 +298,7 @@ GEM
     ruby_parser (3.7.1)
       sexp_processor (~> 4.1)
     rubyzip (1.1.7)
-    sass (3.4.18)
+    sass (3.4.19)
     sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.1)
@@ -363,6 +368,7 @@ DEPENDENCIES
   guard-rspec (~> 4.2)
   haml-rails (~> 0.5)
   high_voltage (~> 2.0)
+  hiredis (~> 0.6)
   jquery-rails (~> 3.1)
   letter_opener (~> 1.2)
   log_buddy (~> 0.7)
@@ -370,7 +376,7 @@ DEPENDENCIES
   net-sftp (~> 2.1)
   newrelic_rpm (~> 3.9)
   nifty_settings (~> 2.0)
-  pg (~> 0.17)
+  pg (~> 0.18)
   postgres_ext (~> 2.3)
   pry (~> 0.10)
   pry-byebug (~> 3.0)
@@ -382,6 +388,7 @@ DEPENDENCIES
   rails-assets-jquery-cookie (~> 1.4)!
   rails-assets-jquery.smooth-scroll (~> 1.4)!
   rails_bootstrap_navbar (~> 2.0)
+  readthis (~> 1.0)
   redis (~> 3.1)
   redis-namespace (~> 1.5)
   redis-rack-cache (~> 1.2)
@@ -392,7 +399,7 @@ DEPENDENCIES
   rspec-rails (~> 3.0)
   rubyzip (~> 1.1)
   sass-rails (~> 5.0)
-  schema_plus (~> 1.5)
+  schema_plus (~> 1.8)
   sdoc!
   services (~> 4.0)
   spring (~> 1.1)
@@ -400,3 +407,6 @@ DEPENDENCIES
   tries (~> 0.3)
   uglifier (~> 2.5)
   whenever (~> 0.9)
+
+BUNDLED WITH
+   1.10.6
