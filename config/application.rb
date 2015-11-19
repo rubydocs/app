@@ -11,16 +11,19 @@ Bundler.require(:default, Rails.env)
 
 module RubyDocs
   class Application < Rails::Application
-    ::REDIS_CONFIG = if Settings.redis?
+    ::REDIS_CONFIG = case
+    when File.exist?(redis_config = Rails.root.join('config', 'redis.yml'))
+      YAML.load_file(redis_config).with_indifferent_access
+    when Settings.redis?
       Settings.redis.to_hash
     else
-      # Try to read from config/redis.yml
-      YAML.load_file(Rails.root.join('config', 'redis.yml')).with_indifferent_access rescue nil
+      raise 'Redis config not found.'
     end
 
-    raise 'Redis config not found.' if REDIS_CONFIG.blank?
-
-    ::REDIS_URL = "redis://#{REDIS_CONFIG[:host]}:#{REDIS_CONFIG[:port]}/#{REDIS_CONFIG[:db]}"
+    redis_url_auth = if REDIS_CONFIG.has_key?(:username) || REDIS_CONFIG.has_key?(:password)
+      [REDIS_CONFIG[:username], REDIS_CONFIG[:password]].join(':')
+    end
+    ::REDIS_URL = "redis://#{redis_url_auth + '@' if redis_url_auth}#{REDIS_CONFIG.fetch(:host)}:#{REDIS_CONFIG.fetch(:port)}/#{REDIS_CONFIG.fetch(:db)}"
 
     require 'fakeredis' if %w(development test).include?(Rails.env)
 
