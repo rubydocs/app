@@ -27,12 +27,14 @@ module RubyDocs
 
     require 'fakeredis' if %w(development test).include?(Rails.env)
 
-    config.cache_store = :readthis_store,
-      REDIS_CONFIG.merge(
-        namespace:  'cache',
-        expires_in: 1.month.to_i,
-        driver:     :hiredis
-      )
+    config.cache_store = :readthis_store, {
+      namespace:  'cache',
+      expires_in: 1.month.to_i,
+      redis: {
+        url:      REDIS_URL,
+        driver:   :hiredis
+      }
+    }
 
     config.action_dispatch.rack_cache = %i(metastore entitystore).each_with_object({}) do |store, hash|
       hash[store] = "#{REDIS_URL}/rack_cache/#{store}"
