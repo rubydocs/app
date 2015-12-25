@@ -9,5 +9,5 @@ every :hour, at: '00:15' do
 end
 
 every 5.minutes do
-  rollbar_runner 'Services::DocCollections::ProcessSome.call', output: { standard: nil }
+  rollbar_runner 'Services::DocCollections::ProcessSome.call', output: nil
 end
