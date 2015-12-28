@@ -75,12 +75,11 @@ RubyDocs::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  config.log_tags = %i(uuid remote_ip)
   config.lograge.enabled = true
   config.lograge.custom_options = ->(event) {
-    {
-      time:   event.time.to_s(:iso8601),
-      params: event.payload[:params].except('controller', 'action')
-    }
+    options          = event.payload.slice(:request_id, :remote_ip)
+    options[:time]   = event.time.to_s(:iso8601)
+    options[:params] = event.payload[:params].except('controller', 'action')
+    options
   }
 end
