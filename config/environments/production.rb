@@ -79,8 +79,8 @@ RubyDocs::Application.configure do
   config.lograge.enabled = true
   config.lograge.custom_options = ->(event) {
     {
-      time:   event.time.to_s(:db).split.join('T'),
-      params: event.payload[:params].to_s.gsub(/\s+/, '')
+      time:   event.time.to_s(:iso8601),
+      params: event.payload[:params].except('controller', 'action')
     }
   }
 end
