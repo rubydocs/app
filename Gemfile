@@ -12,7 +12,7 @@ gem 'rails', '~> 4.0.8'
   instance_eval(File.read(gemfile))
 end
 
-gem 'sdoc',                               github: 'voloko/sdoc'
+gem 'sdoc',                               github: 'krautcomputing/sdoc', branch: 'a_instead_of_h1'
 gem 'git',                                '~> 1.2'
 gem 'high_voltage',                       '~> 2.0'
 gem 'aws-sdk',                            '~> 1.42'
