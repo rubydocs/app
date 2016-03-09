@@ -8,20 +8,20 @@ class EmailNotification
 
   class << self
     def by_doc_collection(doc_collection)
-      emails = R.smembers(cache_key(doc_collection.id))
+      emails = Redis.current.smembers(cache_key(doc_collection.id))
       emails.map do |email|
         self.new email: email, doc_collection_id: doc_collection.id
       end
     end
 
     def delete(doc_collection)
-      R.del cache_key(doc_collection.id)
+      Redis.current.del cache_key(doc_collection.id)
     end
   end
 
   def save
     return false unless self.valid?
-    R.sadd self.class.cache_key(self.doc_collection_id), self.email
+    Redis.current.sadd self.class.cache_key(self.doc_collection_id), self.email
   end
 
   private
