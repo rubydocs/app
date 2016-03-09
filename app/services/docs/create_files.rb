@@ -1,5 +1,5 @@
 require 'rdoc'
-require 'sdoc'
+require 'sdoc/merge'
 require 'render_anywhere'
 
 module Services
