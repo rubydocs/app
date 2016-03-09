@@ -1,6 +1,5 @@
 - hosts: all
   gather_facts: no
-  remote_user: "{{ provision_user }}"
   roles:
     - deploy_setup
   tasks:
