@@ -1,7 +1,6 @@
 GIT
-  remote: git://github.com/krautcomputing/sdoc.git
-  revision: 1152fa14358c24ea377ffcdee659e84850da9b77
-  branch: a_instead_of_h1
+  remote: git://github.com/voloko/sdoc.git
+  revision: e5b47faa3e750271f35cbe5f97c62af317d4600b
   specs:
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
