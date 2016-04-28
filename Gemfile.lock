@@ -1,6 +1,7 @@
 GIT
-  remote: git://github.com/voloko/sdoc.git
-  revision: fc60fdb0cfe77bd8dd001738bb3ebcef0d2d588e
+  remote: git://github.com/krautcomputing/sdoc.git
+  revision: 7110cf09fcdaeb32444ad009e3213de60e5e8974
+  branch: a_instead_of_h1_fixup
   specs:
     sdoc (0.4.2)
       json (~> 1.7, >= 1.7.7)
