@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131230214127) do
+ActiveRecord::Schema.define(version: 20160430104328) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,19 +19,18 @@ ActiveRecord::Schema.define(version: 20131230214127) do
   create_table "doc_collection_memberships", force: true do |t|
     t.integer "doc_id"
     t.integer "doc_collection_id"
+    t.index ["doc_id", "doc_collection_id"], :name => "index_doc_collection_m_on_doc_id_and_doc_collection_id", :unique => true
   end
 
-  add_index "doc_collection_memberships", ["doc_id", "doc_collection_id"], name: "index_doc_collection_m_on_doc_id_and_doc_collection_id", unique: true, using: :btree
-
   create_table "doc_collections", force: true do |t|
-    t.string   "slug",         null: false
+    t.string   "slug",           null: false
     t.datetime "generated_at"
     t.datetime "uploaded_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "generated_with"
+    t.index ["slug"], :name => "index_doc_collections_on_slug", :unique => true
   end
-
-  add_index "doc_collections", ["slug"], name: "index_doc_collections_on_slug", unique: true, using: :btree
 
   create_table "docs", force: true do |t|
     t.string   "tag"
@@ -39,9 +38,8 @@ ActiveRecord::Schema.define(version: 20131230214127) do
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["slug"], :name => "index_docs_on_slug", :unique => true
   end
-
-  add_index "docs", ["slug"], name: "index_docs_on_slug", unique: true, using: :btree
 
   create_table "projects", force: true do |t|
     t.string   "name"
@@ -50,8 +48,7 @@ ActiveRecord::Schema.define(version: 20131230214127) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.json     "tags"
+    t.index ["slug"], :name => "index_projects_on_slug", :unique => true
   end
-
-  add_index "projects", ["slug"], name: "index_projects_on_slug", unique: true, using: :btree
 
 end

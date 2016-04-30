@@ -2,12 +2,13 @@
 #
 # Table name: doc_collections
 #
-#  id           :integer          not null, primary key
-#  slug         :string(255)      not null
-#  generated_at :datetime
-#  uploaded_at  :datetime
-#  created_at   :datetime
-#  updated_at   :datetime
+#  id             :integer          not null, primary key
+#  generated_at   :datetime
+#  generated_with :string(255)
+#  slug           :string(255)      not null
+#  uploaded_at    :datetime
+#  created_at     :datetime
+#  updated_at     :datetime
 #
 
 class DocCollection < ActiveRecord::Base

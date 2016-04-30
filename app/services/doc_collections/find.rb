@@ -31,6 +31,8 @@ module Services
               )
               .group('doc_collection_memberships.doc_collection_id, doc_collections.id')
               .having('COUNT(doc_collection_memberships.doc_id) = ?', v.size)
+          when /\A(.+)_not\z/
+            scope.where!(v.nil? ? "doc_collections.#{$1} IS NOT NULL" : ["doc_collections.#{$1} != ?", v])
           else
             raise ArgumentError, "Unexpected condition: #{k}"
           end
