@@ -320,7 +320,7 @@ GEM
     schema_plus (1.8.9)
       activerecord (>= 3.2, <= 4.2.0)
       valuable
-    services (4.1.1)
+    services (4.1.2)
       gem_config (~> 0.3)
       rails (>= 3.2.0)
     sexp_processor (4.7.0)
