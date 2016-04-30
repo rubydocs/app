@@ -24,7 +24,7 @@
             .form-group
               = doc_fields.label :tag, 'Version', class: 'col-xs-3 control-label'
               .col-xs-9.select-wrapper
-                = doc_fields.select :tag, options_for_select(project_versions(doc_fields.object.project)), {}, class: 'form-control', data: { sort: 'date', :'sort-direction' => 'desc' }
+                = doc_fields.select :tag, options_for_select(project_versions(doc_fields.object.project)), {}, class: 'form-control version', data: { sort: 'date', :'sort-direction' => 'desc' }
                 .small
                   sort
                   = link_to 'by version', '#', data: { :'sort' => 'version' }
@@ -58,7 +58,7 @@
               .form-group
                 = doc_fields.label :tag, 'Version', class: 'col-xs-3 control-label'
                 .col-xs-9.select-wrapper
-                  = doc_fields.select :tag, options_for_select(project_versions(doc_fields.object.project)), {}, class: 'form-control', data: { sort: 'date', :'sort-direction' => 'desc' }
+                  = doc_fields.select :tag, options_for_select(project_versions(doc_fields.object.project)), {}, class: 'form-control version', data: { sort: 'date', :'sort-direction' => 'desc' }
                   .small
                     sort
                     = link_to 'by version', '#', data: { :'sort' => 'version' }

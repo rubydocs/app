@@ -2,11 +2,14 @@
 #= require jquery.smooth-scroll
 #= require jquery-cookie
 #= require jquery_ujs
+#= require select2
 
 $ ->
   $('.navbar a[href*="#"]').smoothScroll()
   showCookieBar()
   enableSorting()
+  $('select.version').select2
+    theme: 'bootstrap'
 
 showCookieBar = ->
   unless $.cookie('cookie-consent')?

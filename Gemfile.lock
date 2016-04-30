@@ -235,6 +235,8 @@ GEM
       rails-assets-jquery (>= 1.2)
     rails-assets-jquery.smooth-scroll (1.7.2)
       rails-assets-jquery (>= 1.4.2)
+    rails-assets-select2 (4.0.2)
+    rails-assets-select2-bootstrap-theme (0.1.0.beta.4)
     rails_bootstrap_navbar (2.0.1)
       bootstrap-navbar (~> 2.0)
       rails (>= 3.0.0)
@@ -403,6 +405,8 @@ DEPENDENCIES
   rails (~> 4.0.8)
   rails-assets-jquery-cookie (~> 1.4)!
   rails-assets-jquery.smooth-scroll (~> 1.4)!
+  rails-assets-select2 (~> 4.0)!
+  rails-assets-select2-bootstrap-theme (~> 0.1.0.beta.4)!
   rails_bootstrap_navbar (~> 2.0)
   readthis (~> 1.0)
   redis (~> 3.1)
