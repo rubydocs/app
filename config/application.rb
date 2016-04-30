@@ -40,10 +40,6 @@ module RubyDocs
       hash[store] = "#{REDIS_URL}/rack_cache/#{store}"
     end
 
-    config.autoload_paths += [
-      config.root.join('app')
-    ]
-
     config.assets.precompile += %w(
       show-doc-collection.css
     )

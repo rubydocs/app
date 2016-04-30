@@ -7,8 +7,8 @@ projects = [
 
 projects.each do |project|
   begin
-    Services::Projects::Clone.call project
-  rescue Services::Projects::Clone::FilesExistsError
+    Projects::Clone.call project
+  rescue Projects::Clone::FilesExistsError
   end
-  Services::Projects::UpdateTags.call project.id
+  Projects::UpdateTags.call project.id
 end

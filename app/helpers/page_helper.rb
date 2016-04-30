@@ -1,6 +1,6 @@
 module PageHelper
   def project_versions(project)
-    versions = Services::Projects::ConvertTagsToVersions.call(project.tags.keys)
+    versions = Projects::ConvertTagsToVersions.call(project.tags.keys)
     versions.delete_if do |tag, version|
       version.nil?
     end
