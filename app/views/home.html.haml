@@ -2,73 +2,100 @@
   %h1
     = t :tagline
   %p.lead
-    Create your perfect set of docs by picking exactly the versions you need.
+    Fast, free, searchable, versioned, on- and offline
+  %p
+    = link_to '#', data: { toggle: 'modal', target: '#add-project' }, class: 'btn btn-sm btn-success' do
+      = fa_icon 'plus-circle'
+      Add project
+    = link_to '#', data: { toggle: 'modal', target: '#combined-docs' }, class: 'btn btn-sm btn-default' do
+      = fa_icon 'hand-peace-o'
+      Combined Ruby and Rails docs
 
-%hr
+#add-project.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{ type: 'button', data: { dismiss: 'modal' } }
+          %span
+            &times;
+        %h4.modal-title
+          Add project
+      .modal-body
+        %p
+          To add your own (or someone else's) project to RubyDocs, the code must be publicly accessible via Git (GitHub, Bitbucket, etc.) and it must be versioned using Git tags. Once it's added, the docs for each tag will be generated on-demand (docs for the latest tag are generated automatically).
+        %p
+          Please add the project info below and I will add it to RubyDocs asap! :)
+        %p
+          If you have any questions,
+          = mail_to Settings.mail.from, 'let me know!'
+        = form_tag "//formspree.io/#{Settings.mail.from}" do
+          = hidden_field_tag '_subject', value: 'New project'
+          .form-group
+            = text_field_tag 'git', nil, class: 'form-control', required: true, placeholder: 'Git URL'
+          .form-group
+            = text_field_tag 'name', nil, class: 'form-control', required: true, placeholder: 'Your name'
+          .form-group
+            = email_field_tag 'email', nil, class: 'form-control', required: true, placeholder: 'Your email'
+          .form-group
+            = text_area_tag 'comments', nil, class: 'form-control', placeholder: 'Anything you want to add? :)'
+          = button_tag type: 'submit', class: 'btn btn-primary', data: { loading: 'Please wait...' } do
+            = fa_icon 'paper-plane-o'
+            Submit
+        .note.note-confirm
+          = fa_icon 'thumbs-o-up'
+          Thanks! I'll add the project shortly and let you know via mail!
+        .note.note-error
+          = fa_icon 'exclamation-triangle'
+          Uh-oh! Something went wrong... please try again!
 
-%h2
-  Combined docs
-  %small
-    Ruby and Rails in one
+#combined-docs.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{ type: 'button', data: { dismiss: 'modal' } }
+          %span
+            &times;
+        %h4.modal-title
+          Combined Ruby and Rails docs
+      .modal-body
+        %p
+          Browse the docs for Ruby and Rails simultaneously with exactly the versions you need.
+        = form_for @combined_doc_collection do |f|
+          = f.fields_for :docs do |doc_fields|
+            .panel.panel-default
+              .panel-heading
+                %h3.panel-title
+                  = doc_fields.object.project.name
+              .panel-body
+                .row
+                  .col-sm-6
+                    = render 'docs/form_fields', form: doc_fields
+                  .col-sm-6
+                    = pluralize doc_fields.object.project.tags.size, 'version'
+                    indexed
+          = render 'docs/form_actions', form: f
 
-= form_for @combined_doc_collection, html: { class: 'form-horizontal', role: 'form' } do |f|
-  .row
-    = f.fields_for :docs do |doc_fields|
-      = doc_fields.hidden_field :project_id
-      .col-sm-6
-        .panel.panel-default
-          .panel-heading
-            %h3.panel-title
-              = doc_fields.object.project.name
-          .panel-body
-            .form-group
-              = doc_fields.label :tag, 'Version', class: 'col-xs-3 control-label'
-              .col-xs-9.select-wrapper
-                = doc_fields.select :tag, options_for_select(project_versions(doc_fields.object.project)), {}, class: 'form-control version', data: { sort: 'date', :'sort-direction' => 'desc' }
-                .small
-                  sort
-                  = link_to 'by version', '#', data: { :'sort' => 'version' }
-                  or
-                  = link_to 'by date', '#', data: { :'sort' => 'date' }
-                  .sorted
-  .row
-    .col-sm-12
-      .pull-right
-        = submit_tag 'View online', class: 'btn btn-primary btn-lg', data: { :'loading-text' => 'Please wait...' }
-        = submit_tag 'Download zip', class: 'btn btn-default btn-lg', data: { :'loading-text' => 'Please wait...' }, name: 'download_zip'
+= form_tag '#', id: 'project-search' do
+  = text_field_tag 'search', nil, class: 'form-control input-lg', placeholder: 'Search for project...', autofocus: true
 
-%hr
-
-%h2
-  Single docs
-  %small
-    only Ruby or Rails
-
-.row
+.projects
   - @single_doc_collections.each do |doc_collection|
-    .col-sm-6
-      = form_for doc_collection, html: { class: 'form-horizontal', role: 'form' } do |f|
-        = f.fields_for :docs do |doc_fields|
-          = doc_fields.hidden_field :project_id
-          .panel.panel-default
-            .panel-heading
-              %h3.panel-title
-                = doc_fields.object.project.name
-            .panel-body
-              .form-group
-                = doc_fields.label :tag, 'Version', class: 'col-xs-3 control-label'
-                .col-xs-9.select-wrapper
-                  = doc_fields.select :tag, options_for_select(project_versions(doc_fields.object.project)), {}, class: 'form-control version', data: { sort: 'date', :'sort-direction' => 'desc' }
-                  .small
-                    sort
-                    = link_to 'by version', '#', data: { :'sort' => 'version' }
-                    or
-                    = link_to 'by date', '#', data: { :'sort' => 'date' }
-                    .sorted
-              .form-group
-                .col-xs-offset-3.col-xs-9
-                  = submit_tag 'View online', class: 'btn btn-primary', data: { :'loading-text' => 'Please wait...' }
-                  = submit_tag 'Download zip', class: 'btn btn-default', data: { :'loading-text' => 'Please wait...' }, name: 'download_zip'
+    .project.panel.panel-default
+      .panel-heading
+        %h3.project-title.panel-title
+          = doc_collection.docs.first.project.name
+      .panel-body
+        .row
+          .col-sm-6
+            = form_for doc_collection do |f|
+              = f.fields_for :docs do |doc_fields|
+                = render 'docs/form_fields', form: doc_fields
+                = render 'docs/form_actions', form: doc_fields
+          .col-sm-6
+            = pluralize doc_collection.docs.first.project.tags.size, 'version'
+            indexed
+  .not-found
+    No project found. :(
 
 %hr
 

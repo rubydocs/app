@@ -1,23 +1,70 @@
 body#home {
 
-  form#new_doc_collection {
-    margin: 20px 0 30px;
+  .note {
+    display: none;
+    font-weight: bold;
 
-    .form-group:last-of-type {
-      margin-bottom: 0;
+    &.note-confirm {
+      color: $alert-success-text;
     }
 
-    .sorted {
-      display: none;
-      color: $brand-success;
+    &.note-error {
+      color: $alert-danger-text;
+      margin-top: 20px;
     }
   }
 
-  #combined-buttons {
-    float: right;
+  form {
+
+    &#project-search {
+      margin-bottom: 40px;
+    }
+
+    &#new_doc_collection {
+
+      .select-wrapper {
+        max-width: 300px;
+      }
+
+      .sorted {
+        display: none;
+        color: $brand-success;
+      }
+    }
+  }
+
+  #combined-docs {
+
+    form {
+
+      &#new_doc_collection {
+
+        .form-group {
+
+          &:last-of-type {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .projects {
+
+    .not-found {
+      display: none;
+      font-weight: bold;
+      color: $alert-danger-text;
+    }
   }
 
   #credits {
     text-align: center;
+
+    p {
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 }

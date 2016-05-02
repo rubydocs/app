@@ -1,4 +1,5 @@
 #= require bootstrap/collapse
+#= require bootstrap/modal
 #= require jquery.smooth-scroll
 #= require jquery-cookie
 #= require jquery_ujs
@@ -7,9 +8,13 @@
 $ ->
   $('.navbar a[href*="#"]').smoothScroll()
   showCookieBar()
-  enableSorting()
-  $('select.version').select2
-    theme: 'bootstrap'
+
+  if $('body#home').length
+    enableVersionSorting()
+    enableSelect2()
+    enableProjectSearch()
+    fixSelect2InDocCollectionModal()
+    submitNewProjectFormViaAjax()
 
 showCookieBar = ->
   unless $.cookie('cookie-consent')?
@@ -47,7 +52,7 @@ compareSortEls = (el1, el2, sort, sortDirection) ->
         else
           if v2[i]? then return v2[i].localeCompare(v1[i]) else return 1
 
-enableSorting = ->
+enableVersionSorting = ->
   $('a[data-sort]').click (e) ->
     e.preventDefault()
     $notice = $(@).siblings('.sorted')
@@ -65,3 +70,61 @@ enableSorting = ->
     $notice.data 'timeout', setTimeout ->
       $notice.fadeOut('slow')
     , 2000
+
+enableSelect2 = ->
+  $('select.version').select2
+    theme: 'bootstrap'
+
+enableProjectSearch = ->
+  $projects = $('.projects .project')
+  $('form#project-search input#search')
+    .keyup ->
+      query = $(@).val()
+      found = false
+      if query.length
+        query = query.toUpperCase()
+        $projects.each ->
+          $this = $(@)
+          title = $this.find('.project-title').text().toUpperCase()
+          if title.indexOf(query) >= 0
+            found = true
+            $this.slideDown()
+          else
+            $this.slideUp()
+      else
+        found = true
+        $projects.slideDown()
+      $('.projects .not-found').toggle !found
+    .trigger 'keyup'
+
+fixSelect2InDocCollectionModal = ->
+  $('#combined-docs').on 'shown.bs.modal', (e) ->
+    enableSelect2()
+
+submitNewProjectFormViaAjax = ->
+  $('#add-project form').submit (e) ->
+    e.preventDefault()
+
+    $submit = $(@).find(':submit')
+    $submit.data('original-text', $submit.text())
+    $submit.text($submit.data('loading'))
+    $submit.addClass('disabled')
+
+    $.ajax @action,
+      type:     'POST'
+      data:     $(@).serialize()
+      dataType: 'json'
+    .always =>
+      $submit.removeClass('disabled')
+      $submit.text($submit.data('original-text'))
+    .done =>
+      $(@)
+        .slideUp()
+        .siblings('.note.note-confirm')
+        .slideDown()
+    .fail (xhr, status) =>
+      if Rollbar?
+        Rollbar.error 'Error submitting form.', xhr: xhr, status: status
+      $(@)
+        .siblings('.note.note-error')
+        .slideDown()

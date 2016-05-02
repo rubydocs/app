@@ -9,7 +9,8 @@ $container-md:                  $container-sm;
 @import "bootstrap-custom";
 
 .page-header {
-  margin-top: 20px;
+  padding: 0;
+  margin: 40px 0 60px;
   border-width: 0;
   text-align: center;
 }

@@ -1,0 +1,11 @@
+= form.hidden_field :project_id
+.form-group
+  = form.label :tag, 'Select version'
+  .select-wrapper
+    = form.select :tag, options_for_select(project_versions(form.object.project)), {}, class: 'form-control version', data: { sort: 'date', :'sort-direction' => 'desc' }
+    .small
+      sort
+      = link_to 'by version', '#', data: { :'sort' => 'version' }
+      or
+      = link_to 'by date', '#', data: { :'sort' => 'date' }
+      .sorted
