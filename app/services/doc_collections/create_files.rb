@@ -9,21 +9,27 @@ module DocCollections
       doc_collection = find_object(id_or_object)
       check_uniqueness doc_collection.id
 
-      docs = Docs::Find.call([], doc_collection: doc_collection)
-      raise Error, "Doc collection #{doc_collection.name} has no docs." if docs.empty?
       raise FolderExistsError, "Folder for doc collection #{doc_collection.name} already exist." if File.exist?(doc_collection.local_path)
 
-      # Merge docs
-      sdoc_merge = SDoc::Merge.new
-      sdoc_options = {
-        title: doc_collection.name,
-        op:    doc_collection.local_path,
-        names: docs.map(&:name).join(',')
-      }
-      sdoc_args = sdoc_options.map do |k, v|
-        "--#{k}=#{v}"
+      docs = Docs::Find.call([], doc_collection: doc_collection)
+      raise Error, "Doc collection #{doc_collection.name} has no docs." if docs.empty?
+
+      if docs.size == 1
+        # Copy docs
+        FileUtils.cp_r docs.first.local_path, doc_collection.local_path
+      else
+        # Merge docs
+        sdoc_merge = SDoc::Merge.new
+        sdoc_options = {
+          title: doc_collection.name,
+          op:    doc_collection.local_path,
+          names: docs.map(&:name).join(',')
+        }
+        sdoc_args = sdoc_options.map do |k, v|
+          "--#{k}=#{v}"
+        end
+        sdoc_merge.merge sdoc_args.concat(docs.map(&:local_path))
       end
-      sdoc_merge.merge sdoc_args.concat(docs.map(&:local_path))
 
       # Create zip
       Dir.chdir doc_collection.local_path do
