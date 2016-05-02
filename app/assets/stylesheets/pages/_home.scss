@@ -1,5 +1,12 @@
 body#home {
 
+  .page-header {
+
+    .btn + .btn {
+      margin-left: 10px;
+    }
+  }
+
   .note {
     display: none;
     font-weight: bold;
@@ -50,6 +57,13 @@ body#home {
   }
 
   .projects {
+
+    .project {
+
+      button + button {
+        margin-left: 5px;
+      }
+    }
 
     .not-found {
       display: none;
