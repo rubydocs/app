@@ -29,7 +29,7 @@
           If you have any questions,
           = mail_to Settings.mail.from, 'let me know!'
         = form_tag "//formspree.io/#{Settings.mail.from}" do
-          = hidden_field_tag '_subject', value: 'New project'
+          = hidden_field_tag '_subject', 'New project'
           .form-group
             = text_field_tag 'git', nil, class: 'form-control', required: true, placeholder: 'Git URL'
           .form-group
