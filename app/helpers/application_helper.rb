@@ -25,8 +25,8 @@ module ApplicationHelper
   def title
     [
       content_for(:title),
-      'RubyDocs - Fast and searchable Ruby and Rails docs'
-    ].compact.join(' | ')
+      "RubyDocs - #{t :tagline}"
+    ].compact.join(' | ').html_safe
   end
 
   def description
