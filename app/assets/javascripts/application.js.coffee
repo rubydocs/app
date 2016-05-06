@@ -13,8 +13,11 @@ $ ->
     enableVersionSorting()
     enableSelect2()
     enableProjectSearch()
+    autoProjectSearch()
     fixSelect2InDocCollectionModal()
     submitNewProjectFormViaAjax()
+
+$searchInput = $('form#project-search input#search')
 
 showCookieBar = ->
   unless $.cookie('cookie-consent')?
@@ -77,7 +80,7 @@ enableSelect2 = ->
 
 enableProjectSearch = ->
   $projects = $('.projects .project')
-  $('form#project-search input#search')
+  $searchInput
     .keyup ->
       query = $(@).val()
       found = false
@@ -95,7 +98,17 @@ enableProjectSearch = ->
         found = true
         $projects.slideDown()
       $('.projects .not-found').toggle !found
-    .trigger 'keyup'
+    .trigger('keyup')
+
+autoProjectSearch = ->
+  queryMatch = window.location.search.match(/search=([^&]+)/)
+  if queryMatch?
+    $searchInput
+      .val(queryMatch[1])
+      .trigger('keyup')
+    $('html, body').animate
+      scrollTop: $searchInput.offset().top - 20
+    , 'slow'
 
 fixSelect2InDocCollectionModal = ->
   $('#combined-docs').on 'shown.bs.modal', (e) ->
