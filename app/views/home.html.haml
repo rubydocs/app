@@ -76,7 +76,7 @@
           = render 'docs/form_actions', form: f
 
 = form_tag '#', id: 'project-search' do
-  = text_field_tag 'search', nil, class: 'form-control input-lg', placeholder: 'Search for project...', autofocus: true
+  = text_field_tag 'search', nil, class: 'form-control input-lg', placeholder: "Search in #{number_with_delimiter @single_doc_collections.size} projects...", autofocus: true
 
 .projects
   - @single_doc_collections.each do |doc_collection|
