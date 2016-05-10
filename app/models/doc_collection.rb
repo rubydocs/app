@@ -20,9 +20,8 @@ class DocCollection < ActiveRecord::Base
   has_many :docs, through: :doc_collection_memberships
 
   validates :slug, presence: true
-  validate do
-    # When uploaded_at is present, generated_at must be present as well
-  end
+  validates :generated_with, presence: { if: -> { generated_at } }
+  validates :generated_at, presence: { if: -> { uploaded_at } }
 
   scope :generated, -> { where{(generated_at != nil) & (uploaded_at == nil)} }
   scope :uploaded, -> { where{uploaded_at != nil} }
