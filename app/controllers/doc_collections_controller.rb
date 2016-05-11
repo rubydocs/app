@@ -12,8 +12,9 @@ class DocCollectionsController < ApplicationController
     end
 
     # Find or create doc collection
-    doc_collection = DocCollections::Find.call([], docs: docs).first
-    doc_collection = DocCollections::Create.call(docs) if doc_collection.nil?
+    doc_collection =
+      DocCollections::Find.call([], docs: docs).first ||
+      DocCollections::Create.call(docs)
 
     if params[:download_zip]
       redirect_to doc_collection_path(File.basename(doc_collection.zipfile))
