@@ -41,7 +41,9 @@ module DocCollections
       local_file = Pathname.new(doc_collection.zipfile).realpath.to_s
       remote_file = File.join('public_html', File.basename(doc_collection.zipfile))
       Net::SFTP.start(Settings.zip_ftp.host, Settings.zip_ftp.username, password: Settings.zip_ftp.password) do |sftp|
-        sftp.upload! local_file, remote_file
+        3.tries on: IOError, Net::SSH::Disconnect do
+          sftp.upload! local_file, remote_file
+        end
       end
 
       # Set uploaded_at timestamp
