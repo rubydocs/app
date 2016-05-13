@@ -3,12 +3,13 @@
 # Table name: projects
 #
 #  id         :integer          not null, primary key
-#  name       :string(255)
 #  git        :string(255)
+#  links      :text             default([]), not null, is an Array
+#  name       :string(255)
 #  slug       :string(255)      not null
+#  tags       :json
 #  created_at :datetime
 #  updated_at :datetime
-#  tags       :json
 #
 
 class Project < ActiveRecord::Base

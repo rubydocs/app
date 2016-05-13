@@ -63,6 +63,28 @@ body#home {
       button + button {
         margin-left: 5px;
       }
+
+      .meta {
+
+        ul {
+          padding: 0;
+          list-style-type: none;
+
+          li {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            height: 16px;
+            line-height: 16px;
+            margin-bottom: 8px;
+
+            img {
+              margin-right: 2px;
+              vertical-align: text-bottom;
+            }
+          }
+        }
+      }
     }
 
     .not-found {

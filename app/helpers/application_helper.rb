@@ -32,4 +32,13 @@ module ApplicationHelper
   def description
     'Create your perfect set of searchable Ruby and Rails docs by picking exactly the versions you need. Hosted in the cloud and fronted by a CDN, your docs will always be there for you.'
   end
+
+  def favicon_tag(url)
+    favicon = case url
+    when %r(//github.com)   then 'github.png'
+    when %r(//rubygems.org) then 'rubygems.png'
+    else                         'website.png'
+    end
+    image_tag "favicons/#{favicon}"
+  end
 end

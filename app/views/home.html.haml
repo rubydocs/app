@@ -31,13 +31,15 @@
         = form_tag "//formspree.io/#{Settings.mail.from}" do
           = hidden_field_tag '_subject', 'New project'
           .form-group
-            = text_field_tag 'git', nil, class: 'form-control', required: true, placeholder: 'Git URL'
-          .form-group
             = text_field_tag 'name', nil, class: 'form-control', required: true, placeholder: 'Your name'
           .form-group
             = email_field_tag 'email', nil, class: 'form-control', required: true, placeholder: 'Your email'
           .form-group
-            = text_area_tag 'comments', nil, class: 'form-control', placeholder: 'Anything you want to add? :)'
+            = text_field_tag 'git', nil, class: 'form-control', required: true, placeholder: 'Project Git URL'
+          .form-group
+            = text_area_tag 'links', nil, class: 'form-control', placeholder: 'Project links (Website, GitHub, RubyGems.org, other docs, etc.)'
+          .form-group
+            = text_area_tag 'comments', nil, class: 'form-control', placeholder: 'Anything else you want to add? :)'
           = button_tag type: 'submit', class: 'btn btn-primary', data: { loading: 'Please wait...' } do
             = fa_icon 'paper-plane-o'
             Submit
@@ -91,9 +93,17 @@
               = f.fields_for :docs do |doc_fields|
                 = render 'docs/form_fields', form: doc_fields
                 = render 'docs/form_actions', form: doc_fields
-          .col-sm-6
-            = pluralize doc_collection.docs.first.project.tags.size, 'version'
-            indexed
+          .meta.col-sm-6
+            %p
+              = pluralize doc_collection.docs.first.project.tags.size, 'version'
+              indexed
+            - links = doc_collection.docs.first.project.links
+            - if links.any?
+              %ul
+                - links.each do |link|
+                  %li
+                    = favicon_tag link
+                    = link_to link.sub(%r(\Ahttps?://(www\.)?), ''), link, target: '_blank', rel: 'nofollow'
   .not-found
     No project found. :(
 
