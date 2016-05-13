@@ -11,9 +11,8 @@ module DocCollections
         DocCollections::Generate.call doc_collection_to_generate
       end
 
-      doc_collections_to_upload = DocCollections::Find.call([], generated_at: true, uploaded_at: nil)
-      if doc_collections_to_upload.any?
-        DocCollections::Upload.call doc_collections_to_upload.first
+      if doc_collection_to_upload = DocCollections::Find.call([], generated_at: true, uploaded_at: nil, order: 'generated_at').first
+        DocCollections::Upload.call doc_collection_to_upload
       end
     end
   end
