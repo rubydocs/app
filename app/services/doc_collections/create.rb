@@ -7,7 +7,8 @@ module DocCollections
         doc_collection.doc_collection_memberships << DocCollectionMembership.new(doc: doc, doc_collection: doc_collection)
       end
       doc_collection.save!
-      doc_collection
+      # Reload doc collection so that docs are visible.
+      doc_collection.reload
     end
   end
 end
