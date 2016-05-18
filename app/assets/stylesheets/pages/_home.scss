@@ -37,6 +37,10 @@ body#home {
         display: none;
         color: $brand-success;
       }
+
+      button + button {
+        margin-left: 5px;
+      }
     }
   }
 
@@ -59,10 +63,6 @@ body#home {
   .projects {
 
     .project {
-
-      button + button {
-        margin-left: 5px;
-      }
 
       .meta {
 
