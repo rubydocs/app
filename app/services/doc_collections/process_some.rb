@@ -5,7 +5,7 @@ module DocCollections
 
       doc_collection_to_generate = DocCollections::Find.call([], generated_at: nil, order: 'created_at').first || begin
         current_generator_version = DocGenerators::Sdoc::GetVersion.call
-        DocCollections::Find.call([], generated_at_not: nil, generated_with_not: current_generator_version, order: 'generated_at').last
+        DocCollections::Find.call([], generated_at_not: nil, generated_with_not: [current_generator_version, 'ignore'], order: 'generated_at').last
       end
       if doc_collection_to_generate
         DocCollections::Generate.call doc_collection_to_generate
