@@ -1,4 +1,4 @@
-RubyDocs::Application.routes.draw do
+Rails.application.routes.draw do
   get 'favicon.ico' => redirect(ActionController::Base.helpers.image_path('favicon.ico'))
 
   resources :email_notifications, only: :create

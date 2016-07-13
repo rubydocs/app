@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.2.2'
 
-gem 'rails', '~> 4.0.8'
+gem 'rails', '~> 4.2.7'
 
 # Load common gems
 %w(
@@ -12,7 +12,7 @@ gem 'rails', '~> 4.0.8'
   instance_eval(File.read(gemfile))
 end
 
-gem 'sdoc',                                     github: 'krautcomputing/sdoc', branch: 'a_instead_of_h1_fixup'
+gem 'sdoc',                                     github: 'zzak/sdoc'
 gem 'git',                                      '~> 1.2'
 gem 'high_voltage',                             '~> 2.0'
 gem 'aws-sdk',                                  '~> 1.42'

@@ -5,8 +5,6 @@ require 'rspec/rails'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
-ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
-
 FactoryGirl::SyntaxRunner.send :include, FactoryGirlHelpers
 
 RSpec.configure do |config|
