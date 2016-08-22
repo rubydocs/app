@@ -1,3 +1,7 @@
-Rails.application.config.session_store :redis_store,
-  redis_server: REDIS_CONFIG.merge(namespace: 'sessions'),
-  expires_in: 1.day
+# Use cookie store in development and test, otherwise FakeRedis doesn't work.
+session_store_options = if %w(development test).include?(Rails.env)
+  [:cookie_store, key: '_uplink_session']
+else
+  [:cache_store]
+end
+Rails.application.config.session_store *session_store_options

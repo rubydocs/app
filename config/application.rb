@@ -36,10 +36,6 @@ module RubyDocs
       }
     }
 
-    config.action_dispatch.rack_cache = %i(metastore entitystore).each_with_object({}) do |store, hash|
-      hash[store] = "#{REDIS_URL}/rack_cache/#{store}"
-    end
-
     config.assets.precompile += %w(
       show-doc-collection.css
     )
