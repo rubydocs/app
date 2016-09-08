@@ -30,7 +30,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-jquery.smooth-scroll',      '~> 1.4'
   gem 'rails-assets-jquery-cookie',             '~> 1.4'
   gem 'rails-assets-select2',                   '~> 4.0'
-  gem 'rails-assets-select2-bootstrap-theme',   '~> 0.1.0.beta.4' # TODO: Update to v0.1 when released
+  gem 'rails-assets-select2-bootstrap-theme',   '0.1.0.beta.7' # TODO: Update to v0.1 when released
 end
 
 group :test do
