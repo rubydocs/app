@@ -341,7 +341,7 @@ GEM
       activerecord (>= 4.2, < 5.1)
       its-it (~> 1.2)
       schema_plus_core
-    services (5.1.0)
+    services (5.1.1)
       gem_config (~> 0.3)
       rails (>= 4.0.0)
     sexp_processor (4.8.0)
