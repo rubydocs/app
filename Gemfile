@@ -1,18 +1,23 @@
 source 'https://rubygems.org'
 
-ruby '2.3.1'
+ruby '2.4.1'
+
+# Return early if this file is parsed by the Bundler plugin DSL.
+# This won't let us access dependencies in common-gems.
+return if self.is_a?(Bundler::Plugin::DSL)
 
 gem 'rails', '~> 4.2.7'
 
 # Load common gems
 %w(
-  common-gems/rails/Gemfile
-  common-gems/redis/Gemfile
-).each do |gemfile|
-  instance_eval(File.read(gemfile))
+  rails
+  redis
+).each do |m|
+  eval_gemfile File.join('common-gems', m, 'Gemfile')
 end
 
-gem 'sdoc',                                     github: 'zzak/sdoc'
+
+gem 'sdoc',                                     git: 'https://github.com/zzak/sdoc.git'
 gem 'git',                                      '~> 1.2'
 gem 'high_voltage',                             '~> 2.0'
 gem 'aws-sdk',                                  '~> 1.42'
