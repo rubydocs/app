@@ -1,11 +1,12 @@
 Project.destroy_all
 
-projects = [
-  Project.create!(name: 'Ruby', git: 'https://github.com/ruby/ruby.git'),
-  Project.create!(name: 'Rails', git: 'https://github.com/rails/rails.git')
-]
+project_data = {
+  'Ruby'  => 'https://github.com/ruby/ruby.git',
+  'Rails' => 'https://github.com/rails/rails.git'
+}
 
-projects.each do |project|
+projects = project_data.map do |name, git|
+  project = Project.create!(name: name, git: git)
   begin
     Projects::Clone.call project
   rescue Projects::Clone::FilesExistsError
