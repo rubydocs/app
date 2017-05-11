@@ -17,7 +17,7 @@ gem 'rails', '~> 4.2.7'
 end
 
 
-gem 'sdoc',                                     git: 'https://github.com/zzak/sdoc.git'
+gem 'sdoc',                                     '1.0.0.rc2' # TODO: Update to v1.x when released
 gem 'git',                                      '~> 1.2'
 gem 'high_voltage',                             '~> 2.0'
 gem 'aws-sdk',                                  '~> 1.42'
