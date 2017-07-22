@@ -22,7 +22,8 @@ module DocCollections
         quiet:                   true,
         :'delete-removed'     => true,
         :'no-preserve'        => true,
-        :'reduced-redundancy' => true
+        :'reduced-redundancy' => true,
+        :'acl-public'         => true
       }
       s3cmd_args = s3cmd_options.map do |k, v|
         "--#{k}".tap do |option|
