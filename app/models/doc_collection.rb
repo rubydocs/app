@@ -32,6 +32,7 @@ class DocCollection < ActiveRecord::Base
     docs = self.docs.presence || self.doc_collection_memberships.map(&:doc)
     docs.map(&:name).join(' & ')
   end
+  alias :to_s :name
 
   def zipfile
     self.local_path.to_s << '.zip'

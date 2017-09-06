@@ -33,4 +33,5 @@ class Doc < ActiveRecord::Base
     raise "Could not convert tag #{self.tag} to version." if version.nil?
     [self.project.name, version].join(' ')
   end
+  alias :to_s :name
 end

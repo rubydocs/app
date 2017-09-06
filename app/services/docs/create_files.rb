@@ -45,7 +45,11 @@ module Docs
         options.files = Dir['**/*.{c,rb,rdoc}']
 
         5.tries on: [Errno::EPIPE, IncompleteError] do
-          RDoc::RDoc.new.document options
+          begin
+            RDoc::RDoc.new.document options
+          rescue RDoc::Error
+            fail "Error generating files for doc #{doc}"
+          end
 
           unless FILES_TO_CHECK.each { |file| File.exists?(file) }
             FileUtils.rm_rf doc.local_path
