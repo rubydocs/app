@@ -39,7 +39,7 @@ module Docs
         %w(test example bin).each do |dir|
           if File.exist?(dir)
             options.exclude ||= []
-            options.exclude << "\b#{dir}\/"
+            options.exclude << "\\b#{dir}\/"
           end
         end
         options.files = Dir['**/*.{c,rb,rdoc}']
