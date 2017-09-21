@@ -443,7 +443,7 @@ DEPENDENCIES
   where-or (~> 0.1)
 
 RUBY VERSION
-   ruby 2.4.1p111
+   ruby 2.4.2p198
 
 BUNDLED WITH
    1.15.4
