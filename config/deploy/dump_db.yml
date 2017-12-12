@@ -1,0 +1,5 @@
+# TODO: `hosts` and `remote_user` should be loaded from variables `deploy_hosts` and `provision_user` respectively.
+- hosts: web01
+  remote_user: chief
+  roles:
+    - dump_db
