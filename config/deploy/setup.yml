@@ -5,7 +5,7 @@
   tasks:
 
     - name: create folders
-      sudo: yes
+      become: yes
       file:
         path: "{{ deploy_setup_dir }}/{{ item }}"
         owner: "{{ provision_user }}"
@@ -14,8 +14,8 @@
       when: inventory_hostname == "worker01"
 
     - name: check out projects
-      sudo: yes
-      sudo_user: "{{ provision_user }}"
+      become: yes
+      become_user: "{{ provision_user }}"
       git:
         repo: "{{ item.repo }}"
         dest: "{{ deploy_setup_dir }}/files/projects/{{ item.name }}"
