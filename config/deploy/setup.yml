@@ -5,20 +5,23 @@
   tasks:
 
     - name: create folders
+      remote_user: "{{ provision_user }}"
       become: yes
       file:
         path: "{{ deploy_setup_dir }}/{{ item }}"
         owner: "{{ provision_user }}"
+        group: "{{ provision_group }}"
         state: directory
-      with_items: deploy_setup_folders
+      with_items: "{{ deploy_setup_folders }}"
       when: inventory_hostname == "worker01"
 
     - name: check out projects
+      remote_user: "{{ provision_user }}"
       become: yes
       become_user: "{{ provision_user }}"
       git:
         repo: "{{ item.repo }}"
         dest: "{{ deploy_setup_dir }}/files/projects/{{ item.name }}"
         update: no
-      with_items: deploy_setup_projects
+      with_items: "{{ deploy_setup_projects }}"
       when: inventory_hostname == "worker01"
