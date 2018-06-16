@@ -45,7 +45,7 @@ GEM
       rake (>= 10.4, < 13.0)
     arel (6.0.4)
     ast (2.4.0)
-    autoprefixer-rails (8.6.1)
+    autoprefixer-rails (8.6.2)
       execjs
     awesome_print (1.8.0)
     aws-sdk (1.67.0)
@@ -220,7 +220,7 @@ GEM
       activerecord (~> 4.0)
       arel (>= 4.0.1)
       pg_array_parser (~> 0.0.9)
-    powerpack (0.1.1)
+    powerpack (0.1.2)
     premailer (1.11.1)
       addressable
       css_parser (>= 1.6.0)
@@ -320,7 +320,7 @@ GEM
       rspec-mocks (~> 3.7.0)
       rspec-support (~> 3.7.0)
     rspec-support (3.7.1)
-    rubocop (0.57.1)
+    rubocop (0.57.2)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.5)
@@ -346,7 +346,7 @@ GEM
       tilt (>= 1.1, < 3)
     sdoc (1.0.0)
       rdoc (>= 5.0)
-    services (6.0.3)
+    services (6.0.5)
       gem_config (~> 0.3)
       rails (>= 4.2)
     sexp_processor (4.11.0)
@@ -456,7 +456,7 @@ DEPENDENCIES
   where-or (~> 0.1)
 
 RUBY VERSION
-   ruby 2.4.4p296
+   ruby 2.5.1p57
 
 BUNDLED WITH
    1.16.2
