@@ -14,7 +14,7 @@ script:
   - bundle exec rake db:test:prepare
   - bundle exec rake spec
 addons:
-  postgresql: "9.3"
+  postgresql: "10"
 git:
   submodules: false
 sudo: false
