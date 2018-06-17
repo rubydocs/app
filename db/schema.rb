@@ -17,35 +17,41 @@ ActiveRecord::Schema.define(version: 20160513104329) do
   enable_extension "plpgsql"
 
   create_table "doc_collection_memberships", force: :cascade do |t|
-    t.integer "doc_id",            :index=>{:name=>"index_doc_collection_m_on_doc_id_and_doc_collection_id", :with=>["doc_collection_id"], :unique=>true, :using=>:btree}
     t.integer "doc_collection_id"
+    t.integer "doc_id"
   end
 
   create_table "doc_collections", force: :cascade do |t|
-    t.string   "slug",           :null=>false, :index=>{:name=>"index_doc_collections_on_slug", :unique=>true, :using=>:btree}
-    t.datetime "generated_at"
-    t.datetime "uploaded_at"
     t.datetime "created_at"
+    t.datetime "generated_at"
+    t.string   "generated_with", limit: 255
+    t.string   "slug",           limit: 255, null: false
     t.datetime "updated_at"
-    t.string   "generated_with"
+    t.datetime "uploaded_at"
   end
+
+  add_index "doc_collections", ["slug"], name: "index_doc_collections_on_slug", unique: true, using: :btree
 
   create_table "docs", force: :cascade do |t|
-    t.string   "tag"
-    t.string   "slug",       :null=>false, :index=>{:name=>"index_docs_on_slug", :unique=>true, :using=>:btree}
-    t.integer  "project_id"
     t.datetime "created_at"
+    t.integer  "project_id"
+    t.string   "slug",       limit: 255, null: false
+    t.string   "tag",        limit: 255
     t.datetime "updated_at"
   end
 
+  add_index "docs", ["slug"], name: "index_docs_on_slug", unique: true, using: :btree
+
   create_table "projects", force: :cascade do |t|
-    t.string   "name"
-    t.string   "git"
-    t.string   "slug",       :null=>false, :index=>{:name=>"index_projects_on_slug", :unique=>true, :using=>:btree}
-    t.json     "tags"
     t.datetime "created_at"
+    t.string   "git",        limit: 255
+    t.text     "links",                  default: [], null: false, array: true
+    t.string   "name",       limit: 255
+    t.string   "slug",       limit: 255,              null: false
+    t.json     "tags"
     t.datetime "updated_at"
-    t.text     "links",      :default=>[], :null=>false, :array=>true
   end
+
+  add_index "projects", ["slug"], name: "index_projects_on_slug", unique: true, using: :btree
 
 end
