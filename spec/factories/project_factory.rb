@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :project do
     sequence(:name) { |n| "Project #{n}" }
     git             { "git@github.com:krautcomputing/#{name.downcase.gsub(/\W+/, '-')}.git" }

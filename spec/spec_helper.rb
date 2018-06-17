@@ -5,16 +5,16 @@ require 'rspec/rails'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
-FactoryGirl::SyntaxRunner.send :include, FactoryGirlHelpers
+FactoryBot::SyntaxRunner.send :include, FactoryBotHelpers
 
 RSpec.configure do |config|
   config.order = 'random'
   config.infer_spec_type_from_file_location!
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 
   config.before :suite do
     begin
-      FactoryGirl.lint
+      FactoryBot.lint
     ensure
       DatabaseRewinder.clean_all
     end

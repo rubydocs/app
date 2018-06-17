@@ -1,4 +1,4 @@
-module FactoryGirlHelpers
+module FactoryBotHelpers
   def random_tag
     joiner = %w(. _).sample
     prefix = ['', 'v'].sample
