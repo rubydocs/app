@@ -12,10 +12,11 @@ gem 'rails', '~> 4.2.7'
 %w(
   rails
   redis
+  testing-basics
+  testing-rspec
 ).each do |m|
   eval_gemfile File.join('common-gems', m, 'Gemfile')
 end
-
 
 gem 'sdoc',                                     '~> 1.0'
 gem 'git',                                      '~> 1.2'
@@ -36,11 +37,4 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-jquery-cookie',             '~> 1.4'
   gem 'rails-assets-select2',                   '~> 4.0'
   gem 'rails-assets-select2-bootstrap-theme',   '0.1.0.beta.7' # TODO: Update to v0.1 when released
-end
-
-group :test do
-  gem 'rspec-rails',                            '~> 3.0'
-  gem 'guard-rspec',                            '~> 4.2'
-  gem 'factory_girl_rails',                     '~> 4.4'
-  gem 'database_rewinder',                      '~> 0.2'
 end
