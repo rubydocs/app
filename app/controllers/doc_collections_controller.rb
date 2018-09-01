@@ -31,19 +31,12 @@ class DocCollectionsController < ApplicationController
       @email_notification = EmailNotification.new(doc_collection_id: @doc_collection.id)
       render formats: :html
       # redirect_to url_for(params.merge(trailing_slash: true)) unless request.format.zip? || request.fullpath =~ %r(/\z)
+    when request.format.zip?
+      path = File.basename(@doc_collection.zipfile)
+      redirect_to "http://zip.#{Settings.host}/#{path}"
     else
-      subdomain, path = if request.format.zip?
-        [
-          'zip',
-          File.basename(@doc_collection.zipfile)
-        ]
-      else
-        [
-          'docs',
-          [File.basename(@doc_collection.local_path), params[:path]].join
-        ]
-      end
-      redirect_to "http://#{subdomain}.#{Settings.host}/#{path}"
+      path = [File.basename(@doc_collection.local_path), params[:path]].join
+      redirect_to "https://#{Settings.host}/d/#{path}"
     end
   end
 
