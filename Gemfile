@@ -21,14 +21,15 @@ end
 gem 'sdoc',                                     '~> 1.0'
 gem 'git',                                      '~> 1.2'
 gem 'high_voltage',                             '~> 2.0'
-gem 'aws-sdk',                                  '~> 1.42'
+gem 'aws-sdk',                                  '~> 3.0'
 gem 'friendly_id',                              '~> 5.0'
 gem 'rubyzip',                                  '~> 1.1'
 gem 'net-sftp',                                 '~> 2.1'
+gem 'sitemap_generator',                        '~> 6.0'
 gem 'render_anywhere',                          '~> 0.0', require: false
 
 # Frontend
-gem 'bootstrap-sass',                           '~> 3.0.2'
+gem 'bootstrap-sass',                           '~> 3.0'
 gem 'rails_bootstrap_navbar',                   '~> 2.0'
 gem 'font-awesome-rails',                       '~> 4.0'
 
