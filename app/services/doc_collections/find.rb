@@ -34,6 +34,13 @@ module DocCollections
           Array(v).each do |value|
             scope.where!(value.nil? ? "doc_collections.#{$1} IS NOT NULL" : ["doc_collections.#{$1} != ?", value])
           end
+        when :only_one_doc
+          ids = DocCollection.joins(:docs).group('doc_collections.id').having('COUNT(docs.id) = 1')
+          if v
+            scope.where!(id: ids)
+          else
+            scope = scope.where.not(id: ids)
+          end
         else
           raise ArgumentError, "Unexpected condition: #{k}"
         end

@@ -7,7 +7,8 @@ module DocCollections
         current_generator_version = DocGenerators::Sdoc::GetVersion.call
         DocCollections::Find.call(
           generated_at:       true,
-          generated_with_not: [current_generator_version, 'ignore'],
+          generated_with_not: current_generator_version,
+          only_one_doc:       true,
           order:              'generated_at'
         ).last
       end
