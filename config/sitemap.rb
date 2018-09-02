@@ -1,7 +1,8 @@
 require 'aws-sdk'
 
-SitemapGenerator::Sitemap.adapter = SitemapGenerator::AwsSdkAdapter.new(Settings.aws.bucket)
-SitemapGenerator::Sitemap.default_host = "https://#{Settings.host}"
+SitemapGenerator::Sitemap.adapter       = SitemapGenerator::AwsSdkAdapter.new(Settings.aws.bucket)
+SitemapGenerator::Sitemap.sitemaps_host = 'https://s3.amazonaws.com/rubydocs'
+SitemapGenerator::Sitemap.default_host  = "https://#{Settings.host}"
 SitemapGenerator::Sitemap.create do
   # Only doc collections generated after Feb 20, 2018, are included in the sitemap.
   # This is the date the first doc collection was generated with sdoc 1.0.0.
