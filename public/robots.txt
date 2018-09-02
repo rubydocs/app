@@ -1,2 +1,3 @@
+Sitemap: https://rubydocs.org/sitemap.xml.gz
 User-agent: *
 Allow: /

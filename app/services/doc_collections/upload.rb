@@ -62,6 +62,9 @@ module DocCollections
       doc_collection.uploaded_at = Time.now
       doc_collection.save!
 
+      # Regenerate sitemap
+      Rake.application['sitemap:refresh'].invoke
+
       # Delete doc collection files
       DocCollections::DeleteFiles.call doc_collection
 
