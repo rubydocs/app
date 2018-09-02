@@ -1,5 +1,4 @@
-AWS.config \
-  logger:            Rails.logger,
-  access_key_id:     Settings.aws.key,
-  secret_access_key: Settings.aws.secret,
-  region:            Settings.aws.region
+Aws.config.update \
+  credentials: Aws::Credentials.new(Settings.aws.key, Settings.aws.secret),
+  logger:      Rails.logger,
+  region:      Settings.aws.region
