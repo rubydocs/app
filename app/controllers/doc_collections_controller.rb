@@ -37,8 +37,7 @@ class DocCollectionsController < ApplicationController
       path = File.basename(@doc_collection.zipfile)
       redirect_to "http://zip.#{Settings.host}/#{path}"
     else
-      path = [File.basename(@doc_collection.local_path), params[:path]].join
-      redirect_to "https://#{Settings.host}/d/#{path}"
+      redirect_to "https://#{Settings.host}/d/#{@doc_collection.slug}/#{params[:path]}"
     end
   end
 
