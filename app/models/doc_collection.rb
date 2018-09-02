@@ -3,6 +3,7 @@
 # Table name: doc_collections
 #
 #  id             :integer          not null, primary key
+#  file_paths     :text             default([]), not null, is an Array
 #  generated_at   :datetime
 #  generated_with :string(255)
 #  slug           :string(255)      not null

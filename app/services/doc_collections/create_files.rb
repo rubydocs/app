@@ -35,6 +35,12 @@ module DocCollections
         sdoc_merge.merge sdoc_args.concat(docs.map(&:local_path))
       end
 
+      # Update doc collection file paths
+      file_paths = Dir[doc_collection.local_path.join('**/*.html')].map do |filename|
+        filename.sub(%r(\A#{doc_collection.local_path}/), '')
+      end.grep(/\A(files|classes)/)
+      doc_collection.update! file_paths: file_paths
+
       # Create zip
       Dir.chdir doc_collection.local_path do
         Zip::File.open doc_collection.zipfile, Zip::File::CREATE do |zipfile|

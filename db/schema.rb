@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160513104329) do
+ActiveRecord::Schema.define(version: 20180902103945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,11 +21,14 @@ ActiveRecord::Schema.define(version: 20160513104329) do
     t.integer "doc_id"
   end
 
+  add_index "doc_collection_memberships", ["doc_id", "doc_collection_id"], name: "index_doc_collection_m_on_doc_id_and_doc_collection_id", unique: true, using: :btree
+
   create_table "doc_collections", force: :cascade do |t|
     t.datetime "created_at"
+    t.text     "file_paths",     default: [], null: false, array: true
     t.datetime "generated_at"
-    t.string   "generated_with", limit: 255
-    t.string   "slug",           limit: 255, null: false
+    t.string   "generated_with"
+    t.string   "slug",                        null: false
     t.datetime "updated_at"
     t.datetime "uploaded_at"
   end
@@ -35,8 +38,8 @@ ActiveRecord::Schema.define(version: 20160513104329) do
   create_table "docs", force: :cascade do |t|
     t.datetime "created_at"
     t.integer  "project_id"
-    t.string   "slug",       limit: 255, null: false
-    t.string   "tag",        limit: 255
+    t.string   "slug",       null: false
+    t.string   "tag"
     t.datetime "updated_at"
   end
 
@@ -44,11 +47,11 @@ ActiveRecord::Schema.define(version: 20160513104329) do
 
   create_table "projects", force: :cascade do |t|
     t.datetime "created_at"
-    t.string   "git",        limit: 255
-    t.text     "links",                  default: [], null: false, array: true
-    t.string   "name",       limit: 255
-    t.string   "slug",       limit: 255,              null: false
-    t.json     "tags"
+    t.string   "git"
+    t.text     "links",      default: [], null: false, array: true
+    t.string   "name"
+    t.string   "slug",                    null: false
+    t.json     "tags",       default: {}
     t.datetime "updated_at"
   end
 
