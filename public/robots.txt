@@ -1,3 +1,3 @@
-Sitemap: https://rubydocs.org/sitemap.xml.gz
+Sitemap: Sitemap: http://s3.amazonaws.com/rubydocs/sitemap.xml.gz
 User-agent: *
 Allow: /
