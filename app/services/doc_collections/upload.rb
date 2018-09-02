@@ -1,4 +1,3 @@
-require 'aws/s3'
 require 'net/sftp'
 
 module DocCollections
