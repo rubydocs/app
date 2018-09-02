@@ -27,10 +27,16 @@ class Doc < ActiveRecord::Base
   end
 
   def name
-    raise 'Cannot determine doc name without a tag.' if self.tag.blank?
-    raise 'Cannot determine doc name without a project.' if self.project.nil?
+    if self.tag.blank?
+      raise 'Cannot determine doc name without a tag.'
+    end
+    if self.project.nil?
+      raise 'Cannot determine doc name without a project.'
+    end
     version = Projects::ConvertTagsToVersions.call([self.tag])[self.tag]
-    raise "Could not convert tag #{self.tag} to version." if version.nil?
+    if version.nil?
+      raise "Could not convert tag #{self.tag} to version."
+    end
     [self.project.name, version].join(' ')
   end
   alias :to_s :name

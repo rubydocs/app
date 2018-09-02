@@ -19,8 +19,12 @@ module Docs
     def call(id_or_object)
       doc = find_object(id_or_object)
       check_uniqueness
-      raise FilesExistsError, "Files for doc #{doc.name} already exist." if File.exist?(doc.local_path)
-      raise GitFilesDontExistError, "Git files for doc #{doc.name} don't exist." unless File.exist?(doc.local_git_path)
+      if File.exist?(doc.local_path)
+        raise FilesExistsError, "Files for doc #{doc.name} already exist."
+      end
+      unless File.exist?(doc.local_git_path)
+        raise GitFilesDontExistError, "Git files for doc #{doc.name} don't exist."
+      end
 
       FileUtils.cd doc.local_git_path do
         # Create main file

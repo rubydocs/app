@@ -30,7 +30,9 @@ class DocCollectionsController < ApplicationController
     when @doc_collection.uploading? || @doc_collection.generating?
       @email_notification = EmailNotification.new(doc_collection_id: @doc_collection.id)
       render formats: :html
-      # redirect_to url_for(params.merge(trailing_slash: true)) unless request.format.zip? || request.fullpath =~ %r(/\z)
+      # unless request.format.zip? || request.fullpath =~ %r(/\z)
+      #   redirect_to url_for(params.merge(trailing_slash: true))
+      # end
     when request.format.zip?
       path = File.basename(@doc_collection.zipfile)
       redirect_to "http://zip.#{Settings.host}/#{path}"

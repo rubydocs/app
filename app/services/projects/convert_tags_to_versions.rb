@@ -34,7 +34,9 @@ module Projects
           [version_match[:major], version_match[:minor], version_match[:patch]].compact.join('.').tap do |version|
             if version_match[:meta].present?
               meta = version_match[:meta].downcase
-              meta.prepend 'p' if meta =~ /\A\d+\z/
+              if meta =~ /\A\d+\z/
+                meta.prepend 'p'
+              end
               version << "-#{meta}"
             end
           end
