@@ -5,7 +5,7 @@ class PagesController < ApplicationController
     if params[:id] == 'home'
       @single_doc_collections = []
       @combined_doc_collection = DocCollection.new
-      Projects::Find.call([], order: 'name').each do |project|
+      Projects::Find.call(order: 'name').each do |project|
         single_doc_collection = DocCollection.new
         single_doc_collection.docs.build(project: project)
         @single_doc_collections << single_doc_collection

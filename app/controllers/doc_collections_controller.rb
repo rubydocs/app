@@ -7,13 +7,13 @@ class DocCollectionsController < ApplicationController
 
     # Find or create docs
     docs = project_ids_and_tags.map do |project_id, tag|
-      Docs::Find.call([], project_id: project_id, tag: tag).first ||
+      Docs::Find.call(project_id: project_id, tag: tag).first ||
       Docs::Create.call(project_id, tag)
     end
 
     # Find or create doc collection
     doc_collection =
-      DocCollections::Find.call([], docs: docs).first ||
+      DocCollections::Find.call(docs: docs).first ||
       DocCollections::Create.call(docs)
 
     if params[:download_zip]
@@ -24,7 +24,7 @@ class DocCollectionsController < ApplicationController
   end
 
   def show
-    @doc_collection = DocCollections::Find.call([], slug: params[:slug]).first!
+    @doc_collection = DocCollections::Find.call(slug: params[:slug]).first!
 
     case
     when @doc_collection.uploading? || @doc_collection.generating?
