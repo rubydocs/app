@@ -10,12 +10,12 @@ module DocCollections
       check_uniqueness doc_collection.id
 
       if File.exist?(doc_collection.local_path)
-        raise FolderExistsError, "Folder for doc collection #{doc_collection.name} already exist."
+        raise FolderExistsError, "Folder for doc collection #{doc_collection.id} (#{doc_collection}) already exist."
       end
 
       docs = Docs::Find.call(doc_collection: doc_collection)
       if docs.empty?
-        raise Error, "Doc collection #{doc_collection.name} has no docs."
+        raise Error, "Doc collection #{doc_collection.id} (#{doc_collection}) has no docs."
       end
 
       if docs.size == 1

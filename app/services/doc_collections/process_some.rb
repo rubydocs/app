@@ -16,7 +16,7 @@ module DocCollections
         begin
           DocCollections::Generate.call doc_collection_to_generate
         rescue DocCollections::Generate::Error
-          fail %(Error generation doc collection "#{doc_collection_to_generate}")
+          fail "Error generating doc collection #{doc_collection.id} (#{doc_collection_to_generate})."
         end
       end
 

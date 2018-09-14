@@ -52,7 +52,7 @@ module Docs
           begin
             RDoc::RDoc.new.document options
           rescue RDoc::Error
-            fail "Error generating files for doc #{doc}"
+            fail "Error creating files for doc #{doc.id} (#{doc})."
           end
 
           unless FILES_TO_CHECK.each { |file| File.exists?(file) }
