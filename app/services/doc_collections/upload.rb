@@ -63,6 +63,7 @@ module DocCollections
       doc_collection.save!
 
       # Regenerate sitemap
+      Rails.application.load_tasks
       Rake.application['sitemap:refresh'].invoke
 
       # Delete doc collection files
