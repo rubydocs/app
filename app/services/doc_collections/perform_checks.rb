@@ -10,7 +10,7 @@ module DocCollections
       uploaded_doc_collections = DocCollections::Find.call(created_after: 7.days.ago, uploaded_at: true)
       not_found_uploaded_doc_collections = uploaded_doc_collections.select do |doc_collection|
         begin
-          open "http://docs.rubydocs.org/#{doc_collection.slug}"
+          open "https://rubydocs.org/d/#{doc_collection.slug}/"
         rescue OpenURI::HTTPError
           true
         else
