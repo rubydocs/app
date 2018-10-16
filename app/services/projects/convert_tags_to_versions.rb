@@ -13,7 +13,7 @@ module Projects
           (?:
             [-_.]
             (?<meta>
-              (beta|rc|preview|pre|p)?
+              (alpha|beta|rc|preview|pre|p)?
               [_.]?
               \d*
             )
