@@ -5,8 +5,7 @@ module DocCollections
   class CreateFiles < Services::Base
     FolderExistsError = Class.new(Error)
 
-    def call(id_or_object)
-      doc_collection = find_object(id_or_object)
+    def call(doc_collection)
       check_uniqueness doc_collection.id
 
       if File.exist?(doc_collection.local_path)

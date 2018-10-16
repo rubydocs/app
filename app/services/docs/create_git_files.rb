@@ -1,7 +1,6 @@
 module Docs
   class CreateGitFiles < Services::Base
-    def call(id_or_object)
-      doc = find_object(id_or_object)
+    def call(doc)
       check_uniqueness doc.project.id
       git = Git.open(doc.project.local_path)
       git.checkout doc.tag

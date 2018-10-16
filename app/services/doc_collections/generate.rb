@@ -1,8 +1,6 @@
 module DocCollections
   class Generate < Services::Base
-    def call(id_or_object)
-      doc_collection = find_object(id_or_object)
-
+    def call(doc_collection)
       check_uniqueness doc_collection.id
 
       # Create files for docs

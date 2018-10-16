@@ -16,8 +16,7 @@ module Docs
       RDoc::Generator::SDoc::SEARCH_INDEX_FILE
     ]
 
-    def call(id_or_object)
-      doc = find_object(id_or_object)
+    def call(doc)
       check_uniqueness
       if File.exist?(doc.local_path)
         raise FilesExistsError, "Files for doc #{doc.name} already exist."

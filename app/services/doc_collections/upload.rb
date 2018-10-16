@@ -4,8 +4,7 @@ module DocCollections
   class Upload < Services::Base
     SyncError = Class.new(Error)
 
-    def call(id_or_object)
-      doc_collection = find_object(id_or_object)
+    def call(doc_collection)
       check_uniqueness doc_collection.id
       if doc_collection.generating?
         raise Error, "Doc collection #{doc_collection.name} is not generated yet."
