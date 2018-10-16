@@ -1,3 +1,5 @@
+require 'cloudflare'
+
 module Projects
   class UpdateTagsForAll < Services::Base
     UNSTABLE_TAGS_REGEX = /rc|alpha|beta|pre/
