@@ -46,4 +46,8 @@ class DocCollection < ActiveRecord::Base
   def uploading?
     !self.generating? && self.uploaded_at.nil?
   end
+
+  def uploaded?
+    !!uploaded_at
+  end
 end

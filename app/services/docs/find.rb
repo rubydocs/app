@@ -1,5 +1,7 @@
 module Docs
   class Find < Services::Query
+    convert_condition_objects_to_ids :project
+
     private def process(scope, conditions)
       conditions.each do |k, v|
         case k
