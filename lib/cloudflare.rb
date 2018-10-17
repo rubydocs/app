@@ -1,18 +1,36 @@
+require 'addressable/uri'
 require 'rest-client'
 
 module Cloudflare
-  def self.store(key, value)
-    response = RestClient::Request.execute(
-      method:  :put,
-      url:     "https://api.cloudflare.com/client/v4/accounts/#{Settings.cloudflare.account_id}/storage/kv/namespaces/#{Settings.cloudflare.namespace_id}/values/#{key}",
+  BASE_URL = 'https://api.cloudflare.com/client/v4/'
+
+  Error = Class.new(StandardError)
+
+  extend self
+
+  def kv_store(key, value)
+    path = "accounts/#{Settings.cloudflare.account_id}/storage/kv/namespaces/#{Settings.cloudflare.namespace_id}/values/#{key}"
+    request path, value
+  end
+
+  def update_worker_script
+    path    = "zones/#{Settings.cloudflare.zone_id}/workers/script"
+    payload = File.read(Rails.root.join('lib', 'cloudflare_worker.js'))
+    request path, payload, headers: { content_type: 'application/javascript' }
+  end
+
+  private
+
+  def request(path, payload, method: :put, headers: {})
+    params = {
+      method:  method,
+      url:     Addressable::URI.join(BASE_URL, path).to_s,
+      payload: payload,
       headers: {
         'X-Auth-Email': Settings.cloudflare.email,
         'X-Auth-Key':   Settings.cloudflare.auth_key
-      },
-      payload: value
-    )
-    unless response.code == 200 && JSON.load(response.body)['success']
-      fail Error, 'Error storing value on Cloudflare' rescue Rollbar.error $!, key: key, value: value, response: response
-    end
+      }.merge(headers)
+    }
+    RestClient::Request.execute(params)
   end
 end

@@ -15,7 +15,7 @@ module Projects
         case
         when doc_collection
           if doc_collection.uploaded?
-            Cloudflare.store project.slug, doc_collection.slug
+            Cloudflare.kv_store project.slug, doc_collection.slug
           end
         when %w(Ruby Rails).include?(project.name)
           doc ||= Docs::Create.call(project.id, latest_stable_tag)
