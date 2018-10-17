@@ -104,13 +104,12 @@ body#home {
     }
 
     #sponsors {
+      max-width: 600px;
+      margin: 0 auto;
 
       a {
-        margin-right: 20px;
-
-        &:last-of-type {
-          margin-right: 0;
-        }
+        display: inline-block;
+        margin: 0 10px 20px;
       }
     }
   }
