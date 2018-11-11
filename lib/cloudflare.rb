@@ -31,6 +31,8 @@ module Cloudflare
         'X-Auth-Key':   Settings.cloudflare.auth_key
       }.merge(headers)
     }
-    RestClient::Request.execute(params)
+    10.tries on: [RestClient::GatewayTimeout, RestClient::ServiceUnavailable] do
+      RestClient::Request.execute(params)
+    end
   end
 end
