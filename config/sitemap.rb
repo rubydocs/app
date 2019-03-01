@@ -1,4 +1,4 @@
-require 'aws-sdk'
+require 'aws-sdk-s3'
 
 SitemapGenerator::Sitemap.adapter       = SitemapGenerator::AwsSdkAdapter.new(Settings.aws.bucket)
 SitemapGenerator::Sitemap.sitemaps_host = 'https://s3.amazonaws.com/rubydocs'
