@@ -28,6 +28,7 @@ gem 'net-sftp',                                 '~> 2.1'
 gem 'sitemap_generator',                        '~> 6.0'
 gem 'render_anywhere',                          '~> 0.0', require: false
 gem 'nifty_settings',                           '~> 2.0'
+gem 'rest-client',                              '~> 2.0'
 
 # Frontend
 gem 'bootstrap-sass',                           '~> 3.0'
