@@ -39,13 +39,8 @@ module Docs
         options.title        = doc.name
         options.op_dir       = doc.local_path
         options.main_page    = main_file
-        %w(test example bin).each do |dir|
-          if File.exist?(dir)
-            options.exclude ||= []
-            options.exclude << "\\b#{dir}\/"
-          end
-        end
-        options.files = Dir['**/*.{c,rb,rdoc}']
+        options.exclude      = %w(test example bin).select(&File.method(:exist?)).map { |dir| "\\b#{dir}\/" }
+        options.files        = Dir['**/*.{c,rb,rdoc}']
 
         5.tries on: [Errno::EPIPE, IncompleteError] do
           begin
