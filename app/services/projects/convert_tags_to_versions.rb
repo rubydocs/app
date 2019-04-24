@@ -2,7 +2,7 @@ module Projects
   class ConvertTagsToVersions < Services::Base
     VERSION_REGEX = %r(
       \A
-      (?:v|REL_)?
+      (?:v|REL_|REV_)?
       (?<major>\d+)
       (?:
         [_.]
