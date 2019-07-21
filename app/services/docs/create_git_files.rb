@@ -2,7 +2,7 @@ module Docs
   class CreateGitFiles < Services::Base
     def call(doc)
       check_uniqueness doc.project.id
-      git = Git.open(doc.project.local_path)
+      git = Projects::OpenGit.call(doc.project)
       git.checkout doc.tag
       if File.exist?(doc.local_git_path)
         FileUtils.rm_rf doc.local_git_path
