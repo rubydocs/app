@@ -21,8 +21,8 @@ module DocCollections
       remote_path = local_path.split('/').last << '/'
       s3cmd = Rails.root.join('lib', 's3cmd', 's3cmd')
       s3cmd_options = {
-        access_key:              ENV.fetch('AWS_KEY')],
-        secret_key:              ENV.fetch('AWS_SECRET')],
+        access_key:              ENV.fetch('AWS_KEY'),
+        secret_key:              ENV.fetch('AWS_SECRET'),
         quiet:                   true,
         :'delete-removed'     => true,
         :'no-preserve'        => true,
@@ -37,7 +37,7 @@ module DocCollections
         end
       end
       10.tries on: SyncError do
-        command = "#{s3cmd} sync #{s3cmd_args.join(' ')} #{local_path} s3://#{ENV.fetch('AWS_BUCKET')]}/#{remote_path}"
+        command = "#{s3cmd} sync #{s3cmd_args.join(' ')} #{local_path} s3://#{ENV.fetch('AWS_BUCKET')}/#{remote_path}"
         result = system(command)
         unless result
           raise SyncError, "Sync ended with non-success error status: #{$?}, command: #{command}"
@@ -51,7 +51,7 @@ module DocCollections
       # Follow symlinks
       local_file = Pathname.new(doc_collection.zipfile).realpath.to_s
       remote_file = File.join('public_html', File.basename(doc_collection.zipfile))
-      Net::SFTP.start(ENV.fetch('ZIP_FTP_HOST')], ENV.fetch('ZIP_FTP_USERNAME')], password: ENV.fetch('ZIP_FTP_PASSWORD')]) do |sftp|
+      Net::SFTP.start(ENV.fetch('ZIP_FTP_HOST'), ENV.fetch('ZIP_FTP_USERNAME'), password: ENV.fetch('ZIP_FTP_PASSWORD')) do |sftp|
         10.tries on: [IOError, Net::SSH::Disconnect] do
           sftp.upload! local_file, remote_file
         end
