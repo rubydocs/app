@@ -23,7 +23,7 @@ class Doc < ActiveRecord::Base
   validates :project, presence: true
 
   def local_git_path
-    Rails.root.join('files', 'doc_gits', self.slug)
+    Rails.root.join('tmp', 'files', 'doc_gits', self.slug)
   end
 
   def name
