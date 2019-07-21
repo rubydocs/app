@@ -3,10 +3,15 @@ require 'git'
 module Projects
   class OpenGit < Services::Base
     def call(project)
-      unless File.directory?(project.local_path)
-        Git.clone(project.git, project.slug, path: project.local_path)
+      if File.directory?(project.local_path)
+        Git.open(project.local_path)
+      else
+        Git.clone(project.git, project.slug,
+          path:      project.local_path.dirname,
+          depth:     1,
+          recursive: true
+        )
       end
-      Git.open(project.local_path)
     end
   end
 end
