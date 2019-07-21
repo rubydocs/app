@@ -1,4 +1,4 @@
 Aws.config.update \
-  credentials: Aws::Credentials.new(Settings.aws.key, Settings.aws.secret),
+  credentials: Aws::Credentials.new(ENV.fetch('AWS_ACCESS_KEY_ID'), ENV.fetch('AWS_SECRET_ACCESS_KEY')),
   logger:      Rails.logger,
-  region:      Settings.aws.region
+  region:      ENV.fetch('AWS_REGION')

@@ -12,7 +12,7 @@ module DocCollections
         regex_prefix = if doc_collection.docs.size > 1
           "(#{doc_collection.docs.map { |doc| Regexp.escape doc.name }.join('|')})/"
         end
-        bucket = Aws::S3::Resource.new.bucket(Settings.aws.bucket)
+        bucket = Aws::S3::Resource.new.bucket(ENV.fetch('AWS_BUCKET'))
         bucket.objects(prefix: "#{doc_collection.slug}/").map do |object|
           object.key.sub(%r(\A#{doc_collection.slug}/), '')
         end.grep(/\A#{regex_prefix}(files|classes)/)

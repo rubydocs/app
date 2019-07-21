@@ -1,5 +1,5 @@
 class Mailer < ActionMailer::Base
-  FROM = "RubyDocs <#{Settings.mail.from}>"
+  FROM = "RubyDocs <#{ENV.fetch('MAIL_FROM')}>"
 
   default from: FROM
 
@@ -14,7 +14,7 @@ class Mailer < ActionMailer::Base
 
   def doc_collection_checks(messages)
     mail \
-      to:      Settings.mail.admin,
+      to:      ENV.fetch('MAIL_ADMIN'),
       subject: "[RubyDocs] Data collection checks",
       body:    messages.join("\n")
   end

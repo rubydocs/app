@@ -1,7 +1,7 @@
 require 'rollbar/rails'
 
 Rollbar.configure do |config|
-  config.access_token = Settings.rollbar.access_token
+  config.access_token = ENV.fetch('ROLLBAR_ACCESS_TOKEN')
 
   config.enabled = !%w(development test).include?(Rails.env)
 

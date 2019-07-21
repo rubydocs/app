@@ -8,6 +8,4 @@ Rails.application.routes.draw do
   get ':slug(.:format)(*path)' => 'doc_collections#show', as: 'doc_collection'
 
   root to: 'pages#show', id: 'home'
-
-  default_url_options host: Settings.host
 end

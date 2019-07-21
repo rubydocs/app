@@ -35,9 +35,9 @@ class DocCollectionsController < ApplicationController
       # end
     when request.format.zip?
       path = File.basename(@doc_collection.zipfile)
-      redirect_to "http://zip.#{Settings.host}/#{path}"
+      redirect_to "http://zip.#{ENV.fetch('HOST')}/#{path}"
     else
-      redirect_to "https://#{Settings.host}/d/#{@doc_collection.slug}/#{params[:path]}"
+      redirect_to "https://#{ENV.fetch('HOST')}/d/#{@doc_collection.slug}/#{params[:path]}"
     end
   end
 

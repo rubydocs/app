@@ -9,12 +9,12 @@ module Cloudflare
   extend self
 
   def kv_store(key, value)
-    path = "accounts/#{Settings.cloudflare.account_id}/storage/kv/namespaces/#{Settings.cloudflare.namespace_id}/values/#{key}"
+    path = "accounts/#{ENV.fetch('CLOUDFLARE_ACCOUNT_ID')}/storage/kv/namespaces/#{ENV.fetch('CLOUDFLARE_NAMESPACE_ID')}/values/#{key}"
     request path, value
   end
 
   def update_worker_script
-    path    = "zones/#{Settings.cloudflare.zone_id}/workers/script"
+    path    = "zones/#{ENV.fetch('CLOUDFLARE_ZONE_ID')}/workers/script"
     payload = File.read(Rails.root.join('lib', 'cloudflare_worker.js'))
     request path, payload, headers: { content_type: 'application/javascript' }
   end
@@ -27,8 +27,8 @@ module Cloudflare
       url:     Addressable::URI.join(BASE_URL, path).to_s,
       payload: payload,
       headers: {
-        'X-Auth-Email': Settings.cloudflare.email,
-        'X-Auth-Key':   Settings.cloudflare.auth_key
+        'X-Auth-Email': ENV.fetch('CLOUDFLARE_EMAIL'),
+        'X-Auth-Key':   ENV.fetch('CLOUDFLARE_AUTH_KEY')
       }.merge(headers)
     }
     10.tries on: [RestClient::GatewayTimeout, RestClient::ServiceUnavailable, RestClient::InternalServerError] do
