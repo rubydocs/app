@@ -19,6 +19,7 @@ module DocCollections
 
       if docs.size == 1
         # Copy docs
+        FileUtils.mkdir_p doc_collection.local_path.dirname
         FileUtils.cp_r docs.first.local_path, doc_collection.local_path
       else
         # Merge docs
