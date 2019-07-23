@@ -21,8 +21,8 @@ module DocCollections
       remote_path = local_path.split('/').last << '/'
       s3cmd = Rails.root.join('lib', 's3cmd', 's3cmd')
       s3cmd_options = {
-        access_key:              ENV.fetch('AWS_KEY'),
-        secret_key:              ENV.fetch('AWS_SECRET'),
+        access_key:              ENV.fetch('AWS_ACCESS_KEY_ID'),
+        secret_key:              ENV.fetch('AWS_SECRET_ACCESS_KEY'),
         quiet:                   true,
         :'delete-removed'     => true,
         :'no-preserve'        => true,
