@@ -11,6 +11,8 @@ module Projects
           depth:     1,
           recursive: true
         )
+      end.tap do |git|
+        git.fetch 'origin', tags: true
       end
     end
   end
