@@ -22,6 +22,7 @@ gem 'aws-sdk-s3',             '~> 1.30'
 gem 'bootstrap-sass',         '~> 3.0'
 gem 'dotenv-heroku',          '~> 0.0'
 gem 'dotenv-rails',           '~> 2.7'
+gem 'envkey',                 '~> 1.0', '!= 1.2.6' # v1.2.6 breaks loading env vars in test env
 gem 'font-awesome-rails',     '~> 4.0'
 gem 'friendly_id',            '~> 5.0'
 gem 'git',                    '~> 1.2'
