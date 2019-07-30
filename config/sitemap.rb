@@ -16,9 +16,11 @@ SitemapGenerator::Sitemap.create do
   doc_collections.find_each do |doc_collection|
     add "/d/#{doc_collection.slug}/", lastmod: doc_collection.uploaded_at, priority: 0.75
     # Ignore the file paths of doc collections with more than one doc.
-    next if doc_collection.docs.size > 1
-    DocCollections::FetchFilePaths.call(doc_collection).each do |file_path|
-      add "/d/#{doc_collection.slug}/#{file_path}", lastmod: doc_collection.uploaded_at
-    end
+
+    # This generates too many paths...
+    # next if doc_collection.docs.size > 1
+    # DocCollections::FetchFilePaths.call(doc_collection).each do |file_path|
+    #   add "/d/#{doc_collection.slug}/#{file_path}", lastmod: doc_collection.uploaded_at
+    # end
   end
 end
