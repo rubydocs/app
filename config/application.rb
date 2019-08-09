@@ -1,16 +1,9 @@
 require File.expand_path('../boot', __FILE__)
 
-# Silence warnings while loading Rails gems, since we're using Ruby 2.6 and Rails 4,
-# we would otherwise get "warning: BigDecimal.new is deprecated; use BigDecimal() method instead."
-old_verbose, $VERBOSE = $VERBOSE, nil
-begin
-  require 'active_record/railtie'
-  require 'action_controller/railtie'
-  require 'action_mailer/railtie'
-  require 'sprockets/railtie'
-ensure
-  $VERBOSE = old_verbose
-end
+require 'active_record/railtie'
+require 'action_controller/railtie'
+require 'action_mailer/railtie'
+require 'sprockets/railtie'
 
 I18n.config.enforce_available_locales = false
 
