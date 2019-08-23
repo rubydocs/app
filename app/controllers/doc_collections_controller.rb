@@ -43,7 +43,7 @@ class DocCollectionsController < ApplicationController
 
   private
 
-  def doc_collection_params
-    params.require(:doc_collection).permit!
-  end
+    def doc_collection_params
+      params.require(:doc_collection).permit!
+    end
 end

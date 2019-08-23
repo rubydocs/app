@@ -6,7 +6,7 @@ class EmailNotificationsController < ApplicationController
 
   private
 
-  def email_notification_params
-    params.require(:email_notification).permit(:email, :doc_collection_id)
-  end
+    def email_notification_params
+      params.require(:email_notification).permit(:email, :doc_collection_id)
+    end
 end

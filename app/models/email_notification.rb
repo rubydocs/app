@@ -26,10 +26,10 @@ class EmailNotification
 
   private
 
-  def self.cache_key(doc_collection_id)
-    [
-      'email_notifications',
-      doc_collection_id
-    ].join(':')
-  end
+    def self.cache_key(doc_collection_id)
+      [
+        'email_notifications',
+        doc_collection_id
+      ].join(':')
+    end
 end
