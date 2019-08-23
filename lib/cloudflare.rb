@@ -9,8 +9,11 @@ module Cloudflare
   extend self
 
   def kv_store(key, value)
-    path = "accounts/#{ENV.fetch('CLOUDFLARE_ACCOUNT_ID')}/storage/kv/namespaces/#{ENV.fetch('CLOUDFLARE_NAMESPACE_ID')}/values/#{key}"
-    request path, value
+    request kv_path(key), value
+  end
+
+  def kv_delete(key)
+    request kv_path(key), nil, method: :delete
   end
 
   def update_worker_script
@@ -21,18 +24,31 @@ module Cloudflare
 
   private
 
-  def request(path, payload, method: :put, headers: {})
-    params = {
-      method:  method,
-      url:     Addressable::URI.join(BASE_URL, path).to_s,
-      payload: payload,
-      headers: {
-        'X-Auth-Email': ENV.fetch('CLOUDFLARE_EMAIL'),
-        'X-Auth-Key':   ENV.fetch('CLOUDFLARE_AUTH_KEY')
-      }.merge(headers)
-    }
-    10.tries on: [RestClient::GatewayTimeout, RestClient::ServiceUnavailable, RestClient::InternalServerError] do
-      RestClient::Request.execute(params)
+    def kv_path(key)
+      [
+        'accounts',
+        ENV.fetch('CLOUDFLARE_ACCOUNT_ID'),
+        'storage',
+        'kv',
+        'namespaces',
+        ENV.fetch('CLOUDFLARE_NAMESPACE_ID'),
+        'values',
+        key
+      ].join('/')
     end
-  end
+
+    def request(path, payload, method: :put, headers: {})
+      params = {
+        method:  method,
+        url:     Addressable::URI.join(BASE_URL, path).to_s,
+        payload: payload,
+        headers: {
+          'X-Auth-Email': ENV.fetch('CLOUDFLARE_EMAIL'),
+          'X-Auth-Key':   ENV.fetch('CLOUDFLARE_AUTH_KEY')
+        }.merge(headers)
+      }
+      10.tries on: [RestClient::GatewayTimeout, RestClient::ServiceUnavailable, RestClient::InternalServerError] do
+        RestClient::Request.execute(params)
+      end
+    end
 end
