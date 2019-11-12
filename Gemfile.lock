@@ -503,3 +503,9 @@ DEPENDENCIES
   webmock (~> 3.0)
   whenever (~> 1.0)
   where-or (~> 0.1)
+
+RUBY VERSION
+   ruby 2.5.5p157
+
+BUNDLED WITH
+   1.17.3
