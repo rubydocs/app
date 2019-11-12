@@ -34,6 +34,7 @@ gem 'rest-client',            '~> 2.0'
 gem 'rubyzip',                '~> 1.1'
 gem 'sdoc',                   '~> 1.0'
 gem 'sitemap_generator',      '~> 6.0'
+gem 'rack-cors',              '~> 1.0'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery.smooth-scroll',      '~> 1.4'
