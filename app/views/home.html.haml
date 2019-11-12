@@ -82,25 +82,26 @@
 
 .projects
   - @single_doc_collections.each do |doc_collection|
+    - project = doc_collection.docs.first.project
     .project.panel.panel-default
       .panel-heading
         %h3.project-title.panel-title
-          = doc_collection.docs.first.project.name
+          = project.name
       .panel-body
         .row
           .col-sm-6
             = form_for doc_collection do |f|
               = f.fields_for :docs do |doc_fields|
                 = render 'docs/form_fields', form: doc_fields
-                = render 'docs/form_actions', form: doc_fields
+                - if project.tags.any?
+                  = render 'docs/form_actions', form: doc_fields
           .meta.col-sm-6
             %p
-              = pluralize doc_collection.docs.first.project.tags.size, 'version'
+              = pluralize project.tags.size, 'version'
               indexed
-            - links = doc_collection.docs.first.project.links
-            - if links.any?
+            - if project.links.any?
               %ul
-                - links.each do |link|
+                - project.links.each do |link|
                   %li
                     = favicon_tag link
                     = link_to link.sub(%r(\Ahttps?://(www\.)?), ''), link, target: '_blank', rel: 'nofollow'
