@@ -47,13 +47,7 @@ module Cloudflare
           'X-Auth-Key':   ENV.fetch('CLOUDFLARE_AUTH_KEY')
         }.merge(headers)
       }
-      errors = [
-        RestClient::BadGateway,
-        RestClient::GatewayTimeout,
-        RestClient::ServiceUnavailable,
-        RestClient::InternalServerError
-      ]
-      10.tries on: errors do
+      10.tries delay: 1 do
         RestClient::Request.execute(params)
       end
     end
