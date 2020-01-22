@@ -50,5 +50,7 @@ module Cloudflare
       10.tries delay: 1 do
         RestClient::Request.execute(params)
       end
+    rescue => e
+      raise Error, "Error calling Cloudflare: #{e.message}"
     end
 end
