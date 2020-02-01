@@ -122,8 +122,6 @@ GEM
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.7.5)
-    dotenv-heroku (0.0.1)
-      rake
     dotenv-rails (2.7.5)
       dotenv (= 2.7.5)
       railties (>= 3.2, < 6.1)
@@ -443,7 +441,6 @@ DEPENDENCIES
   coffee-rails (~> 4.0)
   connection_pool (~> 2.0)
   derailed_benchmarks (~> 1.3)
-  dotenv-heroku (~> 0.0)
   dotenv-rails (~> 2.7)
   envkey (~> 1.0, != 1.2.6)
   factory_bot_rails (~> 5.0)
