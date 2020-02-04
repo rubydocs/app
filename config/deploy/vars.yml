@@ -1,4 +1,4 @@
-deploy_repo: https://github.com/krautcomputing/rubydocs.git
+deploy_repo: https://github.com/manuelmeurer/rubydocs.git
 deploy_hosts:
   - worker01
 deploy_whenever_hosts:

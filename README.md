@@ -1,7 +1,7 @@
 # RubyDocs
 
-[![Build Status](https://secure.travis-ci.org/krautcomputing/rubydocs.png)](https://travis-ci.org/krautcomputing/rubydocs)
-[![Code Climate](https://codeclimate.com/github/krautcomputing/rubydocs.png)](https://codeclimate.com/github/krautcomputing/rubydocs)
+[![Build Status](https://secure.travis-ci.org/manuelmeurer/rubydocs.png)](https://travis-ci.org/manuelmeurer/rubydocs)
+[![Code Climate](https://codeclimate.com/github/manuelmeurer/rubydocs.png)](https://codeclimate.com/github/manuelmeurer/rubydocs)
 
 RubyDocs is a web app that lets you create [sdoc](https://github.com/zzak/sdoc) documentation for any version of Ruby and Rails (separately or combined into one set of docs)
 
