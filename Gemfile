@@ -20,6 +20,7 @@ end
 
 gem 'aws-sdk-s3',             '~> 1.30'
 gem 'bootstrap-sass',         '~> 3.0'
+gem 'coffee-rails',           '~> 4.2'
 gem 'dotenv-rails',           '~> 2.7'
 gem 'envkey',                 '~> 1.0', '!= 1.2.6' # v1.2.6 breaks loading env vars in test env
 gem 'font-awesome-rails',     '~> 4.0'
@@ -27,13 +28,14 @@ gem 'friendly_id',            '~> 5.0'
 gem 'git',                    '~> 1.2'
 gem 'high_voltage',           '~> 2.0'
 gem 'net-sftp',               '~> 2.1'
+gem 'rack-cors',              '~> 1.0'
 gem 'rails_bootstrap_navbar', '~> 2.0'
 gem 'render_anywhere',        '~> 0.0', require: false
 gem 'rest-client',            '~> 2.0'
 gem 'rubyzip',                '~> 1.1'
 gem 'sdoc',                   '~> 1.0'
 gem 'sitemap_generator',      '~> 6.0'
-gem 'rack-cors',              '~> 1.0'
+gem 'sprockets',              '~> 3.7'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery.smooth-scroll',      '~> 1.4'
