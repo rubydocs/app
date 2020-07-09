@@ -106,7 +106,8 @@
                     = favicon_tag link
                     = link_to link.sub(%r(\Ahttps?://(www\.)?), ''), link, target: '_blank', rel: 'nofollow'
   .not-found
-    No project found. :(
+    No project found.
+    = link_to 'Add one now', '#', data: { toggle: 'modal', target: '#add-project' }
 
 %hr
 
