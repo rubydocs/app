@@ -41,6 +41,7 @@ module Docs
         options.main_page    = main_file
         options.exclude      = %w(test example bin).select(&File.method(:exist?)).map { |dir| "\\b#{dir}\/" }
         options.files        = Dir['**/*.{c,rb,rdoc}']
+        options.visibility   = :private
 
         5.tries on: [Errno::EPIPE, IncompleteError] do
           begin
