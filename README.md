@@ -17,4 +17,4 @@ The application is live at https://rubydocs.org/
 
 ## Support
 
-If you like this project, consider [buying me a coffee](https://www.buymeacoffee.com/279lcDtbF)! :)
+If you find RubyGems useful and would like to support the ongoing development, [buy me a coffee](https://www.buymeacoffee.com/279lcDtbF) or [become a sponsor](https://github.com/sponsors/manuelmeurer)!
