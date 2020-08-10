@@ -1,11 +1,10 @@
 # RubyDocs
 
-[![Build Status](https://secure.travis-ci.org/manuelmeurer/rubydocs.png)](https://travis-ci.org/manuelmeurer/rubydocs)
-[![Code Climate](https://codeclimate.com/github/manuelmeurer/rubydocs.png)](https://codeclimate.com/github/manuelmeurer/rubydocs)
-
-RubyDocs is a web app that lets you create [sdoc](https://github.com/zzak/sdoc) documentation for any version of Ruby and Rails (separately or combined into one set of docs)
+RubyDocs lets you create fast and searchable docs for any Ruby project by using the [sdoc](https://github.com/zzak/sdoc) documentation tool.
 
 The application is live at https://rubydocs.org/
+
+If you find a bug or have an idea for a new feature, please [open an issue](https://github.com/manuelmeurer/rubydocs/issues/new)!
 
 ## Contributing
 
@@ -17,4 +16,4 @@ The application is live at https://rubydocs.org/
 
 ## Support
 
-If you find RubyGems useful and would like to support the ongoing development, [buy me a coffee](https://www.buymeacoffee.com/279lcDtbF) or [become a sponsor](https://github.com/sponsors/manuelmeurer)!
+If you find RubyDocs useful and would like to support the ongoing development, [buy me a coffee](https://www.buymeacoffee.com/279lcDtbF) or [become a sponsor](https://github.com/sponsors/manuelmeurer)!
