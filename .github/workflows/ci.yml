@@ -62,7 +62,7 @@ jobs:
       - name: Set up database
         run: |
           cp config/database.yml.ci config/database.yml
-          bin/rails db:setup
+          bundle exec rake db:setup
 
       - name: Run tests
         run: bin/rspec
