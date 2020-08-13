@@ -1,0 +1,68 @@
+name: CI
+on: [push, pull_request]
+
+jobs:
+
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    env:
+      ENVKEY: ${{ secrets.ENVKEY }}
+      RAILS_ENV: test
+      POSTGRES_DB: rubydocs_test
+      POSTGRES_HOST: localhost
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: rubydocs
+
+    services:
+
+      postgres:
+        image: postgres:11
+        ports:
+          - 5432:5432
+        # TODO: Unfortunately this service doesn't inherit the env vars from the job. Is there a way to fix this?
+        env:
+          POSTGRES_DB: rubydocs_test
+          POSTGRES_HOST: localhost
+          POSTGRES_PASSWORD: password
+          POSTGRES_USER: rubydocs
+
+      redis:
+        image: redis
+        options: --entrypoint redis-server
+        ports:
+          - 6379:6379
+
+    steps:
+
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: Load env vars
+        uses: rojopolis/envkey-action@master
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+
+      - name: Cache gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      - name: Install gems
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+
+      - name: Set up database
+        run: |
+          cp config/database.yml.ci config/database.yml
+          bin/rails db:setup
+
+      - name: Run tests
+        run: bin/rspec
