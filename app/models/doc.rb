@@ -16,6 +16,7 @@ class Doc < ActiveRecord::Base
   friendly_id :name, use: :slugged
 
   belongs_to :project
+
   has_many :doc_collection_memberships, dependent: :destroy
   has_many :doc_collections, through: :doc_collection_memberships
 
