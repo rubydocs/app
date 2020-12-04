@@ -36,14 +36,14 @@ module DocCollections
       end
 
       # Create zip
-      Dir.chdir doc_collection.local_path do
-        Zip::File.open doc_collection.zipfile, Zip::File::CREATE do |zipfile|
-          Dir['**/*'].each do |file|
-            zipfile.add file, file
-          end
-        end
-        FileUtils.chmod 0644, doc_collection.zipfile
-      end
+      # Dir.chdir doc_collection.local_path do
+      #   Zip::File.open doc_collection.zipfile, Zip::File::CREATE do |zipfile|
+      #     Dir['**/*'].each do |file|
+      #       zipfile.add file, file
+      #     end
+      #   end
+      #   FileUtils.chmod 0644, doc_collection.zipfile
+      # end
 
       doc_collection
     end

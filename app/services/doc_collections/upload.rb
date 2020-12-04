@@ -45,17 +45,17 @@ module DocCollections
       end
 
       # Upload zip
-      unless File.exist?(doc_collection.zipfile)
-        raise Error, "Doc collection #{doc_collection.name} zipfile doesn't exist."
-      end
-      # Follow symlinks
-      local_file = Pathname.new(doc_collection.zipfile).realpath.to_s
-      remote_file = File.join('public_html', File.basename(doc_collection.zipfile))
-      Net::SFTP.start(ENV.fetch('ZIP_FTP_HOST'), ENV.fetch('ZIP_FTP_USERNAME'), password: ENV.fetch('ZIP_FTP_PASSWORD')) do |sftp|
-        10.tries on: [IOError, Net::SSH::Disconnect] do
-          sftp.upload! local_file, remote_file
-        end
-      end
+      # unless File.exist?(doc_collection.zipfile)
+      #   raise Error, "Doc collection #{doc_collection.name} zipfile doesn't exist."
+      # end
+      # # Follow symlinks
+      # local_file = Pathname.new(doc_collection.zipfile).realpath.to_s
+      # remote_file = File.join('public_html', File.basename(doc_collection.zipfile))
+      # Net::SFTP.start(ENV.fetch('ZIP_FTP_HOST'), ENV.fetch('ZIP_FTP_USERNAME'), password: ENV.fetch('ZIP_FTP_PASSWORD')) do |sftp|
+      #   10.tries on: [IOError, Net::SSH::Disconnect] do
+      #     sftp.upload! local_file, remote_file
+      #   end
+      # end
 
       # Set uploaded_at timestamp
       doc_collection.uploaded_at = Time.now
