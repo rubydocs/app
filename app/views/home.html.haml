@@ -28,8 +28,7 @@
         %p
           If you have any questions,
           = mail_to ENV.fetch('MAIL_FROM'), 'let me know!'
-        = form_tag "//formspree.io/#{ENV.fetch('MAIL_FROM')}" do
-          = hidden_field_tag '_subject', 'New project'
+        = form_tag 'https://formspree.io/f/mqkgnayq' do
           .form-group
             = text_field_tag 'name', nil, class: 'form-control', required: true, placeholder: 'Your name'
           .form-group
