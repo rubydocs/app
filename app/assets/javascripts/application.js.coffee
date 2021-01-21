@@ -15,7 +15,7 @@ $ ->
     enableProjectSearch()
     autoProjectSearch()
     fixSelect2InDocCollectionModal()
-    submitNewProjectFormViaAjax()
+    watchNewProjectForm()
 
 $searchInput = $('form#project-search input#search')
 
@@ -114,30 +114,9 @@ fixSelect2InDocCollectionModal = ->
   $('#combined-docs').on 'shown.bs.modal', (e) ->
     enableSelect2()
 
-submitNewProjectFormViaAjax = ->
-  $('#add-project form').submit (e) ->
-    e.preventDefault()
-
-    $submit = $(@).find(':submit')
-    $submit.data('original-text', $submit.text())
-    $submit.text($submit.data('loading'))
-    $submit.addClass('disabled')
-
-    $.ajax @action,
-      type:     'POST'
-      data:     $(@).serialize()
-      dataType: 'json'
-    .always =>
-      $submit.removeClass('disabled')
-      $submit.text($submit.data('original-text'))
-    .done =>
-      $(@)
-        .slideUp()
-        .siblings('.note.note-confirm')
-        .slideDown()
-    .fail (xhr, status) =>
-      if Rollbar?
-        Rollbar.error 'Error submitting form.', xhr: xhr, status: status
-      $(@)
-        .siblings('.note.note-error')
-        .slideDown()
+watchNewProjectForm = ->
+  $('#add-project form').on 'submit', ->
+    $(@)
+      .slideUp()
+      .siblings('.note.note-confirm')
+      .slideDown()

@@ -14,11 +14,6 @@ body#home {
     &.note-confirm {
       color: $alert-success-text;
     }
-
-    &.note-error {
-      color: $alert-danger-text;
-      margin-top: 20px;
-    }
   }
 
   form {
