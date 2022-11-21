@@ -7,7 +7,7 @@ ruby File.read(".ruby-version").strip
 gem 'active_record_extended',                   "~> 3.0"
 gem "amazing_print",                            "~> 1.4",  require: false
 gem "aws-sdk-s3",                               "~> 1.8"
-gem "baseline",                                 path: "~/code/_open-source/_sources/baseline"#github: "manuelmeurer/baseline"
+gem "baseline",                                 github: "manuelmeurer/baseline"
 gem "bootsnap",                                 "~> 1.13", require: false
 gem "bootstrap",                                "~> 5.2"
 gem "envkey",                                   "~> 1.0"

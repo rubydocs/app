@@ -1,5 +1,6 @@
-PATH
-  remote: ../../_open-source/_sources/baseline
+GIT
+  remote: https://github.com/manuelmeurer/baseline.git
+  revision: c975f17158d26ee6c654c64e6ed828b774a1382e
   specs:
     baseline (1.0)
       rails (>= 6.0)
