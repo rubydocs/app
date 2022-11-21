@@ -1,6 +1,0 @@
-[submodule "lib/s3cmd"]
-	path = lib/s3cmd
-	url = https://github.com/s3tools/s3cmd.git
-[submodule "common-gems"]
-	path = common-gems
-	url = https://github.com/krautcomputing/common-gems.git
