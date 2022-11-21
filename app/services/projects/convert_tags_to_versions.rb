@@ -23,8 +23,6 @@ module Projects
       \z
     )ix
 
-    disable_call_logging
-
     def call(tags)
       tags.each_with_object({}) do |tag, hash|
         version_match = tag.match(VERSION_REGEX)

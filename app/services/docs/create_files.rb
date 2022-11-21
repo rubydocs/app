@@ -1,10 +1,10 @@
 require 'rdoc'
 require 'sdoc/merge'
-require 'render_anywhere'
+# require 'render_anywhere'
 
 module Docs
   class CreateFiles < Baseline::Service
-    include RenderAnywhere
+    # include RenderAnywhere
 
     IncompleteError        = Class.new(Error)
     FilesExistsError       = Class.new(Error)

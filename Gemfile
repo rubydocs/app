@@ -4,13 +4,15 @@ source "https://rubygems.org"
 
 ruby File.read(".ruby-version").strip
 
-gem 'active_record_extended',                   "~> 3.0"
+gem "active_record_extended",                   "~> 3.0"
 gem "amazing_print",                            "~> 1.4",  require: false
 gem "aws-sdk-s3",                               "~> 1.8"
 gem "baseline",                                 github: "manuelmeurer/baseline"
 gem "bootsnap",                                 "~> 1.13", require: false
 gem "bootstrap",                                "~> 5.2"
+gem "cloudflare",                               "~> 4.3"
 gem "envkey",                                   "~> 1.0"
+gem "git",                                      "~> 1.12"
 gem "haml",                                     "~> 6.0"
 gem "hiredis",                                  "~> 0.6"
 gem "importmap-rails",                          "~> 1.1"
@@ -25,7 +27,9 @@ gem "rails_bootstrap_navbar",                   "~> 3.0"
 gem "rails",                                    "~> 7.0.4"
 gem "redis-namespace",                          "~> 1.9"
 gem "redis",                                    "~> 4.0"
+gem "rubyzip",                                  "~> 2.3"
 gem "sassc-rails",                              "~> 2.1"
+gem "sdoc",                                     "~> 2.4"
 gem "sentry-rails",                             "~> 5.5"
 gem "sentry-sidekiq",                           "~> 5.5"
 gem "sidekiq-scheduler",                        "~> 4.0"

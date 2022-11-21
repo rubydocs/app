@@ -1,4 +1,4 @@
-require 'net/sftp'
+# require 'net/sftp'
 
 module DocCollections
   class Upload < Baseline::Service
