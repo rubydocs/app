@@ -1,44 +1,53 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
-  def page_id
-    [].tap do |parts|
-      case
-      when controller.status != 200
-        parts << 'error' << controller.status
-      when controller.controller_name == 'pages'
-        parts << params[:id]
-      else
-        parts << controller.action_name
+  include Baseline::Helper
 
-        if %w(index).any? { |prefix| controller.action_name =~ /\A#{prefix}/ }
-          parts << controller.controller_name
-        elsif %w(show edit update new create).any? { |prefix| controller.action_name =~ /\A#{prefix}/ }
-          parts << controller.controller_name.singularize
-        end
-      end
-    end.join('-').dasherize
-  end
-
-  def set_title(page_title)
-    content_for(:title) { page_title }
-  end
-
-  def title
+  def page_classes
     [
-      content_for(:title),
-      "RubyDocs - #{t :tagline}"
-    ].compact.join(' | ').html_safe
+      controller.controller_name,
+      { "create" => "new", "update" => "edit" }.fetch(controller.action_name, controller.action_name)
+    ].join(" ")
   end
 
-  def description
-    'Create your perfect set of searchable Ruby and Rails docs by picking exactly the versions you need. Hosted in the cloud and fronted by a CDN, your docs will always be there for you.'
-  end
-
-  def favicon_tag(url)
-    favicon = case url
-    when %r(//github.com)   then 'github.png'
-    when %r(//rubygems.org) then 'rubygems.png'
-    else                         'website.png'
+  def alert(level, text = nil, &block)
+    tag.div class: "alert alert-#{level} alert-dismissible fade show" do
+      concat tag.button(type: "button", class: "btn-close", data: { bs_dismiss: "alert" })
+      concat text&.html_safe || capture_haml(&block)
     end
-    image_tag "favicons/#{favicon}"
+  end
+
+  def flash_messages
+    flash.map do |level, message|
+      level = { notice: "success", alert: "danger" }[level.to_sym] || level
+      alert level, message
+    end.compact.join("\n").html_safe
+  end
+
+  def async_turbo_frame(name, **attributes, &block)
+    # If a ActiveRecord record is passed to `turbo_frame_tag`,
+    # `dom_id` is called to determine its DOM ID.
+    # This exposes the record ID, which is not desirable if the record has a slug.
+    if name.is_a?(ActiveRecord::Base) && name.respond_to?(:slug)
+      name = [name.class.to_s.underscore, name.slug].join("_")
+    end
+
+    unless url = attributes[:src]
+      raise "async_turbo_frame needs a `src` attribute."
+    end
+
+    uris = [
+      url_for(url),
+      request.fullpath
+    ].map { Addressable::URI.parse _1 }
+    uris_match = %i(path query_values).all? { uris.map(&_1).uniq.size == 1 }
+
+    if uris_match
+      turbo_frame_tag name, &block
+    else
+      turbo_frame_tag name, **attributes do
+        render "shared/loading"
+      end
+    end
   end
 end

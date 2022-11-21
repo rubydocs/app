@@ -1,7 +1,7 @@
 require 'cloudflare'
 
 module Projects
-  class UpdateTagsForAll < Services::Base
+  class UpdateTagsForAll < Baseline::Service
     UNSTABLE_TAGS_REGEX    = /rc|alpha|beta|pre/
     LAST_SUCCESS_CACHE_KEY = 'update_tags_for_all_last_success'.freeze
 

@@ -1,5 +1,5 @@
 module Projects
-  class Create < Services::Base
+  class Create < Baseline::Service
     def call(attributes)
       project = Project.create!(attributes)
       Projects::Clone.call(project)

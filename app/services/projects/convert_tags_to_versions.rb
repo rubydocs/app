@@ -1,5 +1,5 @@
 module Projects
-  class ConvertTagsToVersions < Services::Base
+  class ConvertTagsToVersions < Baseline::Service
     VERSION_REGEX = %r(
       \A
       (?:v|REL_|REV_)?

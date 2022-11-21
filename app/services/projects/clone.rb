@@ -1,7 +1,7 @@
 require 'git'
 
 module Projects
-  class Clone < Services::Base
+  class Clone < Baseline::Service
     FilesExistsError = Class.new(Error)
 
     def call(project)

@@ -1,7 +1,7 @@
 require 'aws-sdk-s3'
 
 module DocCollections
-  class FetchFilePaths < Services::Base
+  class FetchFilePaths < Baseline::Service
     def call(doc_collection)
       cache_key = [
         'doc_collection_file_paths',

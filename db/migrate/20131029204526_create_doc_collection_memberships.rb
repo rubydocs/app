@@ -1,4 +1,6 @@
-class CreateDocCollectionMemberships < ActiveRecord::Migration
+# frozen_string_literal: true
+
+class CreateDocCollectionMemberships < ActiveRecord::Migration[4.2]
   def change
     create_table :doc_collection_memberships do |t|
       t.references :doc

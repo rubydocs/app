@@ -1,7 +1,7 @@
 require 'git'
 
 module Projects
-  class OpenGit < Services::Base
+  class OpenGit < Baseline::Service
     def call(project)
       if File.directory?(project.local_path)
         Git.open(project.local_path)

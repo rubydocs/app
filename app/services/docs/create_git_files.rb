@@ -1,5 +1,5 @@
 module Docs
-  class CreateGitFiles < Services::Base
+  class CreateGitFiles < Baseline::Service
     def call(doc)
       check_uniqueness doc.project.id
       git = Projects::OpenGit.call(doc.project)

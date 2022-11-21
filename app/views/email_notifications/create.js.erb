@@ -1,2 +1,0 @@
-<% response = @email_notification.valid? ? render('email_notifications/form_success') : render('email_notifications/form', email_notification: @email_notification) %>
-$('form#new_email_notification').replaceWith("<%= j response %>");

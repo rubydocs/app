@@ -1,37 +1,30 @@
-require File.expand_path('../boot', __FILE__)
+# frozen_string_literal: true
 
-require 'active_record/railtie'
-require 'action_controller/railtie'
-require 'action_mailer/railtie'
-require 'sprockets/railtie'
+require_relative "boot"
 
-I18n.config.enforce_available_locales = false
+require "rails/all"
 
-Bundler.require(:default, Rails.env)
+Bundler.require(*Rails.groups)
 
-module RubyDocs
+module RailsBump
   class Application < Rails::Application
-    config.assets.precompile += %w(
-      show-doc-collection.css
-    )
+    config.load_defaults 7.0
+    config.revision = `git rev-parse --short HEAD 2> /dev/null`.chomp
+    config.action_mailer.delivery_method = :postmark
+    config.active_record.query_log_tags_enabled = true
 
-    config.secret_key_base = ENV.fetch('SECRET_KEY_BASE')
+    config.middleware.insert 0, Rack::Deflater
+    config.middleware.insert 0, Rack::Cors do
+      allow do
+        origins "*"
+        resource "*", headers: :any, methods: %i(get options post patch put)
+      end
+    end
 
     Rails.application.routes.default_url_options =
       config.action_mailer.default_url_options = {
-        host:     ENV.fetch('HOST'),
-        protocol: ENV['PROTOCOL'] || 'http'
+        host:     ENV.fetch("HOST"),
+        protocol: "https"
       }
-
-    config.i18n.enforce_available_locales = false
-
-    config.active_record.raise_in_transactional_callbacks = true
-
-    config.middleware.insert_before 0, "Rack::Cors" do
-      allow do
-        origins '*'
-        resource '*', headers: :any, methods: [:get, :post, :options]
-      end
-    end
   end
 end

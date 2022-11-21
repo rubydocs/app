@@ -2,7 +2,7 @@ require 'sdoc/merge'
 require 'zip'
 
 module DocCollections
-  class CreateFiles < Services::Base
+  class CreateFiles < Baseline::Service
     FolderExistsError = Class.new(Error)
 
     def call(doc_collection)

@@ -1,5 +1,5 @@
 module DocCollections
-  class Create < Services::Base
+  class Create < Baseline::Service
     def call(docs)
       doc_collection = DocCollection.new
       docs.each do |doc|

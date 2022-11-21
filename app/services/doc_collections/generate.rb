@@ -1,5 +1,5 @@
 module DocCollections
-  class Generate < Services::Base
+  class Generate < Baseline::Service
     def call(doc_collection)
       check_uniqueness doc_collection.id
 

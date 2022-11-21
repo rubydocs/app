@@ -1,5 +1,5 @@
 module Docs
-  class DeleteFiles < Services::Base
+  class DeleteFiles < Baseline::Service
     def call(doc)
       check_uniqueness doc.id
       if File.exist?(doc.local_path)

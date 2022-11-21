@@ -1,4 +1,6 @@
-class AddDefaultToProjectTags < ActiveRecord::Migration
+# frozen_string_literal: true
+
+class AddDefaultToProjectTags < ActiveRecord::Migration[4.2]
   def up
     change_column_default :projects, :tags, {}
   end

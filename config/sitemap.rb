@@ -1,26 +1,17 @@
-require 'aws-sdk-s3'
+# frozen_string_literal: true
 
-SitemapGenerator::Sitemap.adapter       = SitemapGenerator::AwsSdkAdapter.new(ENV.fetch('AWS_BUCKET'))
-SitemapGenerator::Sitemap.sitemaps_host = 'https://s3.amazonaws.com/rubydocs'
-SitemapGenerator::Sitemap.default_host  = "https://#{ENV.fetch('HOST')}"
+require "sitemap_generator"
+require "aws-sdk-s3"
+
+SitemapGenerator::Sitemap.default_host = Rails.application.routes.url_helpers.root_url
+SitemapGenerator::Sitemap.adapter      = SitemapGenerator::AwsSdkAdapter.new(
+                                           ENV.fetch("CLOUDFLARE_R2_BUCKET"),
+                                           access_key_id:     ENV.fetch("CLOUDFLARE_R2_ACCESS_KEY_ID"),
+                                           secret_access_key: ENV.fetch("CLOUDFLARE_R2_SECRET_ACCESS_KEY"),
+                                           endpoint:          "https://#{ENV.fetch "CLOUDFLARE_ACCOUNT_ID"}.r2.cloudflarestorage.com",
+                                           region:            "auto",
+                                           acl:               "private"
+                                         )
+
 SitemapGenerator::Sitemap.create do
-  # Only doc collections generated after Feb 20, 2018, are included in the sitemap.
-  # This is the date the first doc collection was generated with sdoc 1.0.0.
-  # That way the number of included doc collections will grow over time as new ones
-  # are created and old ones are regenerated with newer generators.
-  doc_collections = DocCollections::Find.call(
-    uploaded_at:     true,
-    generated_after: Date.new(2018, 2, 20),
-    order:           'uploaded_at DESC'
-  )
-  doc_collections.find_each do |doc_collection|
-    add "/d/#{doc_collection.slug}/", lastmod: doc_collection.uploaded_at, priority: 0.75
-    # Ignore the file paths of doc collections with more than one doc.
-
-    # This generates too many paths...
-    # next if doc_collection.docs.size > 1
-    # DocCollections::FetchFilePaths.call(doc_collection).each do |file_path|
-    #   add "/d/#{doc_collection.slug}/#{file_path}", lastmod: doc_collection.uploaded_at
-    # end
-  end
 end

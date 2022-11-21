@@ -1,7 +1,7 @@
 require 'git'
 
 module Projects
-  class UpdateTags < Services::Base
+  class UpdateTags < Baseline::Service
     def call(project)
       check_uniqueness project.id
       git = Projects::OpenGit.call(project)

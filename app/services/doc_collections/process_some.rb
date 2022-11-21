@@ -1,5 +1,5 @@
 module DocCollections
-  class ProcessSome < Services::Base
+  class ProcessSome < Baseline::Service
     def call
       check_uniqueness on_error: :return
 

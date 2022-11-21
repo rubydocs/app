@@ -1,6 +1,6 @@
 module DocGenerators
   module Sdoc
-    class GetVersion < Services::Base
+    class GetVersion < Baseline::Service
       def call
         # TODO: Jeez, this is ugly! Isn't there an easier way
         # to get the version and SHA of the sdoc dependency?

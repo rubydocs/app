@@ -3,7 +3,7 @@ require 'sdoc/merge'
 require 'render_anywhere'
 
 module Docs
-  class CreateFiles < Services::Base
+  class CreateFiles < Baseline::Service
     include RenderAnywhere
 
     IncompleteError        = Class.new(Error)

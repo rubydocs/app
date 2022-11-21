@@ -1,10 +1,7 @@
-class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+# frozen_string_literal: true
 
-  # Add info to lograge payload
-  def append_info_to_payload(payload)
-    super
-    payload[:request_id] = request.uuid
-    payload[:remote_ip]  = request.remote_ip
+class ApplicationController < ActionController::Base
+  def home
+    render "shared/home"
   end
 end

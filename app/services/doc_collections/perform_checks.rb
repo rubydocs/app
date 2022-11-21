@@ -1,7 +1,7 @@
 require 'open-uri'
 
 module DocCollections
-  class PerformChecks < Services::Base
+  class PerformChecks < Baseline::Service
     def call
       check_uniqueness on_error: :return
 

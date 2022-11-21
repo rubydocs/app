@@ -1,2 +1,7 @@
-require ::File.expand_path('../config/environment', __FILE__)
+# frozen_string_literal: true
+
+require_relative "config/environment"
+
 run Rails.application
+
+Rails.application.load_server

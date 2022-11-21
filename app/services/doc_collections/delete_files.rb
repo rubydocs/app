@@ -1,5 +1,5 @@
 module DocCollections
-  class DeleteFiles < Services::Base
+  class DeleteFiles < Baseline::Service
     def call(doc_collection)
       [doc_collection.local_path, doc_collection.zipfile].each do |path|
         FileUtils.rm_rf path

@@ -1,5 +1,5 @@
 module Docs
-  class Create < Services::Base
+  class Create < Baseline::Service
     def call(project_id, tag)
       project = Projects::Find.call(project_id).first
       if project.nil?
