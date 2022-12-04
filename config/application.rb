@@ -9,8 +9,8 @@ Bundler.require(*Rails.groups)
 module RubyDocs
   class Application < Rails::Application
     config.load_defaults 7.0
-    config.revision = `git rev-parse --short HEAD 2> /dev/null`.chomp.presence ||
-                      ENV["FLY_IMAGE_REF"]&.then { _1[/@sha256:([0-9a-f]+)/, 1] } or
+    config.revision = ENV["REVISION"].presence ||
+                      `git rev-parse HEAD 2> /dev/null`.chomp.presence or
                       raise "Could not determine revision."
 
     config.action_mailer.delivery_method = :postmark
