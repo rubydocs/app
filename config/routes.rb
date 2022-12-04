@@ -16,8 +16,6 @@ end
 Rails.application.routes.draw do
   mount Sidekiq::Web => "sidekiq"
 
-  get "/.well-known/cf-2fa-verify.txt" => "application#cloudflare_verify"
-
   get ":sitemap", sitemap: /sitemap[A-Za-z\d.]*/, to: redirect { "https://#{ENV.fetch "CLOUDFLARE_R2_BUCKET_URL"}#{_2.path}" }
 
   root "application#home"
