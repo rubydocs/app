@@ -52,7 +52,7 @@ FROM build_deps as gems
 
 COPY Gemfile* ./
 COPY .ruby-version ./
-RUN bundle install &&  rm -rf vendor/bundle/ruby/*/cache
+RUN bundle install && rm -rf vendor/bundle/ruby/*/cache
 
 #######################################################################
 
