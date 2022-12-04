@@ -2,6 +2,6 @@
 
 class ApplicationController < ActionController::Base
   def home
-    render "shared/home"
+    render "/home"
   end
 end
