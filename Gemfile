@@ -12,6 +12,7 @@ gem "bootsnap",                                 "~> 1.13", require: false
 gem "bootstrap",                                "~> 5.2"
 gem "cloudflare",                               "~> 4.3"
 gem "envkey",                                   "~> 1.0"
+gem "friendly_id",                              "~> 5.5"
 gem "git",                                      "~> 1.12"
 gem "haml",                                     "~> 6.0"
 gem "hiredis",                                  "~> 0.6"

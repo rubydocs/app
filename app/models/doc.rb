@@ -1,5 +1,7 @@
 class Doc < ApplicationRecord
-  include FriendlyId, LocalPath
+  extend FriendlyId
+
+  include LocalPath
 
   friendly_id :name, use: :slugged
 
@@ -30,3 +32,15 @@ class Doc < ApplicationRecord
   end
   alias :to_s :name
 end
+
+# == Schema Information
+#
+# Table name: docs
+#
+#  id         :integer          not null, primary key
+#  slug       :string           not null
+#  tag        :string
+#  created_at :datetime
+#  updated_at :datetime
+#  project_id :integer
+#

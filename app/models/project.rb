@@ -1,5 +1,7 @@
 class Project < ApplicationRecord
-  include FriendlyId, LocalPath
+  extend FriendlyId
+
+  include LocalPath
 
   friendly_id :name, use: :slugged
 
@@ -9,3 +11,17 @@ class Project < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates :git, presence: true, uniqueness: true
 end
+
+# == Schema Information
+#
+# Table name: projects
+#
+#  id         :integer          not null, primary key
+#  git        :string
+#  links      :text             default([]), not null, is an Array
+#  name       :string
+#  slug       :string           not null
+#  tags       :json
+#  created_at :datetime
+#  updated_at :datetime
+#

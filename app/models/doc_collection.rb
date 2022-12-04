@@ -1,5 +1,7 @@
 class DocCollection < ApplicationRecord
-  include FriendlyId, LocalPath
+  extend FriendlyId
+
+  include LocalPath
 
   friendly_id :name, use: :slugged
 
@@ -37,3 +39,16 @@ class DocCollection < ApplicationRecord
     !!uploaded_at
   end
 end
+
+# == Schema Information
+#
+# Table name: doc_collections
+#
+#  id             :integer          not null, primary key
+#  generated_at   :datetime
+#  generated_with :string
+#  slug           :string           not null
+#  uploaded_at    :datetime
+#  created_at     :datetime
+#  updated_at     :datetime
+#
