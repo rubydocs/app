@@ -17,3 +17,7 @@ If you find a bug or have an idea for a new feature, please [open an issue](http
 ## Support
 
 If you find RubyDocs useful and would like to support the ongoing development, [buy me a coffee](https://www.buymeacoffee.com/279lcDtbF) or [become a sponsor](https://github.com/sponsors/manuelmeurer)!
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE.txt file for details.
