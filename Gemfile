@@ -11,7 +11,7 @@ gem "baseline",                                 github: "manuelmeurer/baseline"
 gem "bootsnap",                                 "~> 1.13", require: false
 gem "bootstrap",                                "~> 5.2"
 gem "cloudflare",                               "~> 4.3"
-gem "envkey",                                   "~> 1.0"
+gem "envkey",                                   "~> 2.0"
 gem "friendly_id",                              "~> 5.5"
 gem "git",                                      "~> 1.12"
 gem "haml",                                     "~> 6.0"
@@ -21,9 +21,9 @@ gem "kredis",                                   "~> 1.2"
 gem "mini_racer",                               "~> 0.6" # Necessary for autoprefixer-rails, which is required by bootstrap.
 gem "pg",                                       "~> 1.4"
 gem "postmark-rails",                           "~> 0.22"
-gem "pry",                                      "~> 0.14", require: false
+gem 'pry-rails',                                "~> 0.3"
 gem "puma",                                     "~> 6.0"
-gem "rack-cors",                                "~> 1.0"
+gem "rack-cors",                                "~> 2.0"
 gem "rails_bootstrap_navbar",                   "~> 3.0"
 gem "rails",                                    "~> 7.0.4"
 gem "redis-namespace",                          "~> 1.9"
@@ -46,8 +46,4 @@ group :development do
   gem "better_errors",                          "~> 2.8"
   gem "binding_of_caller",                      "~> 1.0"
   gem "database_consistency",                   "~> 1.0", require: false
-end
-
-group :development, :test do
-  gem "dotenv-rails",                           "~> 2.8", require: "dotenv/rails-now"
 end
