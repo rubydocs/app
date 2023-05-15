@@ -19,4 +19,6 @@ Rails.application.routes.draw do
   get ":sitemap", sitemap: /sitemap[A-Za-z\d.]*/, to: redirect { "https://#{ENV.fetch "CLOUDFLARE_R2_BUCKET_URL"}#{_2.path}" }
 
   root "application#home"
+
+  get :health, controller: "application"
 end
