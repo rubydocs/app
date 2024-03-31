@@ -1,7 +1,4 @@
-# frozen_string_literal: true
-
 require "sidekiq/web"
-require "sidekiq-scheduler/web"
 
 if Rails.env.production?
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|
@@ -16,9 +13,7 @@ end
 Rails.application.routes.draw do
   mount Sidekiq::Web => "sidekiq"
 
-  get ":sitemap", sitemap: /sitemap[A-Za-z\d.]*/, to: redirect { "https://#{ENV.fetch "CLOUDFLARE_R2_BUCKET_URL"}#{_2.path}" }
-
   root "application#home"
 
-  get :health, controller: "application"
+  get "up" => "rails/health#show", as: :rails_health_check
 end

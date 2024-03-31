@@ -1,13 +1,7 @@
-# frozen_string_literal: true
-
 class ApplicationController < ActionController::Base
+  include Baseline::ControllerExtensions
+
   def home
     render "/home"
-  end
-
-  def health
-    Doc.count
-    expires_now
-    head :ok
   end
 end

@@ -1,11 +1,9 @@
-# frozen_string_literal: true
+pin "application"
 
-pin "application", preload: true
-
-pin "bootstrap",                      to: "https://ga.jspm.io/npm:bootstrap@5.2.1/dist/js/bootstrap.esm.js"
-pin "@popperjs/core",                 to: "https://ga.jspm.io/npm:@popperjs/core@2.11.6/dist/esm/index.js"
-pin "@hotwired/stimulus",             to: "stimulus.min.js",     preload: true
-pin "@hotwired/stimulus-loading",     to: "stimulus-loading.js", preload: true
-pin "@hotwired/turbo-rails",          to: "turbo.min.js",        preload: true
+pin "@hotwired/stimulus-loading", to: "stimulus-loading.js"
+pin "@hotwired/stimulus",         to: "stimulus.min.js"
+pin "@hotwired/turbo-rails",      to: "turbo.min.js"
+pin "bootstrap",                  to: "bootstrap.min.js"
+pin "popper",                     to: "popper.js"
 
 pin_all_from "app/javascript/controllers", under: "controllers"
