@@ -30,7 +30,7 @@ module RubyDocs
 
     Rails.application.routes.default_url_options =
       config.action_mailer.default_url_options = {
-        host:     ENV.fetch("HOST"),
+        host:     Rails.application.env_credentials.host!,
         protocol: "https"
       }
 

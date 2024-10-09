@@ -9,7 +9,6 @@ gem "baseline",                                 github: "manuelmeurer/baseline"
 gem "bootsnap",                                 "~> 1.17", require: false
 gem "bootstrap",                                "~> 5.3"
 gem "dartsass-rails",                           "~> 0.5"
-gem "envkey",                                   "~> 2.0"
 gem "friendly_id",                              "~> 5.5"
 gem "haml",                                     "~> 6.0"
 gem "importmap-rails",                          "~> 2.0"
