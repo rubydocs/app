@@ -7,7 +7,7 @@ gem "amazing_print",                            "~> 1.5"
 gem "aws-sdk-s3",                               "~> 1.8",  require: false
 gem "baseline",                                 github: "manuelmeurer/baseline"
 gem "bootsnap",                                 "~> 1.17", require: false
-gem "bootstrap",                                github: "twbs/bootstrap-rubygem" # TODO: use released version when > 5.3.2 is released
+gem "bootstrap",                                "~> 5.3"
 gem "dartsass-rails",                           "~> 0.5"
 gem "envkey",                                   "~> 2.0"
 gem "friendly_id",                              "~> 5.5"
@@ -29,7 +29,7 @@ gem "sentry-rails",                             "~> 5.5"
 gem "sentry-sidekiq",                           "~> 5.5"
 gem "sidekiq",                                  "~> 7.2"
 gem "sitemap_generator",                        "~> 6.3"
-gem "sqlite3",                                  "~> 1.6"
+gem "sqlite3",                                  "~> 2.0"
 gem "stimulus-rails",                           "~> 1.3"
 gem "turbo-rails",                              "~> 2.0"
 
