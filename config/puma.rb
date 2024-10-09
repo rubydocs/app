@@ -1,26 +1,20 @@
+# frozen_string_literal: true
+
 require "sidekiq"
 
-max_threads_count = ENV.fetch("RAILS_MAX_THREADS", 3)
-min_threads_count = ENV.fetch("RAILS_MIN_THREADS", max_threads_count)
-threads min_threads_count, max_threads_count
+threads_count = ENV.fetch("RAILS_MAX_THREADS", 3)
+threads threads_count, threads_count
 
-if ENV["RAILS_ENV"] == "production"
-  require "concurrent-ruby"
-  worker_count = Integer(ENV.fetch("WEB_CONCURRENCY") { Concurrent.physical_processor_count })
-  if worker_count > 1
-    workers worker_count
-  end
-end
-
-if ENV.fetch("RAILS_ENV", "development") == "development"
-  worker_timeout 3600
-end
-
-port        ENV.fetch("PORT",      3000)
-environment ENV.fetch("RAILS_ENV", "development")
-pidfile     ENV.fetch("PIDFILE",   "tmp/pids/server.pid")
+port    ENV.fetch("PORT",    3000)
+pidfile ENV.fetch("PIDFILE", "tmp/pids/server.pid")
 
 plugin :tmp_restart
+
+# Recommendation from https://github.com/Shopify/autotuner
+before_fork do
+  3.times { GC.start }
+  GC.compact
+end
 
 preload_app!
 
