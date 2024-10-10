@@ -172,7 +172,6 @@ GEM
       activemodel (>= 6.0.0)
       activesupport (>= 6.0.0)
       redis (>= 4.2, < 6)
-    logger (1.6.1)
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -288,15 +287,6 @@ GEM
     sentry-ruby (5.21.0)
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.0.2)
-    sentry-sidekiq (5.21.0)
-      sentry-ruby (~> 5.21.0)
-      sidekiq (>= 3.0)
-    sidekiq (7.3.2)
-      concurrent-ruby (< 2)
-      connection_pool (>= 2.3.0)
-      logger
-      rack (>= 2.2.4)
-      redis-client (>= 0.22.2)
     sitemap_generator (6.3.0)
       builder (~> 3.0)
     sqlite3 (2.1.0-arm64-darwin)
@@ -350,8 +340,6 @@ DEPENDENCIES
   redis-namespace (~> 1.11)
   sdoc!
   sentry-rails (~> 5.5)
-  sentry-sidekiq (~> 5.5)
-  sidekiq (~> 7.2)
   sitemap_generator (~> 6.3)
   sqlite3 (~> 2.0)
   stimulus-rails (~> 1.3)

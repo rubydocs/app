@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "sidekiq"
-
 threads_count = ENV.fetch("RAILS_MAX_THREADS", 3)
 threads threads_count, threads_count
 
@@ -17,22 +15,3 @@ before_fork do
 end
 
 preload_app!
-
-sidekiq = nil
-
-on_worker_boot do
-  Sidekiq.default_job_options = {
-    "retry" => false
-  }
-  Sidekiq.strict_args!(:warn)
-  sidekiq = Sidekiq.configure_embed do |config|
-    config.concurrency = 1
-    config.redis = {
-      url: Baseline::RedisURL.fetch
-    }
-  end.tap(&:run)
-end
-
-on_worker_shutdown do
-  sidekiq&.stop
-end

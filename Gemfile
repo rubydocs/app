@@ -25,8 +25,6 @@ gem "redis-namespace",                          "~> 1.11"
 gem "redis",                                    "~> 5.0"
 gem "sdoc",                                     github: "rails/sdoc" # TODO: use released version when 3.x is released
 gem "sentry-rails",                             "~> 5.5"
-gem "sentry-sidekiq",                           "~> 5.5"
-gem "sidekiq",                                  "~> 7.2"
 gem "sitemap_generator",                        "~> 6.3"
 gem "sqlite3",                                  "~> 2.0"
 gem "stimulus-rails",                           "~> 1.3"
